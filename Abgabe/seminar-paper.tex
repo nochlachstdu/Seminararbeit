@@ -1,0 +1,158 @@
+% COMSYS Seminar/Preseminar Paper Template
+% ----------------------------------------
+% Based on the original IEEE template package, includes annotations by COMSYS
+
+\documentclass[conference]{IEEEtran}
+
+%\IEEEoverridecommandlockouts
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+\usepackage[sort]{cite}
+\usepackage[inline]{enumitem}
+\usepackage{balance}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+
+
+% Prevent subcaption package from overwriting the IEEE template defaults
+\makeatletter
+\let\SafeCaption\@makecaption
+\makeatother
+\usepackage{subcaption}
+\makeatletter
+\let\@makecaption\SafeCaption
+\makeatother
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Modern Congestion Control Algorithms}
+
+\author{\IEEEauthorblockN{Yannik Schreiter}
+\IEEEauthorblockA{\textit{COMSYS} \\
+\textit{RWTH}\\
+Aachen, Deutschland \\
+Yannik.Schreiter@rwth-aachen.de}
+}
+
+\maketitle
+
+\begin{abstract}
+Abstract
+\end{abstract}
+
+\begin{IEEEkeywords}
+congestion control
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+\subsection{Why do we need congestion Control}
+
+\section{Background}
+
+\subsection{Congestion Control general Information}
+
+\subsubsection{Difference between Congestion Control and Congestion Avoidance}
+
+\subsubsection{Bandwidth delay product}
+
+bdp = $b_r * RTT$
+
+\subsubsection{Jains Index}
+
+\subsubsection{Types of Congestion Controls}
+
+loss-Based
+
+delay-Based
+
+congestion-Based
+
+\subsubsection{Places of deployment}
+
+Short distance networks
+
+long distance networks
+
+data center
+
+satelite links
+
+small buffer at Bottleneck
+
+large buffer at Bottleneck
+
+\subsection{TCP Vegas}
+
+\subsection{TCP Cubic}
+
+\subsection{Fast TCP}
+
+\section{Related Work}
+
+\subsection{Bottleneck Bandwidth and Round-Trip propagation Time (BBR)}
+
+\subsubsection{Active Queue Dept Compensation (AQDC) BBR}
+
+\subsubsection{BBR-Extended State (ES)}
+
+\subsection{Performance-oriented Congestion Control (PCC)}
+
+\subsection{Copa}
+
+\subsubsection{Copa-Dynamic (Copa-D)}
+
+\subsubsection{Copa+}
+
+\section{Evaluations}
+
+\subsection{Interprotocol fairness}
+
+\subsection{RTT Fairness}
+
+\subsection{Troughtput}
+
+\subsection{Latency/Jitter}
+
+\subsection{Jains Fairness Index}
+
+\section{Summary}
+
+\section{Outlook}
+
+\subsection{Future Problems}
+Which Problems new Congestion Control Algorithms have to face.
+Which standards do they have to fullfill.
+
+\subsection{Which direction it is going}
+
+\section*{References}
+
+FAST TCP \cite{FASTTCP}
+
+COPA \cite{COPA}
+
+BBR Evaluation \cite{BBREVALUATION}
+
+BBR Original \cite{BBRORIGINAL}
+
+TCP Cubic \cite{TCPCUBIC}
+
+TCP Vegas \cite{TCPVEGAS}
+
+PCC \cite{PCC}
+
+Raj Jain: Reasons for Congestion Control \cite{JainsCongestionControl}
+
+Jains Index \cite{JainsIndex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{seminar-paper}
+
+\end{document}
