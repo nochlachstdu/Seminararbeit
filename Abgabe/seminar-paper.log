@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  9 APR 2026 18:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  9 APR 2026 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/admin/Documents/Uni/Seminar/Abgabe/seminar-paper.tex
-(c:/Users/admin/Documents/Uni/Seminar/Abgabe/seminar-paper.tex
+**c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex
+(c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
 (IEEEtran.cls
@@ -431,16 +431,9 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
- (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
- (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+ (Sections/Intro.tex) (Sections/Background.tex) (Sections/Related_Work.tex) (Sections/Evaluation.tex) (Sections/Summary.tex) (Sections/Outlook.tex
 
-(seminar-paper.bbl
+) (seminar-paper.bbl
 
 [1{C:/Users/admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
@@ -469,20 +462,20 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: 40AC7E7CADB46C9DE987B09E7B1A7711;5103.
+(rerunfilecheck)             Checksum: 6FAF1587030A50CB6231B1B2CE02F46E;4914.
  ) 
 Here is how much of TeX's memory you used:
- 14265 strings out of 473899
- 242497 string characters out of 5726499
- 643877 words of memory out of 5000000
- 36950 multiletter control sequences out of 15000+600000
- 590271 words of font info for 93 fonts, out of 8000000 for 9000
+ 14268 strings out of 473899
+ 243274 string characters out of 5726499
+ 642877 words of memory out of 5000000
+ 36947 multiletter control sequences out of 15000+600000
+ 588572 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,497b,599s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (2 pages, 105795 bytes).
+ 75i,8n,79p,511b,599s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on seminar-paper.pdf (2 pages, 79074 bytes).
 PDF statistics:
- 205 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
 
