@@ -21,6 +21,25 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{JainsIndex}
+R.~K. Jain, D.-M.~W. Chiu, and W.~R. Hawe, ``A quantitative measure of fairness
+  and discrimination for resource allocation in shared computer system,''
+  \emph{ACM Transactions on Computer Systems}, September 1984.
+
+\bibitem{TCPVEGAS}
+L.~S. Brakmo and L.~L. Peterson, ``Tcp vegas: End to end congestion avoidance
+  on a global internet,'' \emph{IEEE SELECTED AREAS IN COMMUNICATIONS},
+  vol.~13, no.~8, October 1995.
+
+\bibitem{TCPCUBIC}
+S.~Ha, I.~Rhee, and L.~Xu, ``Cubic: A newtcp-friendly high-speed tcp variant,''
+  Princton Education.
+
+\bibitem{FASTTCP}
+D.~X. Wei, C.~Jin, S.~H. Low, and S.~Hegde, ``Fast tcp: Motivation,
+  architecture, algorithms, performance,'' \emph{IEEE/ACM Transactions on
+  Networking}, vol.~14, no.~6, pp. 1246--1259, 2006.
+
 \bibitem{WHENTOUSEBBR}
 \BIBentryALTinterwordspacing
 Y.~Cao, A.~Jain, K.~Sharma, A.~Balasubramanian, and A.~Gandhi, ``When to use
@@ -63,11 +82,6 @@ W.~Jiang, H.~Li, Z.~Liu, J.~Wu, J.~Huang, D.~Shan, and J.~Wang, ``Copa+:
   copa,'' in \emph{IEEE INFOCOM 2022 - IEEE Conference on Computer
   Communications}, 2022, pp. 920--929.
 
-\bibitem{FASTTCP}
-D.~X. Wei, C.~Jin, S.~H. Low, and S.~Hegde, ``Fast tcp: Motivation,
-  architecture, algorithms, performance,'' \emph{IEEE/ACM Transactions on
-  Networking}, vol.~14, no.~6, pp. 1246--1259, 2006.
-
 \bibitem{COPA}
 V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
   for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
@@ -78,15 +92,6 @@ N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
   Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
   bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
 
-\bibitem{TCPCUBIC}
-S.~Ha, I.~Rhee, and L.~Xu, ``Cubic: A newtcp-friendly high-speed tcp variant,''
-  Princton Education.
-
-\bibitem{TCPVEGAS}
-L.~S. Brakmo and L.~L. Peterson, ``Tcp vegas: End to end congestion avoidance
-  on a global internet,'' \emph{IEEE SELECTED AREAS IN COMMUNICATIONS},
-  vol.~13, no.~8, October 1995.
-
 \bibitem{PCC}
 M.~Dong, Q.~Li, D.~Zarchy, P.~B. Godfrey, and M.~Schapira, ``Pcc:
   Re-architecting congestion control for consistent high performance,'' Paper
@@ -96,10 +101,5 @@ M.~Dong, Q.~Li, D.~Zarchy, P.~B. Godfrey, and M.~Schapira, ``Pcc:
 \bibitem{JainsCongestionControl}
 R.~Jain, ``Congestion control in computer networks: issues and trends,''
   \emph{IEEE Network}, vol.~4, no.~3, pp. 24--30, 1990.
-
-\bibitem{JainsIndex}
-R.~K. Jain, D.-M.~W. Chiu, and W.~R. Hawe, ``A quantitative measure of fairness
-  and discrimination for resource allocation in shared computer system,''
-  \emph{ACM Transactions on Computer Systems}, September 1984.
 
 \end{thebibliography}
