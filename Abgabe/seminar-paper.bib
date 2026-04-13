@@ -151,6 +151,25 @@ doi = {10.1109/TNSM.2026.3668966}
   keywords={Adaptation models;Cloud computing;Codes;Social networking (online);Conferences;Computational modeling;Estimation;Delay-based Congestion Control;Copa;Cubic},
   doi={10.1109/INFOCOM48880.2022.9796913}}
 
+@inproceedings{TCPSTHIRDEYE,
+author = {Hinz, J\"{o}rn-Thorben and Addanki, Vamsi and Gy\"{o}rgyi, Csaba and Jepsen, Theo and Schmid, Stefan},
+title = {TCP's Third Eye: Leveraging eBPF for Telemetry-Powered Congestion Control},
+year = {2023},
+isbn = {9798400702938},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3609021.3609295},
+doi = {10.1145/3609021.3609295},
+abstract = {For years, congestion control algorithms have been navigating in the dark, blind to the actual state of the network. They were limited to the course-grained signals that are visible from the OS kernel, which are measured locally (e.g., RTT) or hints of imminent congestion (e.g., packet loss and ECN). As applications and OSs are becoming ever more distributed, it is only natural that the kernel have visibility beyond the host, into the network fabric. Network switches already collect telemetry, but it has been impractical to export it for the end-host to react.Although some telemetry-based solutions have been proposed, they require changes to the end-host, like custom hardware or new protocols and network stacks. We address the challenges of efficiency and protocol compatibility, showing that it is possible and practical to run telemetry-based congestion control algorithms in the kernel. We designed a framework that uses eBPF to run CCAs that can execute different control laws by selecting different types of telemetry. It can be deployed in brownfield environments, without requiring all switches be telemetry-enabled, or kernel recompilation at the end-hosts. When our eBPF program is deployed on hosts without hardware or OS changes, TCP incast workloads experience less queuing (thus lower latency), faster convergence and better fairness.},
+booktitle = {Proceedings of the 1st Workshop on EBPF and Kernel Extensions},
+pages = {1–7},
+numpages = {7},
+keywords = {linux kernel, congestion control, INT, TCP, datacenter, eBPF},
+location = {New York, NY, USA},
+series = {eBPF '23}
+}
+
+
 @Misc{b4,
 	Title = {Title of paper if known},
 	Author = {Should B. Known},

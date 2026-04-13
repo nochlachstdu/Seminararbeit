@@ -66,6 +66,12 @@ Z.~Han and G.~Hasegawa, ``Bbr-es: An extended-state optimization for bbr
   congestion control,'' \emph{IEEE Transactions on Network and Service
   Management}, vol.~PP, pp. 1--1, 01 2026.
 
+\bibitem{PCC}
+M.~Dong, Q.~Li, D.~Zarchy, P.~B. Godfrey, and M.~Schapira, ``Pcc:
+  Re-architecting congestion control for consistent high performance,'' Paper
+  in 12th USENIX Symposium on Networked Systems Design and Implementation, May
+  2015.
+
 \bibitem{COPADYNAMIC}
 \BIBentryALTinterwordspacing
 H.~Haile, K.-J. Grinnemo, S.~Ferlin, P.~Hurtig, and A.~Brunström, ``Copa-d:
@@ -82,6 +88,16 @@ W.~Jiang, H.~Li, Z.~Liu, J.~Wu, J.~Huang, D.~Shan, and J.~Wang, ``Copa+:
   copa,'' in \emph{IEEE INFOCOM 2022 - IEEE Conference on Computer
   Communications}, 2022, pp. 920--929.
 
+\bibitem{TCPSTHIRDEYE}
+\BIBentryALTinterwordspacing
+J.-T. Hinz, V.~Addanki, C.~Gy\"{o}rgyi, T.~Jepsen, and S.~Schmid, ``Tcp's third
+  eye: Leveraging ebpf for telemetry-powered congestion control,'' in
+  \emph{Proceedings of the 1st Workshop on EBPF and Kernel Extensions}, ser.
+  eBPF '23.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA:
+  Association for Computing Machinery, 2023, p. 1–7. [Online]. Available:
+  \url{https://doi.org/10.1145/3609021.3609295}
+\BIBentrySTDinterwordspacing
+
 \bibitem{COPA}
 V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
   for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
@@ -91,12 +107,6 @@ V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
 N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
   Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
   bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
-
-\bibitem{PCC}
-M.~Dong, Q.~Li, D.~Zarchy, P.~B. Godfrey, and M.~Schapira, ``Pcc:
-  Re-architecting congestion control for consistent high performance,'' Paper
-  in 12th USENIX Symposium on Networked Systems Design and Implementation, May
-  2015.
 
 \bibitem{JainsCongestionControl}
 R.~Jain, ``Congestion control in computer networks: issues and trends,''
