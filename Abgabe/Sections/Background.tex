@@ -2,7 +2,12 @@
 
 \subsection{Congestion Control general Information}
 
-\subsubsection{Difference between Congestion Control and Congestion Avoidance} <-- Naja, eher unwichtig
+Congestion Control describes all algorithms, that are used to control how much packet a sender is sending. 
+The main focus of Congestion Control lies on TCP connections, because there a low latency and high throughtput a wanted, while the packet loss should be zero.
+In \cite{JainsCongestionControl} describes the main reasons and challanges for congestion control algorithms that have not changed since.
+The author identifies three main hardware limits of a bottleneck router, which are buffer, transmission speed and speed of CPU of the bottleneck router.
+If a router is upgraded, but not proportionaly equal in all three at the same time, it will cause problems and actually limit the capacity of the adjusted router.
+Therefore, Congestion Control algorithms are necessary, because Hardware has its limits.
 
 \subsubsection{Measuring Indicies}
 

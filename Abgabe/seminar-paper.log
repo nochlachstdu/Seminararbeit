@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  10 APR 2026 17:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  13 APR 2026 15:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -431,22 +431,22 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- (Sections/Intro.tex) (Sections/Background.tex) (Sections/Related_Work.tex) (Sections/Evaluation.tex) (Sections/Summary.tex) (Sections/Outlook.tex
+ (Sections/Intro.tex) (Sections/Background.tex) (Sections/Related_Work.tex
 
-) (seminar-paper.bbl
-LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
- (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
- (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) (Sections/Evaluation.tex) (Sections/Summary.tex) (Sections/Outlook.tex) (seminar-paper.bbl
 
 [1{C:/Users/admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
-])
+]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+ (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+ (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -470,20 +470,20 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: C217D23EB24F0E06B5D75955CA8B0186;5212.
+(rerunfilecheck)             Checksum: D52781FFC5C179CEFD334C1D46D90983;4945.
  ) 
 Here is how much of TeX's memory you used:
- 14332 strings out of 473899
- 244238 string characters out of 5726499
- 646070 words of memory out of 5000000
- 36983 multiletter control sequences out of 15000+600000
+ 14334 strings out of 473899
+ 244257 string characters out of 5726499
+ 641104 words of memory out of 5000000
+ 36984 multiletter control sequences out of 15000+600000
  592317 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,511b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,483b,599s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (2 pages, 86924 bytes).
+Output written on seminar-paper.pdf (2 pages, 87951 bytes).
 PDF statistics:
- 216 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 500000)
  257 words of extra memory for PDF output out of 10000 (max. 10000000)
 
