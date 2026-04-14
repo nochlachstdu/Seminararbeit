@@ -9,9 +9,13 @@ The author identifies three main hardware limits of a bottleneck router, which a
 If a router is upgraded, but not proportionaly equal in all three at the same time, it will cause problems and actually limit the capacity of the adjusted router.
 Therefore, Congestion Control algorithms are necessary, because Hardware has its limits.
 
-\subsubsection{Measuring Indicies}
+\subsubsection{Measuring Indices}
 
-Jains Index \cite{JainsIndex}
+When a Congestion Control Algorithm is developed, its founders want to know, if there idea is good or not. 
+To determine a good Congestion Control algorithm there are a few indices.
+One of them is Jains fairness Index and it measures the fairness of an congestion control algorithm in respect to how fair flows share the bottleneck resources.
+Jains Index is a number between 0 and 1 where its value describes the amount in percentage of users in who get a fair share of the resources. 
+So 1 means 100\% of the users get a fair share\cite{JainsIndex}.
 
 \subsubsection{Types of Congestion Controls}
 
