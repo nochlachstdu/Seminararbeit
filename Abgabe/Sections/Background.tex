@@ -39,10 +39,6 @@ small buffer at Bottleneck
 
 large buffer at Bottleneck
 
-\subsection{TCP Vegas}
-
-\cite{TCPVEGAS}
-
 \subsection{TCP Cubic}
 
 When the internet startet to grow and it became evident, that it will be more high speed and long distance network, older TCP Congestion Control Algorithm have less scalibility to tackle the challenges of the internet\cite{TCPCUBIC}.
@@ -55,6 +51,23 @@ It detects the bottlenecks limit by watching for packets loss.
 This means, when the packet loss increases, then the bottleneck is not able to handle more packets and TCP Cubic knows it has reached the limit.
 \cite{TCPCUBIC}
 
+
+\subsection{TCP Vegas}
+
+The authors of TCP Vegas wanted to improv the existing TCP Reno and wanted to introduce a way on how to increase throughtput and lower packet loss.
+They figured out, that loss-based Congestion COntrol Algorithms create unnecessary packet losses and these lost packets then need to be retransmitted.
+Moreover, they realized, that with measuring the RTT of a packet, they can get more information out of it.
+\cite{TCPVEGAS}
+
+
 \subsection{Fast TCP}
 
+Like the authors of TCP Cubic the authors of FAST TCP recognized that the internet grows more and more and is more and more a long distance network. 
+However, other than \cite{TCPCUBIC}, the authors in \cite{FASTTCP} focused more on the speed of the flows.
+FAST TCP is a delay-based Congestion Control Algorithm and targets to have an extremly low loss probability.
+Moreover, the authors do not want the binary classification that other Congestion Control Algorithms have, because it can result to oscilations in the congestion window.
+That is why they decided to use queuing-dely as their primary measure of congestion\cite{FASTTCP}.
+It is possible to understand more about the state of the network, if the measurement is more than just packet arrived or not, because if you measure the RTT, it is possible to see, when the networks bottleneck gets trouble handling the traffic.
+Furthermore, the authors of FAST TCP wanted the congestion window not to be iterativly increased, but more flexible.
+With other words, the congestion window in FAST TCP can change depending on how far away from the threshold it is.
 \cite{FASTTCP}

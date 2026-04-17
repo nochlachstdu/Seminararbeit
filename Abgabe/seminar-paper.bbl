@@ -30,14 +30,14 @@ R.~K. Jain, D.-M.~W. Chiu, and W.~R. Hawe, ``A quantitative measure of fairness
   and discrimination for resource allocation in shared computer system,''
   \emph{ACM Transactions on Computer Systems}, September 1984.
 
+\bibitem{TCPCUBIC}
+S.~Ha, I.~Rhee, and L.~Xu, ``Cubic: A newtcp-friendly high-speed tcp variant,''
+  Princton Education.
+
 \bibitem{TCPVEGAS}
 L.~S. Brakmo and L.~L. Peterson, ``Tcp vegas: End to end congestion avoidance
   on a global internet,'' \emph{IEEE SELECTED AREAS IN COMMUNICATIONS},
   vol.~13, no.~8, October 1995.
-
-\bibitem{TCPCUBIC}
-S.~Ha, I.~Rhee, and L.~Xu, ``Cubic: A newtcp-friendly high-speed tcp variant,''
-  Princton Education.
 
 \bibitem{FASTTCP}
 D.~X. Wei, C.~Jin, S.~H. Low, and S.~Hegde, ``Fast tcp: Motivation,
@@ -107,6 +107,15 @@ C.~L. Vielhaus, C.~v. Lengerke, V.~Latzko, J.~Rischke, M.~Reisslein, and
   F.~H.~P. Fitzek, ``Evaluating transport layer congestion control algorithms:
   A comprehensive survey,'' \emph{IEEE Communications Surveys and Tutorials},
   vol.~28, pp. 278--340, 2026.
+
+\bibitem{C4}
+\BIBentryALTinterwordspacing
+C.~Huitema, S.~Nandakumar, and C.~F. Jennings, ``{Design of Christian's
+  Congestion Control Code (C4)},'' Internet Engineering Task Force,
+  Internet-Draft draft-huitema-ccwg-c4-design-03, Feb. 2026, work in Progress.
+  [Online]. Available:
+  \url{https://datatracker.ietf.org/doc/draft-huitema-ccwg-c4-design/03/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{COPA}
 V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control

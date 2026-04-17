@@ -178,7 +178,24 @@ series = {eBPF '23}
   number={},
   pages={278-340},
   keywords={Surveys;Measurement;Internet;Tutorials;Protocols;Wireless networks;Taxonomy;Steady-state;Network topology;Emulation;Bufferbloat;congestion;evaluation;fairness;Internet;operating point;throughput;traffic flows;wireless networks},
-  doi={10.1109/COMST.2025.3533303}}
+  doi={10.1109/COMST.2025.3533303}
+  }
+
+@techreport{C4,
+    number =    {draft-huitema-ccwg-c4-design-03},
+    type =      {Internet-Draft},
+    institution =   {Internet Engineering Task Force},
+    publisher = {Internet Engineering Task Force},
+    note =      {Work in Progress},
+    url =       {https://datatracker.ietf.org/doc/draft-huitema-ccwg-c4-design/03/},
+    author =    {Christian Huitema and Suhas Nandakumar and Cullen Fluffy Jennings},
+    title =     {{Design of Christian's Congestion Control Code (C4)}},
+    pagetotal = 30,
+    year =      2026,
+    month =     feb,
+    day =       26,
+    abstract =  {Christian's Congestion Control Code is a new congestion control algorithm designed to support Real-Time applications such as Media over QUIC. It is designed to drive towards low delays, with good support for the "application limited" behavior frequently found when using variable rate encoding, and with fast reaction to congestion to avoid the "priority inversion" happening when congestion control overestimates the available capacity. It pays special attention to the high jitter conditions encountered in Wi-Fi networks. The design emphasizes simplicity and avoids making too many assumption about the "model" of the network. The main control variables are the estimate of the data rate and of the maximum path delay in the absence of queues.},
+}
 
 
 @Misc{b4,
