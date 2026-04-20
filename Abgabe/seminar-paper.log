@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  17 APR 2026 14:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  20 APR 2026 12:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -432,6 +432,11 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (Sections/Intro.tex) (Sections/Background.tex
+Underfull \hbox (badness 1997) in paragraph at lines 20--25
+[]\OT1/ptm/m/n/10 As the In-ter-net tran-si-tioned to-ward high-speed, long-
+ []
+
+
 
 )
 
@@ -467,20 +472,20 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: 4A820616219D5937A505D08DD79E2BCE;5213.
+(rerunfilecheck)             Checksum: 33CF47428AD3F2DA9FEBEB60B6F8ACA3;4865.
  ) 
 Here is how much of TeX's memory you used:
- 14341 strings out of 473899
- 244339 string characters out of 5726499
- 643240 words of memory out of 5000000
- 36989 multiletter control sequences out of 15000+600000
+ 14337 strings out of 473899
+ 244259 string characters out of 5726499
+ 644240 words of memory out of 5000000
+ 36987 multiletter control sequences out of 15000+600000
  592317 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,8n,79p,483b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (2 pages, 93933 bytes).
+Output written on seminar-paper.pdf (2 pages, 93852 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 227 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

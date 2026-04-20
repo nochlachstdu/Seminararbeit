@@ -1,73 +1,41 @@
 \section{Background}
 
-\subsection{Congestion Control general Information}
+\subsection{Congestion Control Fundamentals}
 
-Congestion Control describes all algorithms, that are used to control how much packet a sender is sending. 
-The main focus of Congestion Control lies on TCP connections, because there a low latency and high throughtput a wanted, while the packet loss should be zero.
-In \cite{JainsCongestionControl} describes the main reasons and challanges for congestion control algorithms that have not changed since.
-The author identifies three main hardware limits of a bottleneck router, which are buffer, transmission speed and speed of CPU of the bottleneck router.
-If a router is upgraded, but not proportionaly equal in all three at the same time, it will cause problems and actually limit the capacity of the adjusted router.
-Therefore, Congestion Control algorithms are necessary, because Hardware has its limits.
+Congestion control encompasses the distributed algorithms designed to manage the transmission rate of senders to prevent network congestion. 
+While there are algorithms for various protocols, the primary focus of Congestion Control development remains on the Transmission Control Protocol (TCP), where the objective is to maximize throughput and minimize latency while maintaining zero packet loss. 
+Foundational work in this field identifies that congestion occurs when the aggregate demand for resources exceeds the available capacity of the network, specifically the bandwidth of links, buffer space in memory, and the processing capacity of intermediate nodes \cite{JainsCongestionControl}. 
+A significant challenge remains that upgrades to hardware are often disproportionate; for example, increasing transmission speed without a corresponding increase in CPU speed or buffer size can lead to new bottlenecks. 
+Consequently, robust congestion control is essential to manage these hardware limitations effectively and ensure fair resource allocation.
 
-\subsubsection{Measuring Indices}
+\subsubsection{Performance and Fairness Metrics}
 
-When a Congestion Control Algorithm is developed, its founders want to know, if there idea is good or not. 
-To determine a good Congestion Control algorithm there are a few indices.
-One of them is Jains fairness Index and it measures the fairness of an congestion control algorithm in respect to how fair flows share the bottleneck resources.
-Jains Index is a number between 0 and 1 where its value describes the amount in percentage of users in who get a fair share of the resources. 
-So 1 means 100\% of the users get a fair share\cite{JainsIndex}.
-
-\subsubsection{Types of Congestion Controls}
-
-loss-Based
-
-delay-Based
-
-congestion-Based
-
-\subsubsection{Places of deployment}
-
-Short distance networks
-
-long distance networks
-
-data center
-
-satelite links
-
-small buffer at Bottleneck
-
-large buffer at Bottleneck
+To evaluate the efficancy of a congestion control algorithm, several quantitative indices are employed. 
+A primary metric is Jain's Fairness Index, which assesses how equal different flows share bottleneck resources \cite{JainsIndex}. 
+This index yields a value between 0 and 1, representing the percentage of users who receive a fair share of the available capacity.
+A value of 1 signifies that 100\% of the users are receiving an identical and fair portion of the resources, which is the ideal state for a distributed network environment \cite{JainsIndex}.
 
 \subsection{TCP Cubic}
 
-When the internet startet to grow and it became evident, that it will be more high speed and long distance network, older TCP Congestion Control Algorithm have less scalibility to tackle the challenges of the internet\cite{TCPCUBIC}.
-The authors of TCP Cubic wanted to build a stable and scalable TCP version that can handle the new challanges of the internet.
-The basic idea behind TCP Cubic is that it uses a Cubic congestion window function\cite{TCPCUBIC}.
-Most other Congestion Control Algorithms at that time increased their packet rate only by one packet per RTT, which could lead to a very slow start and before a sender would start fully using its network resources, it could take hours.
-The cubic function starts to increase its packet rate very fast and then slows down in after some time, in order to not heavily overstep the bottleneck threshold.
-\cite{TCPCUBIC}
-It detects the bottlenecks limit by watching for packets loss. 
-This means, when the packet loss increases, then the bottleneck is not able to handle more packets and TCP Cubic knows it has reached the limit.
-\cite{TCPCUBIC}
-
+As the Internet transitioned toward high-speed, long-distance network paths, the performance of traditional TCP variants was challenged by large bandwidth-delay products (BDP). 
+Standard TCP implementations, such as Reno, utilize a linear window growth function that increases by only one packet per round-trip time (RTT), a process that is far too slow to fully utilize modern high-capacity links \cite{TCPCUBIC}. 
+To address this scalability issue, TCP Cubic introduces a cubic window growth function that is independent of RTT \cite{TCPCUBIC}. 
+This algorithm increases the congestion window aggressively when it is far from the saturation point and slows its growth as it approaches the previous limit, thereby maintaining high stability while remaining fair to standard TCP flows. 
+Like its predecessors, Cubic is a loss-based algorithm that identifies the bottleneck capacity by monitoring for packet loss events \cite{TCPCUBIC}.
 
 \subsection{TCP Vegas}
 
-The authors of TCP Vegas wanted to improv the existing TCP Reno and wanted to introduce a way on how to increase throughtput and lower packet loss.
-They figured out, that loss-based Congestion COntrol Algorithms create unnecessary packet losses and these lost packets then need to be retransmitted.
-Moreover, they realized, that with measuring the RTT of a packet, they can get more information out of it.
-\cite{TCPVEGAS}
+The authors of TCP Vegas proposed an alternative to the reactive nature of TCP Reno, aiming to increase throughput while significantly reducing packet losses \cite{TCPVEGAS}. 
+They recognized that loss-based algorithms are inherently inefficient because they must cause congestion and packet loss to determine available bandwidth. To create a more proactive mechanism, Vegas utilizes three key techniques. 
+First, it employs a new retransmission mechanism based on fine-grained RTT timestamps, allowing it to detect and resend lost packets much faster than the coarse-grained timeouts used in Reno \cite{TCPVEGAS}. 
+Second, it introduces a congestion avoidance scheme that compares the expected throughput to the actual throughput. 
+By monitoring the difference between these rates, Vegas can adjust its window to keep a constant, minimal number of packets in the router queues, effectively avoiding congestion before it occurs \cite{TCPVEGAS}. 
+Finally, it modifies the slow-start phase to grow the window only every other RTT, which allows the algorithm to detect congestion and transition to linear growth before a loss event occurs \cite{TCPVEGAS}.
 
+\subsection{FAST TCP}
 
-\subsection{Fast TCP}
-
-Like the authors of TCP Cubic the authors of FAST TCP recognized that the internet grows more and more and is more and more a long distance network. 
-However, other than \cite{TCPCUBIC}, the authors in \cite{FASTTCP} focused more on the speed of the flows.
-FAST TCP is a delay-based Congestion Control Algorithm and targets to have an extremly low loss probability.
-Moreover, the authors do not want the binary classification that other Congestion Control Algorithms have, because it can result to oscilations in the congestion window.
-That is why they decided to use queuing-dely as their primary measure of congestion\cite{FASTTCP}.
-It is possible to understand more about the state of the network, if the measurement is more than just packet arrived or not, because if you measure the RTT, it is possible to see, when the networks bottleneck gets trouble handling the traffic.
-Furthermore, the authors of FAST TCP wanted the congestion window not to be iterativly increased, but more flexible.
-With other words, the congestion window in FAST TCP can change depending on how far away from the threshold it is.
-\cite{FASTTCP}
+Building on the delay-based insights of TCP Vegas, FAST TCP was designed specifically for high-speed, long-distance networks with higher latency. 
+The authors identified that standard TCP implementations suffer at large windows due to slow linear increases and the instability caused by binary congestion signals \cite{FASTTCP}. 
+FAST TCP addresses these issues by using queuing delay as its primary congestion measure, which provides more precise information about the network state than simple packet loss. 
+The algorithm allows the congestion window to be adjusted flexibly based on how far the current state is from equilibrium, rather than relying on iterative linear increments \cite{FASTTCP}. 
+By stabilizing the network below the point of overflow, FAST TCP achieves high utilization and weighted proportional fairness while eliminating the severe oscillations common in loss-based protocols \cite{FASTTCP}.
