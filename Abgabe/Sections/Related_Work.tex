@@ -3,6 +3,21 @@
 
 \subsection{Bottleneck Bandwidth and Round-Trip propagation Time (BBR)}
 
+Bottleneck Bandwidth and Round-Trip propagation Time (BBR) was developed by Google researchers to address fundamental inefficiencies in traditional loss-based congestion control algorithms \cite{BBRORIGINAL}. 
+The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic \cite{BBRORIGINAL}. 
+Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds \cite{BBRORIGINAL}. 
+Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion; however, loss-based algorithms misinterpret these signals, causing them to reduce throughput unnecessarily \cite{BBRORIGINAL}.
+
+BBR operates through a state machine consisting of a Startup phase and two repeating steady-state phases known as ProbeBW and ProbeRTT. 
+The authors define the optimal operating point as having a delivery rate equal to the bottleneck bandwidth ($BtlBw$) and a total amount of inflight data equal to the pipe's Bandwidth-Delay Product (BDP) \cite{BBRORIGINAL}. 
+During the Startup phase, BBR rapidly discovers the bottleneck's limits by increasing its sending rate by a pacing gain of $2/\ln 2 \approx 2.885$ every round trip until the delivery rate plateaus \cite{BBRORIGINAL}.
+While this ensures the bottleneck is discovered in $\log_2 BDP$ rounds, it may temporarily fill the queue with up to $2BDP$ of excess data before transitioning into a Drain phase to empty the buffer \cite{BBRORIGINAL, BBREVALUATION}.
+
+In steady-state operation, the algorithm primarily cycles through the ProbeBW phase to measure and adapt to changes in available bandwidth. 
+This phase uses an eight-step cycle where the algorithm typically increases its sending rate by a pacing gain of 1.25 for one RTT to probe for additional capacity, then immediately reduces it to a gain of 0.75 for one RTT to drain the queue created during the probe \cite{BBREVALUATION}. 
+Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds \cite{BBREVALUATION}. 
+During this phase, the algorithm abruptly limits inflight data to a minimal amount—typically 4 packets—for at least 200 ms to fully drain the bottleneck buffer and measure the true propagation delay of the path \cite{BBRORIGINAL, BBREVALUATION}.
+
 \subsubsection{Use of BBR}
 
 When to use BBR: \cite{WHENTOUSEBBR}

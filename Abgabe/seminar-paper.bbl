@@ -44,6 +44,16 @@ D.~X. Wei, C.~Jin, S.~H. Low, and S.~Hegde, ``Fast tcp: Motivation,
   architecture, algorithms, performance,'' \emph{IEEE/ACM Transactions on
   Networking}, vol.~14, no.~6, pp. 1246--1259, 2006.
 
+\bibitem{BBRORIGINAL}
+N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
+  Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
+  bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
+
+\bibitem{BBREVALUATION}
+M.~Hock, R.~Bless, and M.~Zitterbart, ``Experimental evaluation of bbr
+  congestion control,'' in \emph{2017 IEEE 25th International Conference on
+  Network Protocols (ICNP)}, 2017, pp. 1--10.
+
 \bibitem{WHENTOUSEBBR}
 \BIBentryALTinterwordspacing
 Y.~Cao, A.~Jain, K.~Sharma, A.~Balasubramanian, and A.~Gandhi, ``When to use
@@ -53,11 +63,6 @@ Y.~Cao, A.~Jain, K.~Sharma, A.~Balasubramanian, and A.~Gandhi, ``When to use
   for Computing Machinery, 2019, p. 130–136. [Online]. Available:
   \url{https://doi.org/10.1145/3355369.3355579}
 \BIBentrySTDinterwordspacing
-
-\bibitem{BBREVALUATION}
-M.~Hock, R.~Bless, and M.~Zitterbart, ``Experimental evaluation of bbr
-  congestion control,'' in \emph{2017 IEEE 25th International Conference on
-  Network Protocols (ICNP)}, 2017, pp. 1--10.
 
 \bibitem{AQDCBBR}
 Z.~Li, J.~Zhang, Y.~Wang, P.~Guo, and J.~Jiang, ``Aqdc-bbr: An active queue
@@ -121,10 +126,5 @@ C.~Huitema, S.~Nandakumar, and C.~F. Jennings, ``{Design of Christian's
 V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
   for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
   Design and Implementation, April 2018.
-
-\bibitem{BBRORIGINAL}
-N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
-  Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
-  bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
 
 \end{thebibliography}
