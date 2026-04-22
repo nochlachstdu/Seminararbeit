@@ -54,16 +54,6 @@ M.~Hock, R.~Bless, and M.~Zitterbart, ``Experimental evaluation of bbr
   congestion control,'' in \emph{2017 IEEE 25th International Conference on
   Network Protocols (ICNP)}, 2017, pp. 1--10.
 
-\bibitem{WHENTOUSEBBR}
-\BIBentryALTinterwordspacing
-Y.~Cao, A.~Jain, K.~Sharma, A.~Balasubramanian, and A.~Gandhi, ``When to use
-  and when not to use bbr: An empirical analysis and evaluation study,'' in
-  \emph{Proceedings of the Internet Measurement Conference}, ser. IMC
-  '19.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA: Association
-  for Computing Machinery, 2019, p. 130–136. [Online]. Available:
-  \url{https://doi.org/10.1145/3355369.3355579}
-\BIBentrySTDinterwordspacing
-
 \bibitem{AQDCBBR}
 Z.~Li, J.~Zhang, Y.~Wang, P.~Guo, and J.~Jiang, ``Aqdc-bbr: An active queue
   debt compensation mechanism over bbr for reducing tail latency in video

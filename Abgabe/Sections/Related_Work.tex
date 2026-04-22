@@ -18,15 +18,32 @@ This phase uses an eight-step cycle where the algorithm typically increases its 
 Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds \cite{BBREVALUATION}. 
 During this phase, the algorithm abruptly limits inflight data to a minimal amount—typically 4 packets—for at least 200 ms to fully drain the bottleneck buffer and measure the true propagation delay of the path \cite{BBRORIGINAL, BBREVALUATION}.
 
-\subsubsection{Use of BBR}
-
-When to use BBR: \cite{WHENTOUSEBBR}
-
-BBR Evaluation: \cite{BBREVALUATION}
-
 \subsubsection{Active Queue Dept Compensation (AQDC) BBR}
 
+BBR uses the ProbeBW phase to determine how much bandwidth it has.
+During this time it increases its sending rate which will fill a queue, in case the available bandwidth has not increased.
+The authors of \cite{AQDCBBR} see there a problem, because the queue may not be completly drained during the draining phase.
+Furthermore, BBR is not fair to other flows, because of its filling up the queues during ProbeBW.
+Another problem, that the authors saw is, that the algorithm uses the ProbeRTT phase to determine the latest RTT.
+However, this occurs in fixed intervalls and therefore blindly, without considering how much build up in the queue is. 
 \cite{AQDCBBR}
+
+\subsubsection{Active Queue Debt Compensation (AQDC) BBR}
+
+BBR utilizes the ProbeBW phase to estimate available bandwidth by periodically increasing its pacing rate. 
+However, this process often injects bursts of traffic that exceed the path's instantaneous capacity, creating temporary queues \cite{AQDCBBR}. 
+The authors of \cite{AQDCBBR} identify a critical limitation: these transient queues may not be completely drained during the subsequent ProbeDown phase, leading to a residual queue buildup that accumulates over successive cycles. 
+Over time, this results in an upward drift of RTT measurements and increased tail latency, which is particularly detrimental to delay-sensitive applications like video streaming.
+
+Furthermore, the authors contend that BBR's ProbeRTT mechanism is rigid and ``blind'' to queue history, as it resets at fixed intervals regardless of the actual backlog \cite{AQDCBBR}. 
+To reconcile the conflict between fairness and low latency, AQDC-BBR explicitly models the ``queue debt'' ($B_{total}$) incurred during bandwidth probing. 
+This debt is then compensated for by adjusting the target inflight data:
+
+\begin{equation}
+    Inflight_{target} = BDP - B_{total}
+\end{equation}
+
+By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR drains accumulated queues and restores accurate minRTT tracking without the need for aggressive or heuristic rate cuts \cite{AQDCBBR}.
 
 \subsubsection{BBR-Extended State (ES)}
 
