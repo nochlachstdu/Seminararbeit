@@ -71,6 +71,11 @@ M.~Dong, Q.~Li, D.~Zarchy, P.~B. Godfrey, and M.~Schapira, ``Pcc:
   in 12th USENIX Symposium on Networked Systems Design and Implementation, May
   2015.
 
+\bibitem{COPA}
+V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
+  for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
+  Design and Implementation, April 2018.
+
 \bibitem{COPADYNAMIC}
 \BIBentryALTinterwordspacing
 H.~Haile, K.-J. Grinnemo, S.~Ferlin, P.~Hurtig, and A.~Brunström, ``Copa-d:
@@ -111,10 +116,5 @@ C.~Huitema, S.~Nandakumar, and C.~F. Jennings, ``{Design of Christian's
   [Online]. Available:
   \url{https://datatracker.ietf.org/doc/draft-huitema-ccwg-c4-design/03/}
 \BIBentrySTDinterwordspacing
-
-\bibitem{COPA}
-V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
-  for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
-  Design and Implementation, April 2018.
 
 \end{thebibliography}

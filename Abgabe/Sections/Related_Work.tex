@@ -60,17 +60,15 @@ This approach allows the protocol to adapt to complex network conditions without
 
 \subsection{Copa}
 
-Like the authors of BBR, the authors of Copa found that the old Congestion Control ALgorithms could cause a significant bufferbloat at the bottleneck.
-This bufferbloat significantly affects interactive connections, where a low delay and latency is necessary.
-Furthermore, they got the impression, that delay-based algorithms such as TCP vegas or Fast TCP were not good enough.
-They often get confused by ACK compression or network jitter.
-Moreover, they also perform poorly, when competing with loss-based Algorithms such as TCP Cubic.
-Another important point for them is, that newer Congestion COntrol Algorithms may perform better than older ones, but are very complex and not realy easy to understand for humans like PCC.
+Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based congestion control algorithms often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
+This excessive queuing delay severely degrades the performance of interactive applications that require low latency\cite{COPA}. 
+The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}; these protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
+Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC or Remy may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune\cite{COPA}.
 
-To solve these problems now, they build there algorithm on three main Idea:
-The first is that Copa should get a target rate that it should aim for.
-Second, they want a window update rule that can move the congestion window to reach the target rule and third, they want Copa to compete with buffer-filling flows.
-There approach was to use the work that was done on the Network Utility Maximization (NUM).
+To address these limitations, Copa is built upon three core design pillars. First, it establishes a Target Rate ($1/\delta d_q$) derived from a Markovian packet arrival model, which optimizes a specific objective function balancing throughput and delay\cite{COPA}. 
+Second, it employs a Window Update Rule that incrementally adjusts the congestion window to converge rapidly toward this target rate, ensuring fairness even amidst high flow churn\cite{COPA}. 
+Third, it incorporates a Competitive Mode (utilizing an additive-increase/multiplicative-decrease logic) specifically designed to allow Copa to detect and compete fairly with buffer-filling loss-based flows\cite{COPA}. 
+By leveraging the framework of Network Utility Maximization (NUM), Copa aims to maximize a utility function $U = \log \lambda - \delta \log d$, where $\lambda$ is throughput, $d$ is delay, and $\delta$ is a configurable parameter that dictates the protocol's sensitivity to delay\cite{COPA}.
 
 
 \subsubsection{Copa-Dynamic (Copa-D)}
