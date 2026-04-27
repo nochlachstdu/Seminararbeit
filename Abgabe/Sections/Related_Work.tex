@@ -49,9 +49,29 @@ This targeted approach prevents the "one-size-fits-all" penalty found in other B
 
 \subsection{Performance-oriented Congestion Control (PCC)}
 
-\cite{PCC}
+Performance-oriented Congestion Control (PCC) was developed to resolve a fundamental architectural flaw in the TCP family known as "hardwired mapping," where specific packet-level events are pre-programmed to trigger fixed control responses\cite{PCC}. 
+This rigid structure forces TCP to rely on unreliable assumptions about the network, such as the belief that all packet loss indicates congestion, which leads to severe performance degradation on modern links where loss may be random or caused by shallow buffers\cite{PCC}.
+Because traditional protocols carry out these harmful actions without observing their actual impact on performance, they often fail to achieve optimal throughput in diverse and complex real-world environments\cite{PCC}.
+
+The authors solved this by re-architecting congestion control to rely on empirical evidence gathered through continuous "micro-experiments" rather than predetermined responses\cite{PCC}. 
+In this new architecture, the sender divides time into monitor intervals to test different sending rates and observes the resulting packet-level events\cite{PCC}. 
+These events are aggregated into a numerical utility function that reflects specific performance objectives, such as maximizing throughput while minimizing loss. By employing an online learning algorithm similar to gradient ascent, PCC compares the utility of different rates and consistently moves in the direction that empirically produces the best performance results\cite{PCC}. 
+This approach allows the protocol to adapt to complex network conditions without making prior assumptions, and the authors further improved decision-making accuracy under noisy conditions by utilizing randomized controlled trials (RCTs) to confirm the causal connection between a rate change and its observed utility\cite{PCC}.
 
 \subsection{Copa}
+
+Like the authors of BBR, the authors of Copa found that the old Congestion Control ALgorithms could cause a significant bufferbloat at the bottleneck.
+This bufferbloat significantly affects interactive connections, where a low delay and latency is necessary.
+Furthermore, they got the impression, that delay-based algorithms such as TCP vegas or Fast TCP were not good enough.
+They often get confused by ACK compression or network jitter.
+Moreover, they also perform poorly, when competing with loss-based Algorithms such as TCP Cubic.
+Another important point for them is, that newer Congestion COntrol Algorithms may perform better than older ones, but are very complex and not realy easy to understand for humans like PCC.
+
+To solve these problems now, they build there algorithm on three main Idea:
+The first is that Copa should get a target rate that it should aim for.
+Second, they want a window update rule that can move the congestion window to reach the target rule and third, they want Copa to compete with buffer-filling flows.
+There approach was to use the work that was done on the Network Utility Maximization (NUM).
+
 
 \subsubsection{Copa-Dynamic (Copa-D)}
 
