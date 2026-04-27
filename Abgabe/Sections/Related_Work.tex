@@ -18,16 +18,6 @@ This phase uses an eight-step cycle where the algorithm typically increases its 
 Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds \cite{BBREVALUATION}. 
 During this phase, the algorithm abruptly limits inflight data to a minimal amount—typically 4 packets—for at least 200 ms to fully drain the bottleneck buffer and measure the true propagation delay of the path \cite{BBRORIGINAL, BBREVALUATION}.
 
-\subsubsection{Active Queue Dept Compensation (AQDC) BBR}
-
-BBR uses the ProbeBW phase to determine how much bandwidth it has.
-During this time it increases its sending rate which will fill a queue, in case the available bandwidth has not increased.
-The authors of \cite{AQDCBBR} see there a problem, because the queue may not be completly drained during the draining phase.
-Furthermore, BBR is not fair to other flows, because of its filling up the queues during ProbeBW.
-Another problem, that the authors saw is, that the algorithm uses the ProbeRTT phase to determine the latest RTT.
-However, this occurs in fixed intervalls and therefore blindly, without considering how much build up in the queue is. 
-\cite{AQDCBBR}
-
 \subsubsection{Active Queue Debt Compensation (AQDC) BBR}
 
 BBR utilizes the ProbeBW phase to estimate available bandwidth by periodically increasing its pacing rate. 
@@ -46,8 +36,16 @@ This debt is then compensated for by adjusting the target inflight data:
 By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR drains accumulated queues and restores accurate minRTT tracking without the need for aggressive or heuristic rate cuts \cite{AQDCBBR}.
 
 \subsubsection{BBR-Extended State (ES)}
+TCP BBR exhibits significant RTT unfairness when flows with heterogeneous RTTs share a bottleneck\cite{BBRES}. 
+In deep-buffer environments, long-RTT flows tend to dominate bandwidth because they maintain larger inflight data volumes—proportional to their RTT—which allows them to occupy the bottleneck queue more aggressively\cite{BBRES}. 
+This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow’s estimated bandwidth and sending rate\cite{BBRES}. 
+While BBR’s ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state\cite{BBRES}. 
+Consequently, prior imbalances are immediately reintroduced and amplified, a phenomenon the authors describe as the "inaction" of BBR\cite{BBRES}.
 
-\cite{BBRES}
+To resolve these issues, the authors introduced BBR-ES, which modifies the state machine by inserting a short stabilization phase, BBR-NEW-STATE, between ProbeRTT and ProbeBW\cite{BBRES}. 
+This new state gradually ramps up the sending rate in three sub-phases based on per-flow RTT trends, allowing for a fairer recovery and the repair of inflight imbalances before returning to steady probing\cite{BBRES}. 
+Additionally, BBR-ES includes a Trend-Driven Transition Mechanism that proactively triggers an early ProbeRTT only for flows exhibiting trends consistent with excessive queue contribution (specifically, a simultaneous increase in both bandwidth and RTT)\cite{BBRES}. 
+This targeted approach prevents the "one-size-fits-all" penalty found in other BBR variants that often unnecessarily throttles low-impact flows\cite{BBRES}.
 
 \subsection{Performance-oriented Congestion Control (PCC)}
 
