@@ -76,6 +76,12 @@ V.~Arun and H.~Balakrishnan, ``Copa: Practical delay-based congestion control
   for the internet,'' Paper in 15th USENIX Symposium on Networked Systems
   Design and Implementation, April 2018.
 
+\bibitem{COPAPLUS}
+W.~Jiang, H.~Li, Z.~Liu, J.~Wu, J.~Huang, D.~Shan, and J.~Wang, ``Copa+:
+  Analysis and improvement of the delay-based congestion control algorithm
+  copa,'' in \emph{IEEE INFOCOM 2022 - IEEE Conference on Computer
+  Communications}, 2022, pp. 920--929.
+
 \bibitem{COPADYNAMIC}
 \BIBentryALTinterwordspacing
 H.~Haile, K.-J. Grinnemo, S.~Ferlin, P.~Hurtig, and A.~Brunström, ``Copa-d:
@@ -85,12 +91,6 @@ H.~Haile, K.-J. Grinnemo, S.~Ferlin, P.~Hurtig, and A.~Brunström, ``Copa-d:
   0.4em\relax IEEE, 2023, pp. 508--513. [Online]. Available:
   \url{https://doi.org/10.1109/EuCNC/6GSummit58263.2023.10188233}
 \BIBentrySTDinterwordspacing
-
-\bibitem{COPAPLUS}
-W.~Jiang, H.~Li, Z.~Liu, J.~Wu, J.~Huang, D.~Shan, and J.~Wang, ``Copa+:
-  Analysis and improvement of the delay-based congestion control algorithm
-  copa,'' in \emph{IEEE INFOCOM 2022 - IEEE Conference on Computer
-  Communications}, 2022, pp. 920--929.
 
 \bibitem{TCPSTHIRDEYE}
 \BIBentryALTinterwordspacing

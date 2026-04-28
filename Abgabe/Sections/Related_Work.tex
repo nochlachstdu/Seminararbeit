@@ -63,21 +63,38 @@ This approach allows the protocol to adapt to complex network conditions without
 Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based congestion control algorithms often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
 This excessive queuing delay severely degrades the performance of interactive applications that require low latency\cite{COPA}. 
 The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}; these protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
-Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC or Remy may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune\cite{COPA}.
+Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune\cite{COPA}.
 
-To address these limitations, Copa is built upon three core design pillars. First, it establishes a Target Rate ($1/\delta d_q$) derived from a Markovian packet arrival model, which optimizes a specific objective function balancing throughput and delay\cite{COPA}. 
+To address these limitations, Copa is built upon three core design pillars\cite{COPA}. 
+First, it establishes a Target Rate ($\lambda = 1/\delta d_q$) derived from a Markovian packet arrival model\cite{COPA}. 
+In this formula, $d_q$ is the measured queuing delay, which the sender calculates on every ACK as the difference between the recent standing RTT ($RTT_{standing}$) and the long-term minimum RTT ($RTT_{min}$)\cite{COPA}. 
 Second, it employs a Window Update Rule that incrementally adjusts the congestion window to converge rapidly toward this target rate, ensuring fairness even amidst high flow churn\cite{COPA}. 
-Third, it incorporates a Competitive Mode (utilizing an additive-increase/multiplicative-decrease logic) specifically designed to allow Copa to detect and compete fairly with buffer-filling loss-based flows\cite{COPA}. 
-By leveraging the framework of Network Utility Maximization (NUM), Copa aims to maximize a utility function $U = \log \lambda - \delta \log d$, where $\lambda$ is throughput, $d$ is delay, and $\delta$ is a configurable parameter that dictates the protocol's sensitivity to delay\cite{COPA}.
-
-
-\subsubsection{Copa-Dynamic (Copa-D)}
-
-\cite{COPADYNAMIC}
+Third, it incorporates a Competitive Mode that utilizes an additive-increase/multiplicative-decrease logic on the $\delta$ parameter to allow Copa to detect and compete fairly with buffer-filling loss-based flows\cite{COPA}. 
+By leveraging the framework of Network Utility Maximization (NUM), Copa aims to maximize the utility function $U = \log \lambda - \delta \log d$, where $\lambda$ is throughput and $d$ is delay\cite{COPA}.
 
 \subsubsection{Copa+}
 
-\cite{COPAPLUS}
+The authors of Copa+ identified several critical vulnerabilities in the original Copa algorithm through mathematical analysis\cite{COPAPLUS}. 
+They demonstrated mathematically that Copa often fails to periodically clear the bottleneck buffer, which is a necessary step for the algorithm to accurately measure the $RTT_{standing}$\cite{COPAPLUS}. 
+When the bottleneck buffer remains occupied, the minimum RTT observed by the sender is higher than the actual propagation delay\cite{COPAPLUS}. 
+This measurement error leads to a flawed estimation of the target rate and can cause the algorithm to mistakenly enter its Competitive Mode\cite{COPAPLUS}. 
+Although this mode is intended only for coexistence with loss-based flows like TCP Cubic, its accidental activation in the absence of such flows causes Copa to unnecessarily increase its congestion window\cite{COPAPLUS}. 
+This behavior results in persistent buffer occupancy, significantly increased queuing delays, and reduced fairness among competing flows\cite{COPAPLUS}.
+
+To address these issues, the authors introduced Copa+, which incorporates a parameter adaptation mechanism and a refined mode-switching logic\cite{COPAPLUS}. 
+They observed that the original algorithm relies on a single "hard-wired" parameter, $\delta^{-1}$, to determine both the user's performance preference and the granularity of window adjustments\cite{COPAPLUS}. 
+To break this dependency, Copa+ introduces a new parameter, $\theta$, which serves as a rate adjustment factor\cite{COPAPLUS}. 
+This allows the algorithm to decouple the target queuing delay from the aggressiveness of the window updates\cite{COPAPLUS}. 
+Copa+ utilizes a cubic-based function to adaptively search for an optimal $\theta$ value\cite{COPAPLUS}.
+specifically, it increases the adjustment granularity when it detects that the buffer is not being cleared, thereby forcing the queue to empty and allowing for a correct $RTT_{standing}$ measurement\cite{COPAPLUS}. 
+Once the buffer is cleared, the algorithm reduces the granularity to maintain stability\cite{COPAPLUS}. 
+Furthermore, the authors optimized the criteria for entering Competitive Mode by utilizing the algorithm's inherent oscillation cycles\cite{COPAPLUS}. 
+By tracking the direction changes in queuing delay, Copa+ can more accurately distinguish between genuine competition with loss-based flows and simple measurement noise, effectively preventing accidental mode activation and maintaining low latency across diverse network environments\cite{COPAPLUS}.
+
+\subsubsection{Copa-Dynamic (Copa-D)}
+
+The authors of Copa-D are mainly researching in mobile networks like 4G and 5G.
+\cite{COPADYNAMIC}
 
 \subsection{TCP's Third Eye}
 
