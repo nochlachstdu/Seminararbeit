@@ -93,7 +93,16 @@ By tracking the direction changes in queuing delay, Copa+ can more accurately di
 
 \subsubsection{Copa-Dynamic (Copa-D)}
 
-The authors of Copa-D are mainly researching in mobile networks like 4G and 5G.
+The authors of Copa-D focus their research on the unique challenges of highly volatile mobile networks, such as 4G and 5G\cite{COPADYNAMIC}. 
+Similar to the findings in Copa+ \cite{COPAPLUS}, they identify a fundamental performance degradation in the original Copa algorithm when deployed in unstable environments\cite{COPADYNAMIC}. 
+Specifically, they observe that Copa frequently fails to maintain its theoretical "empty queue" state\cite{COPADYNAMIC}. 
+This leads to standing queues at the bottleneck, which distorts RTT measurements and prevents the algorithm from accurately sensing network congestion\cite{COPADYNAMIC}.
+
+While acknowledging the approach taken by Copa+ (which introduces an additional parameter to the rate control equation) the authors of Copa-D propose an alternative strategy\cite{COPADYNAMIC}. 
+Rather than altering the underlying control structure, they focus on the core sensitivity parameter, $\delta$\cite{COPADYNAMIC}.
+In the original Copa implementation, $\delta$ is typically treated as a static constant, which the authors argue is the primary cause of its inability to adapt to cellular fluctuations\cite{COPADYNAMIC}. 
+Copa-D introduces a mechanism to make $\delta$ dynamic, automatically tuning it based on the observed bandwidth and a specific delay target\cite{COPADYNAMIC}. 
+This ensures that the queue is actively drained, effectively enforcing Copa’s original design goal of near-zero queuing delay even within the unpredictable conditions of a mobile network\cite{COPADYNAMIC}.
 \cite{COPADYNAMIC}
 
 \subsection{TCP's Third Eye}
