@@ -92,21 +92,10 @@ H.~Haile, K.-J. Grinnemo, S.~Ferlin, P.~Hurtig, and A.~Brunström, ``Copa-d:
   \url{https://doi.org/10.1109/EuCNC/6GSummit58263.2023.10188233}
 \BIBentrySTDinterwordspacing
 
-\bibitem{TCPSTHIRDEYE}
-\BIBentryALTinterwordspacing
-J.-T. Hinz, V.~Addanki, C.~Gy\"{o}rgyi, T.~Jepsen, and S.~Schmid, ``Tcp's third
-  eye: Leveraging ebpf for telemetry-powered congestion control,'' in
-  \emph{Proceedings of the 1st Workshop on EBPF and Kernel Extensions}, ser.
-  eBPF '23.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA:
-  Association for Computing Machinery, 2023, p. 1–7. [Online]. Available:
-  \url{https://doi.org/10.1145/3609021.3609295}
-\BIBentrySTDinterwordspacing
-
-\bibitem{SURVEYONCCA}
-C.~L. Vielhaus, C.~v. Lengerke, V.~Latzko, J.~Rischke, M.~Reisslein, and
-  F.~H.~P. Fitzek, ``Evaluating transport layer congestion control algorithms:
-  A comprehensive survey,'' \emph{IEEE Communications Surveys and Tutorials},
-  vol.~28, pp. 278--340, 2026.
+\bibitem{PowerTCP}
+V.~Addanki, O.~Michel, and S.~Schmid, ``Powertcp: Pushing the performance
+  limits of datacenter networks,'' Paper in 19th USENIX Symposium on Networked
+  Systems Design and Implementation, April 2022.
 
 \bibitem{C4}
 \BIBentryALTinterwordspacing
