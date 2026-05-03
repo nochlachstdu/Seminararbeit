@@ -1,5 +1,26 @@
 \section{Evaluations}
 
+\subsection{What is the goal of Congestion Control?}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{figures/ProblemForCCAs.pdf}}
+\caption{Diagram that shows where different operating points for Congestion COntrol ALgorithms are. Based on \cite{BBRORIGINAL,BBREVALUATION}}
+\label{ProblemForCCAS}
+\end{figure}
+
+The fundamental goal of a Congestion Control Algorithm is to maximize throughput while maintaining a low delay. 
+To determine the ideal performance of such an algorithm, it is necessary to identify the optimal operating point by observing how network dynamics shift as a sender increases its transmission rate. 
+As illustrated in \ref{ProblemForCCAS}, the relationship between the sending rate, the delivery rate, and the RTT can be visualized through two primary diagrams. 
+The top diagram tracks the RTT, while the bottom diagram displays the delivery rate, highlighting two critical thresholds labeled Point A and Point B.  
+
+Point A represents the moment the delivery rate equals the BDP, indicating that the bottleneck link is fully utilized.
+Beyond this point, the delivery rate plateaus because the bottleneck has reached its maximum physical capacity. 
+If the sender continues to increase its rate past Point A, the excess packets are forced to accumulate in the bottleneck’s buffer, creating a queue. 
+This accumulation causes a linear increase in RTT, as seen in the upper diagram of \ref{ProblemForCCAS}, because packets must wait longer in the queue before being processed.  
+Eventually, if the rate increases further, the system reaches Point B, which signifies the buffer limit. 
+At this stage, the bottleneck can no longer accept new packets, leading to packet drops and severe congestion. 
+Therefore, based on the behavior shown in \ref{ProblemForCCAS}, the optimal operating point for a Congestion Control Algorithm is exactly at Point A, as it allows the connection to achieve the highest possible throughput while maintaining the lowest possible delay.
+
 \subsection{Interprotocol fairness}
 
 \subsection{RTT Fairness}
