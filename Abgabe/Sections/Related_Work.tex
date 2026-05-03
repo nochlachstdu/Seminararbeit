@@ -6,7 +6,8 @@
 Bottleneck Bandwidth and Round-Trip propagation Time (BBR) was developed by Google researchers to address fundamental inefficiencies in traditional loss-based congestion control algorithms \cite{BBRORIGINAL}. 
 The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic \cite{BBRORIGINAL}. 
 Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds \cite{BBRORIGINAL}. 
-Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion; however, loss-based algorithms misinterpret these signals, causing them to reduce throughput unnecessarily \cite{BBRORIGINAL}.
+Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion.
+However, loss-based algorithms misinterpret these signals, causing them to reduce throughput unnecessarily \cite{BBRORIGINAL}.
 
 BBR operates through a state machine consisting of a Startup phase and two repeating steady-state phases known as ProbeBW and ProbeRTT. 
 The authors define the optimal operating point as having a delivery rate equal to the bottleneck bandwidth ($BtlBw$) and a total amount of inflight data equal to the pipe's Bandwidth-Delay Product (BDP) \cite{BBRORIGINAL}. 
@@ -62,7 +63,8 @@ This approach allows the protocol to adapt to complex network conditions without
 
 Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based congestion control algorithms often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
 This excessive queuing delay severely degrades the performance of interactive applications that require low latency\cite{COPA}. 
-The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}; these protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
+The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}.
+These protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
 Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune\cite{COPA}.
 
 To address these limitations, Copa is built upon three core design pillars\cite{COPA}. 
@@ -137,4 +139,28 @@ This allows the sender to adjust its transmission rate based on the precise, cur
 
 \subsection{Christian's Congestion Control Code - C4}
 
-\cite{C4}
+The developers of C4 outlined three primary objectives for their algorithm\cite{C4BlogPost}. 
+First, the design prioritizes high performance in real-time applications, specifically video streaming\cite{C4BlogPost}. 
+Second, the algorithm is tailored for challenging access networks\cite{C4BlogPost}.
+The developers specifically cite reports of degraded video quality in high-density Wi-Fi environments, such as buildings with many concurrent users\cite{C4BlogPost}. 
+This focus on unstable connectivity significantly influenced key design decisions\cite{C4BlogPost}. 
+Finally, the developers emphasized architectural simplicity and intended for the algorithm to be deployed primarily in conjunction with the QUIC protocol\cite{C4BlogPost}.
+
+To understand how C4 operates, it is best to view it as a state-based controller that shifts through four distinct phases based on network feedback\cite{C4}. 
+The algorithm begins in the Initial state, which functions similarly to a traditional "slow start" by rapidly increasing the data rate to identify the network's capacity\cite{C4}. 
+Once the capacity is found, it transitions into the Cruising state. In this steady phase, the algorithm maintains a calculated Nominal Data Rate, which serves as its baseline for stable transmission\cite{C4}. 
+To ensure that it is not leaving any available bandwidth unused, C4 will occasionally enter the Pushing state, where it carefully probes for higher capacity\cite{C4}. 
+If the network becomes overloaded, triggered by packet loss or high delay, the algorithm moves into the Recovery state to stabilize the flow and redefine its baseline variables\cite{C4}.
+
+Central to C4’s logic is the maintenance of "nominal" variables, specifically the Nominal Data Rate and the Nominal Max RTT\cite{C4}. 
+By tracking these long-term metrics, the algorithm develops a memory of what the network looks like when it is healthy\cite{C4}. 
+This is particularly important for its Jitter Tolerance mechanism\cite{C4}. 
+In crowded Wi-Fi environments, temporary interference can cause spikes in delay that look like congestion but are actually just transient wireless noise\cite{C4}.
+C4 uses its nominal variables to set a minimum congestion window, allowing it to "ride through" these brief spikes without unnecessarily slashing its speed, which prevents video streams from stuttering\cite{C4}.
+
+Furthermore, C4 employs a unique Sensitivity Curve to manage fairness across different data flows\cite{C4}. 
+This mechanism ensures that a flow's reaction to congestion is proportional to its size\cite{C4}.
+Essentially, flows that consume a large amount of bandwidth are programmed to be more sensitive to congestion signals than smaller, time-critical streams\cite{C4}. 
+By combining multiple signals—including traditional packet loss, RTT fluctuations, and Explicit Congestion Notification (ECN)—C4 creates a multi-layered defense against network instability\cite{C4}. 
+This comprehensive approach makes it highly effective for Media over QUIC, where the primary goal is to maintain a high-quality, real-time video experience even under challenging network conditions\cite{C4}.
+

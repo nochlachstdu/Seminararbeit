@@ -97,6 +97,13 @@ V.~Addanki, O.~Michel, and S.~Schmid, ``Powertcp: Pushing the performance
   limits of datacenter networks,'' Paper in 19th USENIX Symposium on Networked
   Systems Design and Implementation, April 2022.
 
+\bibitem{C4BlogPost}
+\BIBentryALTinterwordspacing
+C.~Huitema. (2025, November) Introducing c4, christian's congestion control
+  code. Blog post. [Online]. Available:
+  \url{https://www.privateoctopus.com/2025/11/05/c4-introduction.html}
+\BIBentrySTDinterwordspacing
+
 \bibitem{C4}
 \BIBentryALTinterwordspacing
 C.~Huitema, S.~Nandakumar, and C.~F. Jennings, ``{Design of Christian's
