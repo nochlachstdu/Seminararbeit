@@ -1,7 +1,13 @@
 \section{Introduction}
 
-Congestion Control Algorithms are an important topic in nowadays network technology.
-They are a necessary tool to control the network flow and to ensure the best use of network resources.
-In the following we are going to give a the necessary background to understand Congestion Control Algorithms and corresponding measuring techniques in \ref{sec:Background}.
-Then we will show some of the newest Congestion Control Algorithms in \ref{sec:RelatedWork}.
-After this we will evaluate and compare them to each other considering the information they provide over their algorithms in \ref{sec:Evaluation}.
+Congestion Control Algorithms are a cornerstone of modern network technology, serving as essential mechanisms to regulate data flow and optimize the utilization of network resources. 
+This paper provides a comprehensive overview of contemporary congestion control algorithms, examining their operational logic and comparing them through the lens of their design objectives.
+To establish a foundational understanding, Section \ref{sec:Background} presents the necessary theoretical background and common performance metrics. 
+This section explores established protocols such as TCP Cubic, TCP Vegas, and FAST TCP, while detailing the metrics used to evaluate their efficacy.
+
+In Section \ref{sec:RelatedWork}, we survey recent advancements in the field, specifically focusing on Bottleneck Bandwidth and Round-trip propagation time (BBR) and Copa, alongside both of their extensions. 
+We also highlight several other emerging algorithms that represent the current state of the art.
+Finally, Section \ref{sec:Evaluation} provides a comparative analysis of these algorithms, evaluating them based on the performance data and architectural goals provided by their respective authors. 
+We conclude by situating our findings within the broader academic context, referencing existing literature that offers deeper empirical evaluations of these protocols.
+We conclude the paper in Section \ref{sec:Summary} by summarizing our findings and synthesizing the key takeaways from our comparison. 
+Furthermore, we provide an outlook in Section \ref{sec:Outlook} on the future of the field, identifying potential trends and remaining challenges in the evolution of congestion control.

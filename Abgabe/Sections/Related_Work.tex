@@ -3,7 +3,7 @@
 
 \subsection{Bottleneck Bandwidth and Round-Trip propagation Time (BBR)}
 
-Bottleneck Bandwidth and Round-Trip propagation Time (BBR) was developed by Google researchers to address fundamental inefficiencies in traditional loss-based congestion control algorithms \cite{BBRORIGINAL}. 
+BBR was developed by Google researchers to address fundamental inefficiencies in traditional loss-based congestion control algorithms \cite{BBRORIGINAL}. 
 The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic \cite{BBRORIGINAL}. 
 Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds \cite{BBRORIGINAL}. 
 Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion.
