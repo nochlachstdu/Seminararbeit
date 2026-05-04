@@ -1,4 +1,4 @@
-\section{Evaluations}
+\section{Evaluations}\label{sec:Evaluation}
 
 \subsection{What is the goal of Congestion Control?}
 
@@ -19,7 +19,27 @@ If the sender continues to increase its rate past Point A, the excess packets ar
 This accumulation causes a linear increase in RTT, as seen in the upper diagram of \ref{ProblemForCCAS}, because packets must wait longer in the queue before being processed.  
 Eventually, if the rate increases further, the system reaches Point B, which signifies the buffer limit. 
 At this stage, the bottleneck can no longer accept new packets, leading to packet drops and severe congestion. 
-Therefore, based on the behavior shown in \ref{ProblemForCCAS}, the optimal operating point for a Congestion Control Algorithm is exactly at Point A, as it allows the connection to achieve the highest possible throughput while maintaining the lowest possible delay.
+
+In addition to these performance metrics, another critical benchmark for evaluating a congestion control algorithm is its fairness toward other flows competing for resources at the bottleneck. 
+While the behavior shown in \ref{ProblemForCCAS} suggests that the optimal operating point for an individual sender is exactly at Point A, a high-quality algorithm must also ensure an equitable distribution of bandwidth. 
+To quantify this behavior, one of the most widely utilized metrics for measuring the quality of resource distribution is Jain’s Fairness Index. 
+Therefore, an ideal congestion control algorithm should not only target maximum efficiency but also maintain a harmonious coexistence with concurrent flows to prevent starvation or unfair resource dominance.
+
+------------
+
+Now we will take every mentioned algorithm from \ref{sec:RelatedWork} and start to compare them to each other based on the mentioned metrics.
+First there is BBR for whose performance and quality the authors of \cite{BBREVALUATION} did a study.
+They tested BBR first with a different amount of flows of itself and then with TCP Cubic flows.
+The results show that multiple BBR flows will overestimate the available bandwidth which will result in congestion at the bottleneck.
+In scenarios with two BBR flows, the total BDP equals $2*BDP$ of the actual BDP.
+In case the bottlenck has a huge buffer, it can handle the flows.
+Then the point where these BBR flows are operating is not at point B, but also not at the perfect point A.
+However, if the buffer of the bottleneck is small, the BBR flows are far more behind point B, which is a huge problem and will lead to a high packet loss.
+
+Furthermore, the authors of \cite{BBREVALUATION} proved with experiements that if BBR competes with TCP Cubic flows will have a lot of problems.
+In case the bottleneck has a large buffer, TCP Cubic will fill this buffer and makes it hard for BBR to estimate the right RTT.
+In contrary, if the buffer is small, then BBR will surpress TCP CUbic, because TCP Cubic will interpret packet loss, that is induced by BBR as a congestion and send much less data.
+Considering that there are still a lot of TCP CUbic flows from not yet updated systems, BBR would most likely behave unfair in the internet.
 
 \subsection{Interprotocol fairness}
 
