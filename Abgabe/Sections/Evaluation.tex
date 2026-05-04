@@ -25,28 +25,25 @@ While the behavior shown in \ref{ProblemForCCAS} suggests that the optimal opera
 To quantify this behavior, one of the most widely utilized metrics for measuring the quality of resource distribution is Jain’s Fairness Index. 
 Therefore, an ideal congestion control algorithm should not only target maximum efficiency but also maintain a harmonious coexistence with concurrent flows to prevent starvation or unfair resource dominance.
 
-------------
+The authors of \cite{BBREVALUATION} conducted an extensive study on the performance and quality of BBR, initially testing it with multiple self-competing flows and subsequently against TCP Cubic flows. 
+Their results indicate that multiple concurrent BBR flows tend to overestimate available bandwidth, which leads to persistent queue accumulation at the bottleneck. 
+In scenarios involving two BBR flows, for instance, the total BDP can reach twice the actual BDP of the link.  
+If the bottleneck possesses a large buffer, it may successfully handle these flows, placing the operating point somewhere between the ideal Point A and the buffer limit at Point B from \ref{ProblemForCCAS}. 
+However, if the bottleneck buffer is small, BBR flows operate significantly beyond Point B, resulting in severe packet loss. 
+Furthermore, experiments in \cite{BBREVALUATION} demonstrate that BBR faces significant challenges when competing with TCP Cubic flows. 
+In large buffers, TCP Cubic tends to fill the queue, making it difficult for BBR to accurately estimate the correct RTT. 
+Conversely, in small buffers, BBR suppresses TCP Cubic flows because Cubic interprets the packet loss induced by BBR as a congestion signal and drastically reduces its sending rate. 
+Given the high volume of legacy systems still utilizing TCP Cubic, BBR exhibits "unfair" behavior in real-world Internet scenarios
 
-Now we will take every mentioned algorithm from \ref{sec:RelatedWork} and start to compare them to each other based on the mentioned metrics.
-First there is BBR for whose performance and quality the authors of \cite{BBREVALUATION} did a study.
-They tested BBR first with a different amount of flows of itself and then with TCP Cubic flows.
-The results show that multiple BBR flows will overestimate the available bandwidth which will result in congestion at the bottleneck.
-In scenarios with two BBR flows, the total BDP equals $2*BDP$ of the actual BDP.
-In case the bottlenck has a huge buffer, it can handle the flows.
-Then the point where these BBR flows are operating is not at point B, but also not at the perfect point A.
-However, if the buffer of the bottleneck is small, the BBR flows are far more behind point B, which is a huge problem and will lead to a high packet loss.
+The extensions AQDC BBR and BBR-ES focus on resolving the issue of accumulated packets in the bottleneck queue while offering intrinsic improvements to the core BBR algorithm.
+The authors of AQDC BBR demonstrated that their improvements successfully decreased the RTT compared to standard BBR and achieved an 11\% improvement in Jain’s Fairness Index. 
+This improvement is largely attributed to the algorithm's ability to reduce tail latency by more than 25\% compared to standard BBR, which it achieves by explicitly modeling and compensating for "queue debt" incurred during probing phases. 
+By quantifying the excess packets injected during the ProbeBW phase, AQDC BBR prevents the persistent buffer occupancy that typically compromises fairness.
 
-Furthermore, the authors of \cite{BBREVALUATION} proved with experiements that if BBR competes with TCP Cubic flows will have a lot of problems.
-In case the bottleneck has a large buffer, TCP Cubic will fill this buffer and makes it hard for BBR to estimate the right RTT.
-In contrary, if the buffer is small, then BBR will surpress TCP CUbic, because TCP Cubic will interpret packet loss, that is induced by BBR as a congestion and send much less data.
-Considering that there are still a lot of TCP CUbic flows from not yet updated systems, BBR would most likely behave unfair in the internet.
+Similar results were produced by the authors of BBR-ES, whose experiments showed that the algorithm maintained lower RTTs than BBR while preserving high link utilization. 
+Unlike earlier delay-based variants, BBR-ES utilizes a trend-based transition mechanism and an "Extended State" stabilization phase to manage per-flow bandwidth and RTT evolution. 
+These findings were validated in real-world scenarios by sending data to various Amazon EC2 instances in cities such as Tokyo, Singapore, and Virginia across varying throughput levels. 
+Their research confirmed that BBR-ES achieves a consistently higher Jain’s Fairness Index—often above 0.9—compared to both standard BBR and TCP Cubic. 
+Additionally, measurements showed that BBR-ES consistently maintains top-tier link utilization, frequently exceeding 98\% in most experimental settings. 
+By monitoring short-term indicators, BBR-ES effectively distinguishes between flows that heavily contribute to queue buildup and those that do not, allowing for targeted corrective actions and overall greater stability.
 
-\subsection{Interprotocol fairness}
-
-\subsection{RTT Fairness}
-
-\subsection{Troughtput}
-
-\subsection{Latency/Jitter}
-
-\subsection{Jains Fairness Index}
