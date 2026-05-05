@@ -25,11 +25,16 @@ While the behavior shown in \ref{ProblemForCCAS} suggests that the optimal opera
 To quantify this behavior, one of the most widely utilized metrics for measuring the quality of resource distribution is Jain’s Fairness Index. 
 Therefore, an ideal congestion control algorithm should not only target maximum efficiency but also maintain a harmonious coexistence with concurrent flows to prevent starvation or unfair resource dominance.
 
+\subsection{BBR}
+
 The authors of \cite{BBREVALUATION} conducted an extensive study on the performance and quality of BBR, initially testing it with multiple self-competing flows and subsequently against TCP Cubic flows. 
 Their results indicate that multiple concurrent BBR flows tend to overestimate available bandwidth, which leads to persistent queue accumulation at the bottleneck. 
 In scenarios involving two BBR flows, for instance, the total BDP can reach twice the actual BDP of the link.  
 If the bottleneck possesses a large buffer, it may successfully handle these flows, placing the operating point somewhere between the ideal Point A and the buffer limit at Point B from \ref{ProblemForCCAS}. 
 However, if the bottleneck buffer is small, BBR flows operate significantly beyond Point B, resulting in severe packet loss. 
+While TCP Cubic also experiences retransmissions in these scenarios, they are significantly less frequent than those observed with BBR. 
+Even when the bottleneck buffer size is set to $0.8 \times BDP$, the retransmission rate for BBR remains enormous.
+
 Furthermore, experiments in \cite{BBREVALUATION} demonstrate that BBR faces significant challenges when competing with TCP Cubic flows. 
 In large buffers, TCP Cubic tends to fill the queue, making it difficult for BBR to accurately estimate the correct RTT. 
 Conversely, in small buffers, BBR suppresses TCP Cubic flows because Cubic interprets the packet loss induced by BBR as a congestion signal and drastically reduces its sending rate. 
@@ -47,3 +52,26 @@ Their research confirmed that BBR-ES achieves a consistently higher Jain’s Fai
 Additionally, measurements showed that BBR-ES consistently maintains top-tier link utilization, frequently exceeding 98\% in most experimental settings. 
 By monitoring short-term indicators, BBR-ES effectively distinguishes between flows that heavily contribute to queue buildup and those that do not, allowing for targeted corrective actions and overall greater stability.
 
+\subsection{PCC}
+
+To demonstrate that PCC is a stable and effective congestion control algorithm, the authors conducted several comprehensive studies across diverse network environments. 
+Their results consistently showed that PCC maintains high throughput and is significantly more resilient to random packet loss than traditional TCP variants. 
+For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions. 
+This resilience stems from PCC's ability to distinguish between congestive loss and random link errors through its utility-maximizing framework.  
+
+Beyond raw throughput, the studies highlighted PCC’s superior reactivity to rapid network changes. 
+In experiments where available bandwidth, RTT, and loss rates were modified every five seconds, PCC remained near the optimal sending rate throughout the duration of the test. 
+In contrast, alternative algorithms like BBR or TCP CUBIC required significantly more time to converge to the optimum or failed to reach it entirely in such volatile environments. 
+Furthermore, PCC proves to be remarkably efficient with limited resources, achieving 90\% throughput with a small buffer size, while TCP CUBIC requires thirteen times more buffer to reach the same level of performance. 
+
+A critical component of PCC’s evaluation is its behavior when sharing the network with other flows. 
+Despite its "selfish" design focused on utility maximization, competing PCC flows are mathematically and empirically shown to converge to a stable and fair equilibrium. 
+This includes strong RTT fairness, where flows with different propagation delays receive their fair share of bandwidth rather than the shorter-RTT flow dominating the link—a common flaw in protocols like TCP CUBIC. 
+Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy congestion control algorithms, the framework can be adjusted to be more "socially" compatible with traditional flows, ensuring that PCC does not completely starve existing flows traffic in mixed-protocol environments.
+
+\cite{PCCEVALUATION}
+
+\subsection{Copa}
+
+The goal of the authors of Copa was to have an easy to understand algorithm and also a high performing one too.
+To show that they succeded with their goal, the authors testet Copa.

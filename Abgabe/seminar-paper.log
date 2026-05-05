@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  4 MAY 2026 20:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  5 MAY 2026 19:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -466,7 +466,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [4]) (Sections/Evaluation.tex
 
 pdfTeX warning: pdflatex (file ./figures/ProblemForCCAs.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures/ProblemForCCAs.pdf, id=268, 845.07724pt x 597.55246pt>
+<figures/ProblemForCCAs.pdf, id=280, 845.07724pt x 597.55246pt>
 File: figures/ProblemForCCAs.pdf Graphic file (type pdf)
 <use figures/ProblemForCCAs.pdf>
 Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 6.
@@ -475,7 +475,19 @@ Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 6.
 
 
 
-[5 <./figures/ProblemForCCAs.pdf>]) (Sections/Summary.tex) (Sections/Outlook.tex) (seminar-paper.bbl
+[5 <./figures/ProblemForCCAs.pdf>]
+
+) (Sections/Summary.tex) (Sections/Outlook.tex) (seminar-paper.bbl
+
+[6]
+Underfull \hbox (badness 1418) in paragraph at lines 118--122
+\OT1/ptm/m/n/8 trol,'' In-ter-net En-gi-neer-ing Task Force, Internet-Draft.
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 118--122
+\OT1/ptm/m/n/8 [On-line]. Avail-able: []$https : / / www . ietf . org / proceedings / 101 / slides /
+ []
 
 )
 
@@ -491,26 +503,30 @@ Before submitting the final camera ready copy, remember to:
 
 
 
-[6] (seminar-paper.aux)
+
+
+[7
+
+] (seminar-paper.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: 6CDB7583F03F262E7F64B060EEF77843;3912.
+(rerunfilecheck)             Checksum: 58F9FCE6E4E5AB7C9D4B2C177B7CB7FE;4136.
  ) 
 Here is how much of TeX's memory you used:
- 14362 strings out of 473899
- 244820 string characters out of 5726499
- 643702 words of memory out of 5000000
- 37013 multiletter control sequences out of 15000+600000
+ 14371 strings out of 473899
+ 244949 string characters out of 5726499
+ 643738 words of memory out of 5000000
+ 37017 multiletter control sequences out of 15000+600000
  593371 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,512b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,512b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (6 pages, 381457 bytes).
+Output written on seminar-paper.pdf (7 pages, 387000 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 391 PDF objects out of 1000 (max. 8388607)
+ 56 named destinations out of 1000 (max. 500000)
+ 222 words of extra memory for PDF output out of 10000 (max. 10000000)
 
