@@ -56,20 +56,18 @@ By monitoring short-term indicators, BBR-ES effectively distinguishes between fl
 
 To demonstrate that PCC is a stable and effective congestion control algorithm, the authors conducted several comprehensive studies across diverse network environments. 
 Their results consistently showed that PCC maintains high throughput and is significantly more resilient to random packet loss than traditional TCP variants. 
-For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions. 
+For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions.\cite{PCCEVALUATION} 
 This resilience stems from PCC's ability to distinguish between congestive loss and random link errors through its utility-maximizing framework.  
 
 Beyond raw throughput, the studies highlighted PCC’s superior reactivity to rapid network changes. 
 In experiments where available bandwidth, RTT, and loss rates were modified every five seconds, PCC remained near the optimal sending rate throughout the duration of the test. 
 In contrast, alternative algorithms like BBR or TCP CUBIC required significantly more time to converge to the optimum or failed to reach it entirely in such volatile environments. 
-Furthermore, PCC proves to be remarkably efficient with limited resources, achieving 90\% throughput with a small buffer size, while TCP CUBIC requires thirteen times more buffer to reach the same level of performance. 
+Furthermore, PCC proves to be remarkably efficient with limited resources, achieving 90\% throughput with a small buffer size, while TCP CUBIC requires thirteen times more buffer to reach the same level of performance\cite{PCCEVALUATION}. 
 
 A critical component of PCC’s evaluation is its behavior when sharing the network with other flows. 
 Despite its "selfish" design focused on utility maximization, competing PCC flows are mathematically and empirically shown to converge to a stable and fair equilibrium. 
 This includes strong RTT fairness, where flows with different propagation delays receive their fair share of bandwidth rather than the shorter-RTT flow dominating the link—a common flaw in protocols like TCP CUBIC. 
 Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy congestion control algorithms, the framework can be adjusted to be more "socially" compatible with traditional flows, ensuring that PCC does not completely starve existing flows traffic in mixed-protocol environments.
-
-\cite{PCCEVALUATION}
 
 \subsection{Copa}
 
