@@ -71,5 +71,19 @@ Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy
 
 \subsection{Copa}
 
-The goal of the authors of Copa was to have an easy to understand algorithm and also a high performing one too.
-To show that they succeded with their goal, the authors testet Copa.
+The primary objective of the Copa authors was to develop a congestion control algorithm that is both high-performing and simple to understand. 
+While evaluating an algorithm's "simplicity" is inherently subjective and less straightforward than quantitative metrics, several comparisons highlight Copa's relatively low complexity.  
+
+For instance, PCC is built upon a framework that uses online learning and utility maximization, which can be complex to reason about due to its continuous "micro-experiments" of different sending rates. 
+In contrast, Copa's core design centers on a single target rate equation: $\lambda = 1/(\delta d_q)$, where $d_q$ represents the measured queuing delay. 
+While the derivation of this formula involves advanced modeling, the resulting algorithm remains highly comprehensible.  
+
+Furthermore, Copa operates in two distinct modes to ensure versatility: a default mode for low-latency performance and a competitive mode designed to match the aggressiveness of buffer-filling schemes like TCP Cubic. 
+The transition between these modes is determined by straightforward measurements; 
+The sender switches to competitive mode if it fails to detect a "nearly empty" queue within a 5-RTT window. 
+While BBR also relies on limited parameters — specifically its estimates of Bottleneck´s Bandwidth and RTT — PCC adopts a more data-intensive approach, continuously aggregating various packet-level events (such as loss, throughput, and latency) into a utility function to determine its sending rate.
+
+Overall, Copa is not the most difficult algorithm to understand, particularly when compared to other modern schemes. 
+We have determined that, in contrast to algorithms like PCC—which utilizes complex online optimization and randomized controlled trials—Copa relies on a more transparent, delay-based target rate formula. 
+While PCC's decision-making involves aggregating multiple packet-level events into a performance utility function, Copa's logic is driven by a straightforward relationship between sending rate and queuing delay. 
+Therefore, we conclude that the authors successfully reached their goal of creating a high-performing congestion control algorithm that remains simple for humans to reason about.
