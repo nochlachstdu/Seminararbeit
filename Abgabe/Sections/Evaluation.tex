@@ -117,5 +117,28 @@ The algorithm consistently maintains RTT values that align with the ideal target
 Therefore, Copa+ successfully addresses the primary flaw of unnecessary mode switching. 
 However, as the authors do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached.
 
+The authors of Copa-D evaluated their algorithm through several experiments, including scenarios where the available bandwidth was varied at fixed intervals. 
+By comparing Copa with their proposed upgrade, Copa-D, they demonstrated how bandwidth fluctuations influence RTT. 
+While standard Copa exhibited a highly volatile RTT, Copa-D remained relatively stable. 
+This stability is expected since the experiment does not introduced delay, which therefore should ideally not trigger an RTT increase.
+However, standard Copa's RTT rose with some bandwidth changes, probably due to unnecessary mode switching while Copa-D maintained a lower average RTT than the original algorithm.
+
+It is noteworthy, however, that the experimental results indicate that Copa-D's RTT oscillates around a target value. 
+Interestingly, when standard Copa stabilizes at that same point, its oscillations appear smaller than those of Copa-D. 
+The authors attribute this behavior of Copa-D to the dynamic adjustment of $\delta$, which, while stabilizing the average RTT, introduces more frequent minor fluctuations.
+
+Furthermore, the authors tested Copa-D in 4G and 5G network environments. 
+Their findings reveal that while standard Copa achieves a slightly higher throughput, its RTT is significantly higher than that of Copa-D. 
+This indicates that Copa-D successfully prioritizes lower delay, providing a more stable performance profile in mobile network scenarios.
+
+In summary, Copa represents a compelling congestion control algorithm due to its inherent simplicity and robust performance. 
+Through extensions such as Copa+ and Copa-D, the protocol can be tailored to operate efficiently across various specialized use cases. 
+However, a significant gap remains regarding its performance in real-world network environments. 
+Existing studies primarily rely on controlled experiments, leaving it unclear how effectively Copa and its variants perform outside of emulated settings.
+On the public internet, flows rarely exist in isolation.
+Instead, multiple heterogeneous algorithms compete for the same bottleneck resources. 
+Notably, the evaluations for Copa+ and Copa-D do not adequately address scenarios where the competitive mode is essential, such as when sharing a link with aggressive, buffer-filling protocols like TCP Cubic. 
+Consequently, further research is required to determine if these refinements maintain their advantages when faced with the diverse and unpredictable traffic patterns of the global internet.
 
 
+\subsection{PowerTCP}
