@@ -142,3 +142,27 @@ Consequently, further research is required to determine if these refinements mai
 
 
 \subsection{PowerTCP}
+
+The authors of PowerTCP designed their congestion control algorithm specifically for data center networks rather than the public internet. 
+This targeted approach is significant because it allows the algorithm to leverage the unique characteristics of controlled environments. 
+Unlike the broader internet, a data center is typically managed by a single entity that can mandate the use of specific protocols across the entire infrastructure. 
+Consequently, the authors' use of a fat-tree topology for their test environment closely reflects real-world data center network conditions. 
+Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated congestion control algorithms, which are rarely a factor in modern data center deployments.
+
+The experimental results demonstrate that PowerTCP reacts rapidly and accurately to congestion while maintaining high throughput. 
+A key performance indicator is the algorithm's ability to maintain a near-empty queue at the bottleneck, suggesting that PowerTCP operates close to the ideal operating point A described in \ref{ProblemForCCAS}. 
+When additional flows are introduced, the algorithm ensures a fair distribution of bandwidth. 
+Although the authors do not utilize standard fairness measures like Jain's Fairness Index for direct comparison, independent research \cite{TCPSTHIRDEYE} has successfully reproduced these findings. 
+These independent studies confirm that while TCP Cubic consistently fills buffers—resulting in increased queuing delay—PowerTCP maintains minimal occupancy. 
+Additionally, PowerTCP flows remain stable and equitable when sharing a bottleneck, whereas TCP Cubic flows often exhibit instability or unfair dominance.
+
+A critical aspect of the authors' evaluation was the impact of PowerTCP on different flow durations, categorized as short, medium, and long flows. 
+Their data proves that short flows receive the most significant performance benefits, while medium flows show moderate improvements. 
+Long flows also perform effectively, showing no degradation in performance when compared to traditional algorithms. 
+This overall efficiency is primarily driven by INT, which provides PowerTCP with a comprehensive real-time view of the network status.
+
+In summary, PowerTCP is highly effective within its specialized niche. 
+It successfully achieves high throughput with minimal delay by preventing queue buildup. 
+However, its heavy reliance on INT represents a significant limitation.
+It is highly improbable that routers or switches in the wide-area internet would provide the necessary telemetry data that the algorithm requires. 
+Therefore, while PowerTCP is an optimal choice for congestion control within a data center, it lacks a viable use case in general networking environments where telemetry requirements cannot be met.

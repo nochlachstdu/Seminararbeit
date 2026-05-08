@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  7 MAY 2026 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  9 MAY 2026 00:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -481,14 +481,13 @@ Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 6.
 
 [6]
 
-) (Sections/Summary.tex) (Sections/Outlook.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+[7]) (Sections/Summary.tex)
 
-[7]) (seminar-paper.bbl
+(Sections/Outlook.tex) (seminar-paper.bbl
 
-
+[8]
 Underfull \hbox (badness 1418) in paragraph at lines 118--122
 \OT1/ptm/m/n/8 trol,'' In-ter-net En-gi-neer-ing Task Force, Internet-Draft.
  []
@@ -512,7 +511,11 @@ Before submitting the final camera ready copy, remember to:
 
 
 
-[8] (seminar-paper.aux)
+
+
+[9
+
+] (seminar-paper.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
@@ -521,17 +524,17 @@ Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
 (rerunfilecheck)             Checksum: E49EC029FB50487BD5ED012A16A118B6;4619.
  ) 
 Here is how much of TeX's memory you used:
- 14378 strings out of 473899
- 245065 string characters out of 5726499
- 643741 words of memory out of 5000000
- 37020 multiletter control sequences out of 15000+600000
+ 14381 strings out of 473899
+ 245102 string characters out of 5726499
+ 643776 words of memory out of 5000000
+ 37021 multiletter control sequences out of 15000+600000
  593371 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,512b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,512b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (8 pages, 395163 bytes).
+Output written on seminar-paper.pdf (9 pages, 399918 bytes).
 PDF statistics:
- 409 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
+ 418 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
  246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -16,45 +16,45 @@ Database file #1: seminar-paper.bib
 Warning--empty year in PCCEVALUATION
 
 Done.
-You've used 17 entries,
+You've used 18 entries,
             4087 wiz_defined-function locations,
-            941 strings with 11001 characters,
-and the built_in function-call counts, 10761 in all, are:
-= -- 841
-> -- 274
-< -- 57
-+ -- 143
-- -- 55
-* -- 515
-:= -- 1702
-add.period$ -- 36
-call.type$ -- 17
-change.case$ -- 19
+            951 strings with 11363 characters,
+and the built_in function-call counts, 11579 in all, are:
+= -- 909
+> -- 295
+< -- 58
++ -- 153
+- -- 60
+* -- 556
+:= -- 1825
+add.period$ -- 39
+call.type$ -- 18
+change.case$ -- 20
 chr.to.int$ -- 120
-cite$ -- 18
-duplicate$ -- 815
-empty$ -- 901
-format.name$ -- 69
-if$ -- 2469
+cite$ -- 19
+duplicate$ -- 882
+empty$ -- 976
+format.name$ -- 75
+if$ -- 2665
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 168
-newline$ -- 82
-num.names$ -- 17
-pop$ -- 397
+int.to.str$ -- 18
+missing$ -- 182
+newline$ -- 87
+num.names$ -- 18
+pop$ -- 432
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 820
+skip$ -- 886
 stack$ -- 0
-substring$ -- 299
-swap$ -- 623
-text.length$ -- 17
+substring$ -- 310
+swap$ -- 671
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 17
+type$ -- 18
 warning$ -- 1
-while$ -- 38
-width$ -- 19
-write$ -- 187
+while$ -- 40
+width$ -- 20
+write$ -- 200
 (There was 1 warning)

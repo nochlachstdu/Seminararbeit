@@ -120,4 +120,14 @@ M.~Schapira, ``Pcc: Performance-oriented congestion control,'' Internet
   \url{https://www.ietf.org/proceedings/101/slides/slides-101-iccrg-pcc-performance-oriented-congestion-control-00.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{TCPSTHIRDEYE}
+\BIBentryALTinterwordspacing
+J.-T. Hinz, V.~Addanki, C.~Gy\"{o}rgyi, T.~Jepsen, and S.~Schmid, ``Tcp's third
+  eye: Leveraging ebpf for telemetry-powered congestion control,'' in
+  \emph{Proceedings of the 1st Workshop on EBPF and Kernel Extensions}, ser.
+  eBPF '23.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA:
+  Association for Computing Machinery, 2023, p. 1–7. [Online]. Available:
+  \url{https://doi.org/10.1145/3609021.3609295}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
