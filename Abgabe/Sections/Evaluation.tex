@@ -140,7 +140,6 @@ Instead, multiple heterogeneous algorithms compete for the same bottleneck resou
 Notably, the evaluations for Copa+ and Copa-D do not adequately address scenarios where the competitive mode is essential, such as when sharing a link with aggressive, buffer-filling protocols like TCP Cubic. 
 Consequently, further research is required to determine if these refinements maintain their advantages when faced with the diverse and unpredictable traffic patterns of the global internet.
 
-
 \subsection{PowerTCP}
 
 The authors of PowerTCP designed their congestion control algorithm specifically for data center networks rather than the public internet. 
@@ -166,3 +165,19 @@ It successfully achieves high throughput with minimal delay by preventing queue 
 However, its heavy reliance on INT represents a significant limitation.
 It is highly improbable that routers or switches in the wide-area internet would provide the necessary telemetry data that the algorithm requires. 
 Therefore, while PowerTCP is an optimal choice for congestion control within a data center, it lacks a viable use case in general networking environments where telemetry requirements cannot be met.
+
+\subsection{C4}
+
+The authors of the C4 algorithm primarily focused on optimizing network flows for real-time media, such as video and audio streams, which are highly sensitive to latency and queuing delays. 
+In their findings published in the C4 repository, the algorithm was rigorously compared against BBR and TCP Cubic within various simulated WiFi network environments. 
+These evaluations encompassed scenarios such as WiFi suspension, fading, and extreme jitter to determine C4's robustness relative to its peers. 
+In high-bandwidth basic tests, C4 and Cubic performed identically with minimal delay, whereas BBR's pacing logic resulted in a maximum audio queuing delay of significant higher than the delay observed for C4. 
+Under low-bandwidth conditions (10 Mbps), C4 demonstrated a superior ability to manage high-definition video, maintaining a maximum delay than that from BBR. 
+Furthermore, during extreme jitter tests, C4 utilized tighter transmission control by pacing traffic at approximately 29 Mbps for a 20 Mbps link while BBR is pacing at 58 Mbps, which successfully prevented video spikes from interfering with high-priority audio traffic. 
+Even in challenging suspension scenarios, C4 proved to be more efficient than TCP Cubic and neared the performance levels of BBR, illustrating its effectiveness as a modern congestion control solution for media-heavy applications.
+
+In summary, current evaluations of C4 are limited by a lack of performance data regarding its behavior in network environments beyond Wi-Fi. 
+Furthermore, there is an absence of empirical evidence concerning its fairness when competing with other flows or just multiple flows of its own, as the provided datasets do not address how C4 interacts with diverse traffic types. 
+Given its demonstrated advantages over TCP Cubic and BBR in wireless scenarios—particularly in reducing queuing delay for real-time media—C4 warrants further testing in varied network architectures to determine if its effectiveness persists across different environments. 
+Additionally, a significant research gap exists because there is no direct comparison between C4 and the Copa algorithm or its extensions. 
+While existing data suggests that Copa might offer competitive performance, a definitive conclusion cannot be reached because the respective tests were conducted in disparate network conditions, making a direct side-by-side evaluation impossible at this time.
