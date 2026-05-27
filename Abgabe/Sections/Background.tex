@@ -1,5 +1,9 @@
 \section{Background}\label{sec:Background}
 
+To understand how \ac{CCA}s work we first wanna give a short background.
+We are going to explain a common metric to measure \ac{CCA}s and then we will introduce three of the old \ac{CCA}s. 
+With these we show how the first approaches look like and what differences and tuning factors a \ac{CCA} has.
+
 \subsection{Congestion Control Fundamentals}
 
 Congestion control encompasses the distributed algorithms designed to manage the transmission rate of senders to prevent network congestion. 
@@ -10,7 +14,7 @@ Consequently, robust congestion control is essential to manage these hardware li
 
 \subsubsection{Performance and Fairness Metrics}
 
-To evaluate the efficancy of a congestion control algorithm, several quantitative indices are employed. 
+To evaluate the efficancy of a \acs{CCA}, several quantitative indices are employed. 
 A primary metric is Jain's Fairness Index, which assesses how equal different flows share bottleneck resources \cite{JainsIndex}. 
 This index yields a value between 0 and 1, representing the percentage of users who receive a fair share of the available capacity.
 A value of 1 signifies that 100\% of the users are receiving an identical and fair portion of the resources, which is the ideal state for a distributed network environment \cite{JainsIndex}.

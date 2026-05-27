@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  26 MAY 2026 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  27 MAY 2026 10:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -347,6 +347,46 @@ File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 \Gin@req@width=\dimen181
 ) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/acro\acro.sty (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2024-08-30 L3 programming layer (loader) 
+ (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count305
+\l__pdf_internal_box=\box57
+))
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+)
+Package: acro 2022/04/01 v3.8 typeset acronyms and other abbreviations (CN)
+\l__acro_tmpa_int=\count306
+\l__acro_tmpb_int=\count307
+\l__acro_tmpc_int=\count308
+\l__acro_tmpd_int=\count309
+Loading module `base' ...
+Loading module `interface' ...
+Loading module `aux' ...
+Loading module `properties' ...
+Loading module `acronyms' ...
+Loading module `formatting' ...
+Loading module `ppfixes' ...
+Loading module `tools' ...
+\l__acro_minimal_usage_int=\count310
+\l__acro_nest_int=\count311
+\g_acro_barrier_int=\count312
+\g_acro_barrier_total_int=\count313
+Loading module `commands' ...
+\l_acro_nest_level_int=\count314
+Loading module `templates' ...
+Loading module `list' ...
+Loading module `pages' ...
+\l__acro_pages_seq_threshold_int=\count315
+Loading module `locale' ...
+ (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/translations\translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
+)
+Loading module `pdfsupport' ...
+Loading module `patch' ...
+Loading module `definitions' ...
+Loading module `upgrade' ...
 ) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
  (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
@@ -370,103 +410,103 @@ Package caption Warning: Unknown document class (or package),
 (caption)                standard defaults will be used.
 See the caption package documentation for explanation.
 
-\c@caption@flags=\count305
-\c@continuedfloat=\count306
+\c@caption@flags=\count316
+\c@continuedfloat=\count317
 Package caption Info: hyperref package is loaded.
 )
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count307
+\c@subfigure=\count318
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count308
-) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
-\l__pdf_internal_box=\box57
-) (seminar-paper.aux)
+\c@subtable=\count319
+) (Akronyme.tex
+\c@g@acro@CCA@int=\count320
+)
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 35.
+ (seminar-paper.aux)
 \openout1 = `seminar-paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 -- Lines per column: 56 (exact).
-Package hyperref Info: Link coloring OFF on input line 32.
+Package hyperref Info: Link coloring OFF on input line 35.
 (seminar-paper.out) (seminar-paper.out)
 \@outlinefile=\write3
 \openout3 = `seminar-paper.out'.
 
  (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count310
+\scratchcounter=\count321
 \scratchdimen=\dimen190
 \scratchbox=\box58
-\nofMPsegments=\count311
-\nofMParguments=\count312
+\nofMPsegments=\count322
+\nofMParguments=\count323
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count313
+\MPscratchCnt=\count324
 \MPscratchDim=\dimen191
-\MPnumerator=\count314
-\makeMPintoPDFobject=\count315
+\MPnumerator=\count325
+\makeMPintoPDFobject=\count326
 \everyMPtoPDFconversion=\toks26
 ) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
+)) (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 35.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (Sections/Abstract.tex) (Sections/Intro.tex)
 
 (Sections/Background.tex
-Underfull \hbox (badness 1997) in paragraph at lines 20--25
-[]\OT1/ptm/m/n/10 As the In-ter-net tran-si-tioned to-ward high-speed, long-
- []
-
-
 
 [1{C:/Users/admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
-]) (Sections/Goal.tex
+]
+Underfull \hbox (badness 1997) in paragraph at lines 24--29
+[]\OT1/ptm/m/n/10 As the In-ter-net tran-si-tioned to-ward high-speed, long-
+ []
+
+)
+
+(Sections/Goal.tex
 
 pdfTeX warning: pdflatex (file ./figures/ProblemForCCAs.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures/ProblemForCCAs.pdf, id=152, 845.07724pt x 597.55246pt>
+<figures/ProblemForCCAs.pdf, id=148, 845.07724pt x 597.55246pt>
 File: figures/ProblemForCCAs.pdf Graphic file (type pdf)
 <use figures/ProblemForCCAs.pdf>
-Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 4.
+Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 6.
 (pdftex.def)             Requested size: 252.0pt x 178.19121pt.
+)
 
-
-) (Sections/Approach.tex
-
-[2 <./figures/ProblemForCCAs.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+[2 <./figures/ProblemForCCAs.pdf>] (Sections/Approach.tex
+LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
  (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
  (C:\Users\admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \vbox (badness 2600) has occurred while \output is active []
-
-
 
 
 
@@ -476,12 +516,12 @@ Underfull \vbox (badness 2600) has occurred while \output is active []
 
 [4]
 
-) (Sections/Evaluation.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+[5]) (Sections/Evaluation.tex
 
-[5]
+
+Underfull \vbox (badness 2762) has occurred while \output is active []
 
 
 
@@ -491,12 +531,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7]
 
-) (Sections/Summary.tex
-Underfull \vbox (badness 1107) has occurred while \output is active []
+)
 
-
-
-[8]) (Sections/Outlook.tex) (seminar-paper.bbl
+[8] (Sections/Summary.tex) (Sections/Outlook.tex) (seminar-paper.bbl
 
 
 Underfull \hbox (badness 1418) in paragraph at lines 118--122
@@ -528,20 +565,20 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: 3DB0E7A1E0E27795805891E2634F4D20;4635.
+(rerunfilecheck)             Checksum: C10D189E86D6E2F7538A139FB8068EF2;4364.
  ) 
 Here is how much of TeX's memory you used:
- 14394 strings out of 473899
- 245445 string characters out of 5726499
- 644882 words of memory out of 5000000
- 37029 multiletter control sequences out of 15000+600000
- 593371 words of font info for 105 fonts, out of 8000000 for 9000
+ 18002 strings out of 473899
+ 349223 string characters out of 5726499
+ 741479 words of memory out of 5000000
+ 40616 multiletter control sequences out of 15000+600000
+ 593974 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,508b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,8n,93p,508b,495s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (9 pages, 410190 bytes).
+Output written on seminar-paper.pdf (9 pages, 409862 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 500000)
- 246 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 409 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 238 words of extra memory for PDF output out of 10000 (max. 10000000)
 

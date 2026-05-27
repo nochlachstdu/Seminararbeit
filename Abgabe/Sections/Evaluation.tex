@@ -1,8 +1,5 @@
 \section{Evaluations}\label{sec:Evaluation}
 
-\subsection{What is the goal of Congestion Control?}
-
-
 \subsection{BBR}
 
 The authors of \cite{BBREVALUATION} conducted an extensive study on the performance and quality of BBR, initially testing it with multiple self-competing flows and subsequently against TCP Cubic flows. 
@@ -32,7 +29,7 @@ By monitoring short-term indicators, BBR-ES effectively distinguishes between fl
 
 \subsection{PCC}
 
-To demonstrate that PCC is a stable and effective congestion control algorithm, the authors conducted several comprehensive studies across diverse network environments. 
+To demonstrate that PCC is a stable and effective \acs{CCA}, the authors conducted several comprehensive studies across diverse network environments. 
 Their results consistently showed that PCC maintains high throughput and is significantly more resilient to random packet loss than traditional TCP variants. 
 For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate\cite{PCC}, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions.\cite{PCCEVALUATION} 
 This resilience stems from PCC's ability to distinguish between congestive loss and random link errors through its utility-maximizing framework.  
@@ -45,13 +42,13 @@ Furthermore, PCC proves to be remarkably efficient with limited resources, achie
 A critical component of PCC's evaluation is its behavior when sharing the network with other flows. 
 Despite its "selfish" design focused on utility maximization, competing PCC flows are mathematically and empirically shown to converge to a stable and fair equilibrium\cite{PCC}. 
 This includes strong RTT fairness, where flows with different propagation delays receive their fair share of bandwidth rather than the shorter-RTT flow dominating the link—a common flaw in protocols like TCP CUBIC. 
-Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy congestion control algorithms, the framework can be adjusted to be more "socially" compatible with traditional flows, ensuring that PCC does not completely starve existing flows traffic in mixed-protocol environments.
+Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy \acs{CCA}s, the framework can be adjusted to be more "socially" compatible with traditional flows, ensuring that PCC does not completely starve existing flows traffic in mixed-protocol environments.
 
 \subsection{Copa}
 
 \subsubsection{Basic Copa}
 
-The primary objective of the Copa authors was to develop a congestion control algorithm that is both high-performing and simple to understand. 
+The primary objective of the Copa authors was to develop a \acs{CCA} that is both high-performing and simple to understand. 
 While evaluating an algorithm's "simplicity" is inherently subjective and less straightforward than quantitative metrics, several comparisons highlight Copa's relatively low complexity.  
 
 For instance, PCC is built upon a framework that uses online learning and utility maximization, which can be complex to reason about due to its continuous "micro-experiments" of different sending rates. 
@@ -66,7 +63,7 @@ While BBR also relies on limited parameters — specifically its estimates of Bo
 Overall, Copa is not the most difficult algorithm to understand, particularly when compared to other modern schemes. 
 We have determined that, in contrast to algorithms like PCC—which utilizes complex online optimization and randomized controlled trials—Copa relies on a more transparent, delay-based target rate formula. 
 While PCC's decision-making involves aggregating multiple packet-level events into a performance utility function, Copa's logic is driven by a straightforward relationship between sending rate and queuing delay. 
-Therefore, we conclude that the authors successfully reached their goal of creating a high-performing congestion control algorithm that remains simple for humans to reason about.
+Therefore, we conclude that the authors successfully reached their goal of creating a high-performing \acs{CCA} that remains simple for humans to reason about.
 
 We will now examine the performance of Copa. 
 The authors evaluated the algorithm through various experiments, comparing it directly with other prominent congestion control schemes, including PCC, BBR, and TCP Cubic. 
@@ -109,7 +106,7 @@ Furthermore, the authors tested Copa-D in 4G and 5G network environments.
 Their findings reveal that while standard Copa achieves a slightly higher throughput, its RTT is significantly higher than that of Copa-D. 
 This indicates that Copa-D successfully prioritizes lower delay, providing a more stable performance profile in mobile network scenarios.
 
-In summary, Copa represents a compelling congestion control algorithm due to its inherent simplicity and robust performance. 
+In summary, Copa represents a compelling \acs{CCA} due to its inherent simplicity and robust performance. 
 Through extensions such as Copa+ and Copa-D, the protocol can be tailored to operate efficiently across various specialized use cases. 
 However, a significant gap remains regarding its performance in real-world network environments. 
 Existing studies primarily rely on controlled experiments, leaving it unclear how effectively Copa and its variants perform outside of emulated settings.
@@ -120,11 +117,11 @@ Consequently, further research is required to determine if these refinements mai
 
 \subsection{PowerTCP}
 
-The authors of PowerTCP designed their congestion control algorithm specifically for data center networks rather than the public internet. 
+The authors of PowerTCP designed their \acs{CCA} specifically for data center networks rather than the public internet. 
 This targeted approach is significant because it allows the algorithm to leverage the unique characteristics of controlled environments. 
 Unlike the broader internet, a data center is typically managed by a single entity that can mandate the use of specific protocols across the entire infrastructure. 
 Consequently, the authors' use of a fat-tree topology for their test environment closely reflects real-world data center network conditions. 
-Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated congestion control algorithms, which are rarely a factor in modern data center deployments.
+Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated \acs{CCA}s, which are rarely a factor in modern data center deployments.
 
 The experimental results demonstrate that PowerTCP reacts rapidly and accurately to congestion while maintaining high throughput. 
 A key performance indicator is the algorithm's ability to maintain a near-empty queue at the bottleneck, suggesting that PowerTCP operates close to the ideal operating point A described in \ref{ProblemForCCAS}. 

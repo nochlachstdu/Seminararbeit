@@ -1,9 +1,12 @@
 
 \section{Approaches to control congestion}\label{sec:Approach}
 
+Now with the goal set, we can have a closer look on possible approaches that are more new.
+These approaches are less than ten years old and represent the best and most known \ac{CCA}s.
+
 \subsection{Bottleneck Bandwidth and Round-Trip propagation Time (BBR)}
 
-BBR was developed by Google researchers to address fundamental inefficiencies in traditional loss-based congestion control algorithms \cite{BBRORIGINAL}. 
+BBR was developed by Google researchers to address fundamental inefficiencies in traditional loss-based \acs{CCA}s \cite{BBRORIGINAL}. 
 The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic \cite{BBRORIGINAL}. 
 Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds \cite{BBRORIGINAL}. 
 Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion.
@@ -61,7 +64,7 @@ This approach allows the protocol to adapt to complex network conditions without
 
 \subsection{Copa}
 
-Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based congestion control algorithms often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
+Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based \acs{CCA}s often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
 This excessive queuing delay severely degrades the performance of interactive applications that require low latency\cite{COPA}. 
 The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}.
 These protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
@@ -109,7 +112,7 @@ This ensures that the queue is actively drained, effectively enforcing Copa’s 
 \subsection{PowerTCP}
 
 The authors of PowerTCP focus primarily on the unique demands of datacenter networks\cite{PowerTCP}. 
-They argue that most existing congestion control algorithms suffer from a fundamental trade-off: 
+They argue that most existing \acs{CCA}s suffer from a fundamental trade-off: 
 they are either unstable or unable to react rapidly to network fluctuations\cite{PowerTCP}. 
 "Voltage-based" algorithms, which react to absolute states like queue length or delay, tend to be stable but are often too slow to respond to the bursty traffic patterns typical of datacenters\cite{PowerTCP}. 
 These schemes often fail to utilize available bandwidth quickly, especially in dynamic environments\cite{PowerTCP}. 
