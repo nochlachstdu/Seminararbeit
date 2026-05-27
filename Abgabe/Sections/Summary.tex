@@ -2,12 +2,20 @@
 \section{Summary}\label{sec:Summary}
 
 Congestion control has been an active area of research for over 40 years, evolving rapidly in response to the massive increase in global network traffic. 
-As the need for effective congestion control grew, the complexity of these algorithms increased significantly. 
+The first mentioned \ac{CCA} is BBR which was developed by Google and aimed at using a different technique to control a flow than older \ac{CCA}s do.
+Althought the approach is already good, it is not perfect which led to the developement of BBR-ES and AQDC BBR which are extensions and upgrades to BBR and they target the weaknesses of BBR.
+As the further need for effective congestion control grew, the complexity of these algorithms increased significantly. 
 A prime example of this complexity is PCC, which replaces traditional hard-wired logic with a data-intensive framework of online learning, "micro-experiments," and utility maximization.  
 
 This trend toward sophistication has sparked a "counter-movement" aimed at making algorithms, such as Copa, more transparent and easier for humans to reason about. 
+Although Copa is already very good, it has some problems which is mainly, that it switches sometimes into its competetive mode, although it is not necessary.
+To solve this there are newer versions of Copa developed which are Copa+ and Copa-D.
+Both tackle the problem of Copa in there own way very good.
+Another new approach for a \ac{CCA} is C4 which is bringing a new concept to the table that has similarities to BBR.
+Due to its recent emergence, peer-reviewed sources and data are currently limited.
+
 Modern development is now defined by high specialization. 
-Algorithms like Copa-D are tailored for the volatility of mobile networks , while PowerTCP is optimized for data centers by leveraging INT.  
+Algorithms like Copa-D are tailored for the volatility of mobile networks, while PowerTCP is optimized for data centers by leveraging INT.  
 However, this specialization makes comparative analysis difficult, as an algorithm's behavior changes across different network types. 
 Furthermore, because most performance data is derived from tests in controlled, specialized environments, it remains a challenge to benchmark these algorithms against one another or predict their effectiveness in the diverse conditions of the global internet.
 Despite this lack of common ground in testing environments, Jain's Fairness Index serves as a vital, relatively consistent metric for the field. 
