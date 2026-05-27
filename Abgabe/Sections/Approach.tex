@@ -7,29 +7,29 @@ These approaches are less than ten years old and represent the best and most kno
 \subsection{Bottleneck Bandwidth and Round-Trip propagation Time (BBR)}
 
 BBR was developed by Google researchers to address fundamental inefficiencies in traditional loss-based \acs{CCA}s \cite{BBRORIGINAL}. 
-The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic \cite{BBRORIGINAL}. 
-Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds \cite{BBRORIGINAL}. 
+The authors argue that modern hardware advancements have made the long-standing practice of using packet loss as a measure for congestion increasingly problematic. 
+Specifically, in environments with large network buffers, loss-based algorithms like CUBIC tend to keep buffers full, leading to "bufferbloat" where delays are measured in seconds rather than milliseconds . 
 Conversely, in long-distance networks, packet loss may occur due to link errors rather than actual congestion.
 However, loss-based algorithms misinterpret these signals, causing them to reduce throughput unnecessarily \cite{BBRORIGINAL}.
 
 BBR operates through a state machine consisting of a Startup phase and two repeating steady-state phases known as ProbeBW and ProbeRTT\cite{BBREVALUATION}. 
 The authors define the optimal operating point as having a delivery rate equal to the bottleneck bandwidth ($BtlBw$) and a total amount of inflight data equal to the pipe's Bandwidth-Delay Product (BDP) \cite{BBRORIGINAL}. 
-During the Startup phase, BBR rapidly discovers the bottleneck's limits by increasing its sending rate by a pacing gain of $2/\ln 2 \approx 2.885$ every round trip until the delivery rate plateaus \cite{BBRORIGINAL}.
+During the Startup phase, BBR rapidly discovers the bottleneck's limits by increasing its sending rate by a pacing gain of $2/\ln 2 \approx 2.885$ every round trip until the delivery rate plateaus.
 While this ensures the bottleneck is discovered in $\log_2 BDP$ rounds, it may temporarily fill the queue with up to $2BDP$ of excess data before transitioning into a Drain phase to empty the buffer \cite{BBRORIGINAL, BBREVALUATION}.
 
 In steady-state operation, the algorithm primarily cycles through the ProbeBW phase to measure and adapt to changes in available bandwidth. 
 This phase uses an eight-step cycle where the algorithm typically increases its sending rate by a pacing gain of 1.25 for one RTT to probe for additional capacity, then immediately reduces it to a gain of 0.75 for one RTT to drain the queue created during the probe \cite{BBREVALUATION}. 
-Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds \cite{BBREVALUATION}. 
+Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds. 
 During this phase, the algorithm abruptly limits inflight data to a minimal amount—typically 4 packets—for at least 200 ms to fully drain the bottleneck buffer and measure the true propagation delay of the path \cite{BBRORIGINAL, BBREVALUATION}.
 
 \subsubsection{Active Queue Debt Compensation (AQDC) BBR}
 
 BBR utilizes the ProbeBW phase to estimate available bandwidth by periodically increasing its pacing rate. 
-However, this process often injects bursts of traffic that exceed the path's instantaneous capacity, creating temporary queues \cite{AQDCBBR}. 
+However, this process often injects bursts of traffic that exceed the path's instantaneous capacity, creating temporary queues. 
 The authors of \cite{AQDCBBR} identify a critical limitation: these transient queues may not be completely drained during the subsequent ProbeDown phase, leading to a residual queue buildup that accumulates over successive cycles. 
 Over time, this results in an upward drift of RTT measurements and increased tail latency, which is particularly detrimental to delay-sensitive applications like video streaming.
 
-Furthermore, the authors contend that BBR's ProbeRTT mechanism is rigid and ``blind'' to queue history, as it resets at fixed intervals regardless of the actual backlog \cite{AQDCBBR}. 
+Furthermore, the authors contend that BBR's ProbeRTT mechanism is rigid and ``blind'' to queue history, as it resets at fixed intervals regardless of the actual backlog. 
 To reconcile the conflict between fairness and low latency, AQDC-BBR explicitly models the ``queue debt'' ($B_{total}$) incurred during bandwidth probing. 
 This debt is then compensated for by adjusting the target inflight data:
 
@@ -37,132 +37,132 @@ This debt is then compensated for by adjusting the target inflight data:
     Inflight_{target} = BDP - B_{total}
 \end{equation}
 
-By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR drains accumulated queues and restores accurate minRTT tracking without the need for aggressive or heuristic rate cuts \cite{AQDCBBR}.
+By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR drains accumulated queues and restores accurate minRTT tracking without the need for aggressive or heuristic rate cuts.
 
 \subsubsection{BBR-Extended State (ES)}
 TCP BBR exhibits significant RTT unfairness when flows with heterogeneous RTTs share a bottleneck\cite{BBRES}. 
-In deep-buffer environments, long-RTT flows tend to dominate bandwidth because they maintain larger inflight data volumes—proportional to their RTT—which allows them to occupy the bottleneck queue more aggressively\cite{BBRES}. 
-This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow’s estimated bandwidth and sending rate\cite{BBRES}. 
-While BBR’s ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state\cite{BBRES}. 
-Consequently, prior imbalances are immediately reintroduced and amplified, a phenomenon the authors describe as the "inaction" of BBR\cite{BBRES}.
+In deep-buffer environments, long-RTT flows tend to dominate bandwidth because they maintain larger inflight data volumes—proportional to their RTT—which allows them to occupy the bottleneck queue more aggressively. 
+This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow’s estimated bandwidth and sending rate. 
+While BBR’s ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state. 
+Consequently, prior imbalances are immediately reintroduced and amplified, a phenomenon the authors describe as the "inaction" of BBR.
 
-To resolve these issues, the authors introduced BBR-ES, which modifies the state machine by inserting a short stabilization phase, BBR-NEW-STATE, between ProbeRTT and ProbeBW\cite{BBRES}. 
-This new state gradually ramps up the sending rate in three sub-phases based on per-flow RTT trends, allowing for a fairer recovery and the repair of inflight imbalances before returning to steady probing\cite{BBRES}. 
-Additionally, BBR-ES includes a Trend-Driven Transition Mechanism that proactively triggers an early ProbeRTT only for flows exhibiting trends consistent with excessive queue contribution (specifically, a simultaneous increase in both bandwidth and RTT)\cite{BBRES}. 
-This targeted approach prevents the "one-size-fits-all" penalty found in other BBR variants that often unnecessarily throttles low-impact flows\cite{BBRES}.
+To resolve these issues, the authors introduced BBR-ES, which modifies the state machine by inserting a short stabilization phase, BBR-NEW-STATE, between ProbeRTT and ProbeBW. 
+This new state gradually ramps up the sending rate in three sub-phases based on per-flow RTT trends, allowing for a fairer recovery and the repair of inflight imbalances before returning to steady probing. 
+Additionally, BBR-ES includes a Trend-Driven Transition Mechanism that proactively triggers an early ProbeRTT only for flows exhibiting trends consistent with excessive queue contribution (specifically, a simultaneous increase in both bandwidth and RTT). 
+This targeted approach prevents the "one-size-fits-all" penalty found in other BBR variants that often unnecessarily throttles low-impact flows.
 
 \subsection{Performance-oriented Congestion Control (PCC)}
 
 Performance-oriented Congestion Control (PCC) was developed to resolve a fundamental architectural flaw in the TCP family known as "hardwired mapping," where specific packet-level events are pre-programmed to trigger fixed control responses\cite{PCC}. 
-This rigid structure forces TCP to rely on unreliable assumptions about the network, such as the belief that all packet loss indicates congestion, which leads to severe performance degradation on modern links where loss may be random or caused by shallow buffers\cite{PCC}.
-Because traditional protocols carry out these harmful actions without observing their actual impact on performance, they often fail to achieve optimal throughput in diverse and complex real-world environments\cite{PCC}.
+This rigid structure forces TCP to rely on unreliable assumptions about the network, such as the belief that all packet loss indicates congestion, which leads to severe performance degradation on modern links where loss may be random or caused by shallow buffers.
+Because traditional protocols carry out these harmful actions without observing their actual impact on performance, they often fail to achieve optimal throughput in diverse and complex real-world environments.
 
-The authors solved this by re-architecting congestion control to rely on empirical evidence gathered through continuous "micro-experiments" rather than predetermined responses\cite{PCC}. 
-In this new architecture, the sender divides time into monitor intervals to test different sending rates and observes the resulting packet-level events\cite{PCC}. 
-These events are aggregated into a numerical utility function that reflects specific performance objectives, such as maximizing throughput while minimizing loss. By employing an online learning algorithm similar to gradient ascent, PCC compares the utility of different rates and consistently moves in the direction that empirically produces the best performance results\cite{PCC}. 
-This approach allows the protocol to adapt to complex network conditions without making prior assumptions, and the authors further improved decision-making accuracy under noisy conditions by utilizing randomized controlled trials (RCTs) to confirm the causal connection between a rate change and its observed utility\cite{PCC}.
+The authors solved this by re-architecting congestion control to rely on empirical evidence gathered through continuous "micro-experiments" rather than predetermined responses. 
+In this new architecture, the sender divides time into monitor intervals to test different sending rates and observes the resulting packet-level events. 
+These events are aggregated into a numerical utility function that reflects specific performance objectives, such as maximizing throughput while minimizing loss. By employing an online learning algorithm similar to gradient ascent, PCC compares the utility of different rates and consistently moves in the direction that empirically produces the best performance results. 
+This approach allows the protocol to adapt to complex network conditions without making prior assumptions, and the authors further improved decision-making accuracy under noisy conditions by utilizing randomized controlled trials (RCTs) to confirm the causal connection between a rate change and its observed utility.
 
 \subsection{Copa}
 
 Similar to the motivation behind BBR, the authors of Copa observed that traditional loss-based \acs{CCA}s often cause significant "bufferbloat" at the network bottleneck\cite{COPA}. 
-This excessive queuing delay severely degrades the performance of interactive applications that require low latency\cite{COPA}. 
-The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions\cite{COPA}.
-These protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic\cite{COPA}. 
-Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune\cite{COPA}.
+This excessive queuing delay severely degrades the performance of interactive applications that require low latency. 
+The authors argued that existing delay-based algorithms, such as TCP Vegas or FAST TCP, are insufficient for modern internet conditions.
+These protocols are frequently misled by network jitter or ACK compression and tend to be starved when competing against aggressive loss-based flows like TCP Cubic. 
+Furthermore, while newer "objective-oriented" or machine-generated algorithms like PCC may offer high performance, the authors noted they are often "black boxes" that are difficult for humans to reason about or tune.
 
-To address these limitations, Copa is built upon three core design pillars\cite{COPA}. 
-First, it establishes a Target Rate ($\lambda = 1/\delta d_q$) derived from a Markovian packet arrival model\cite{COPA}. 
-In this formula, $d_q$ is the measured queuing delay, which the sender calculates on every ACK as the difference between the recent standing RTT ($RTT_{standing}$) and the long-term minimum RTT ($RTT_{min}$)\cite{COPA}. 
-Second, it employs a Window Update Rule that incrementally adjusts the congestion window to converge rapidly toward this target rate, ensuring fairness even amidst high flow churn\cite{COPA}. 
-Third, it incorporates a Competitive Mode that utilizes an additive-increase/multiplicative-decrease logic on the $\delta$ parameter to allow Copa to detect and compete fairly with buffer-filling loss-based flows\cite{COPA}. 
-By leveraging the framework of Network Utility Maximization (NUM), Copa aims to maximize the utility function $U = \log \lambda - \delta \log d$, where $\lambda$ is throughput and $d$ is delay\cite{COPA}.
+To address these limitations, Copa is built upon three core design pillars. 
+First, it establishes a Target Rate ($\lambda = 1/\delta d_q$) derived from a Markovian packet arrival model. 
+In this formula, $d_q$ is the measured queuing delay, which the sender calculates on every ACK as the difference between the recent standing RTT ($RTT_{standing}$) and the long-term minimum RTT ($RTT_{min}$). 
+Second, it employs a Window Update Rule that incrementally adjusts the congestion window to converge rapidly toward this target rate, ensuring fairness even amidst high flow churn. 
+Third, it incorporates a Competitive Mode that utilizes an additive-increase/multiplicative-decrease logic on the $\delta$ parameter to allow Copa to detect and compete fairly with buffer-filling loss-based flows. 
+By leveraging the framework of Network Utility Maximization (NUM), Copa aims to maximize the utility function $U = \log \lambda - \delta \log d$, where $\lambda$ is throughput and $d$ is delay.
 
 \subsubsection{Copa+}
 
 The authors of Copa+ identified several critical vulnerabilities in the original Copa algorithm through mathematical analysis\cite{COPAPLUS}. 
-They demonstrated mathematically that Copa often fails to periodically clear the bottleneck buffer, which is a necessary step for the algorithm to accurately measure the $RTT_{standing}$\cite{COPAPLUS}. 
-When the bottleneck buffer remains occupied, the minimum RTT observed by the sender is higher than the actual propagation delay\cite{COPAPLUS}. 
-This measurement error leads to a flawed estimation of the target rate and can cause the algorithm to mistakenly enter its Competitive Mode\cite{COPAPLUS}. 
-Although this mode is intended only for coexistence with loss-based flows like TCP Cubic, its accidental activation in the absence of such flows causes Copa to unnecessarily increase its congestion window\cite{COPAPLUS}. 
-This behavior results in persistent buffer occupancy, significantly increased queuing delays, and reduced fairness among competing flows\cite{COPAPLUS}.
+They demonstrated mathematically that Copa often fails to periodically clear the bottleneck buffer, which is a necessary step for the algorithm to accurately measure the $RTT_{standing}$. 
+When the bottleneck buffer remains occupied, the minimum RTT observed by the sender is higher than the actual propagation delay. 
+This measurement error leads to a flawed estimation of the target rate and can cause the algorithm to mistakenly enter its Competitive Mode. 
+Although this mode is intended only for coexistence with loss-based flows like TCP Cubic, its accidental activation in the absence of such flows causes Copa to unnecessarily increase its congestion window. 
+This behavior results in persistent buffer occupancy, significantly increased queuing delays, and reduced fairness among competing flows.
 
 To address these issues, the authors introduced Copa+, which incorporates a parameter adaptation mechanism and a refined mode-switching logic\cite{COPAPLUS}. 
-They observed that the original algorithm relies on a single "hard-wired" parameter, $\delta^{-1}$, to determine both the user's performance preference and the granularity of window adjustments\cite{COPAPLUS}. 
-To break this dependency, Copa+ introduces a new parameter, $\theta$, which serves as a rate adjustment factor\cite{COPAPLUS}. 
-This allows the algorithm to decouple the target queuing delay from the aggressiveness of the window updates\cite{COPAPLUS}. 
-Copa+ utilizes a cubic-based function to adaptively search for an optimal $\theta$ value\cite{COPAPLUS}.
-specifically, it increases the adjustment granularity when it detects that the buffer is not being cleared, thereby forcing the queue to empty and allowing for a correct $RTT_{standing}$ measurement\cite{COPAPLUS}. 
-Once the buffer is cleared, the algorithm reduces the granularity to maintain stability\cite{COPAPLUS}. 
-Furthermore, the authors optimized the criteria for entering Competitive Mode by utilizing the algorithm's inherent oscillation cycles\cite{COPAPLUS}. 
-By tracking the direction changes in queuing delay, Copa+ can more accurately distinguish between genuine competition with loss-based flows and simple measurement noise, effectively preventing accidental mode activation and maintaining low latency across diverse network environments\cite{COPAPLUS}.
+They observed that the original algorithm relies on a single "hard-wired" parameter, $\delta^{-1}$, to determine both the user's performance preference and the granularity of window adjustments. 
+To break this dependency, Copa+ introduces a new parameter, $\theta$, which serves as a rate adjustment factor. 
+This allows the algorithm to decouple the target queuing delay from the aggressiveness of the window updates. 
+Copa+ utilizes a cubic-based function to adaptively search for an optimal $\theta$ value.
+specifically, it increases the adjustment granularity when it detects that the buffer is not being cleared, thereby forcing the queue to empty and allowing for a correct $RTT_{standing}$ measurement. 
+Once the buffer is cleared, the algorithm reduces the granularity to maintain stability. 
+Furthermore, the authors optimized the criteria for entering Competitive Mode by utilizing the algorithm's inherent oscillation cycles. 
+By tracking the direction changes in queuing delay, Copa+ can more accurately distinguish between genuine competition with loss-based flows and simple measurement noise, effectively preventing accidental mode activation and maintaining low latency across diverse network environments.
 
 \subsubsection{Copa-Dynamic (Copa-D)}
 
 The authors of Copa-D focus their research on the unique challenges of highly volatile mobile networks, such as 4G and 5G\cite{COPADYNAMIC}. 
 Similar to the findings in Copa+ \cite{COPAPLUS}, they identify a fundamental performance degradation in the original Copa algorithm when deployed in unstable environments\cite{COPADYNAMIC}. 
-Specifically, they observe that Copa frequently fails to maintain its theoretical "empty queue" state\cite{COPADYNAMIC}. 
-This leads to standing queues at the bottleneck, which distorts RTT measurements and prevents the algorithm from accurately sensing network congestion\cite{COPADYNAMIC}.
+Specifically, they observe that Copa frequently fails to maintain its theoretical "empty queue" state. 
+This leads to standing queues at the bottleneck, which distorts RTT measurements and prevents the algorithm from accurately sensing network congestion.
 
-While acknowledging the approach taken by Copa+ (which introduces an additional parameter to the rate control equation) the authors of Copa-D propose an alternative strategy\cite{COPADYNAMIC}. 
-Rather than altering the underlying control structure, they focus on the core sensitivity parameter, $\delta$\cite{COPADYNAMIC}.
-In the original Copa implementation, $\delta$ is typically treated as a static constant, which the authors argue is the primary cause of its inability to adapt to cellular fluctuations\cite{COPADYNAMIC}. 
-Copa-D introduces a mechanism to make $\delta$ dynamic, automatically tuning it based on the observed bandwidth and a specific delay target\cite{COPADYNAMIC}. 
-This ensures that the queue is actively drained, effectively enforcing Copa’s original design goal of near-zero queuing delay even within the unpredictable conditions of a mobile network\cite{COPADYNAMIC}.
+While acknowledging the approach taken by Copa+ (which introduces an additional parameter to the rate control equation) the authors of Copa-D propose an alternative strategy. 
+Rather than altering the underlying control structure, they focus on the core sensitivity parameter, $\delta$.
+In the original Copa implementation, $\delta$ is typically treated as a static constant, which the authors argue is the primary cause of its inability to adapt to cellular fluctuations. 
+Copa-D introduces a mechanism to make $\delta$ dynamic, automatically tuning it based on the observed bandwidth and a specific delay target. 
+This ensures that the queue is actively drained, effectively enforcing Copa’s original design goal of near-zero queuing delay even within the unpredictable conditions of a mobile network.
 
 \subsection{PowerTCP}
 
 The authors of PowerTCP focus primarily on the unique demands of datacenter networks\cite{PowerTCP}. 
 They argue that most existing \acs{CCA}s suffer from a fundamental trade-off: 
-they are either unstable or unable to react rapidly to network fluctuations\cite{PowerTCP}. 
-"Voltage-based" algorithms, which react to absolute states like queue length or delay, tend to be stable but are often too slow to respond to the bursty traffic patterns typical of datacenters\cite{PowerTCP}. 
-These schemes often fail to utilize available bandwidth quickly, especially in dynamic environments\cite{PowerTCP}. 
-Conversely, "current-based" algorithms—those reacting to gradients or changes in the network—can respond quickly but often lack a unique equilibrium point, causing them to oscillate and become inherently unstable\cite{PowerTCP}.
+they are either unstable or unable to react rapidly to network fluctuations. 
+"Voltage-based" algorithms, which react to absolute states like queue length or delay, tend to be stable but are often too slow to respond to the bursty traffic patterns typical of datacenters. 
+These schemes often fail to utilize available bandwidth quickly, especially in dynamic environments. 
+Conversely, "current-based" algorithms—those reacting to gradients or changes in the network—can respond quickly but often lack a unique equilibrium point, causing them to oscillate and become inherently unstable.
 
-Furthermore, the authors anticipate a future where datacenter switches feature increasingly shallow buffers, significantly smaller than those found in traditional internet infrastructure\cite{PowerTCP}. 
-They also highlight a common datacenter traffic characteristic: while the majority of flows are short-lived and sensitive to latency, the bulk of the actual data volume is generated by a small number of long-lived flows requiring high throughput\cite{PowerTCP}. 
-Additionally, the emergence of reconfigurable datacenter networks (RDCNs) introduces rapid fluctuations in available bandwidth as optical circuits are re-established\cite{PowerTCP}. 
-Given these evolving circumstances, the authors conclude that a hybrid congestion control approach—integrating both "voltage" and "current" signals—is necessary to maintain stability while achieving near-instantaneous reaction times\cite{PowerTCP}.
+Furthermore, the authors of \cite{PowerTCP} anticipate a future where datacenter switches feature increasingly shallow buffers, significantly smaller than those found in traditional internet infrastructure. 
+They also highlight a common datacenter traffic characteristic: while the majority of flows are short-lived and sensitive to latency, the bulk of the actual data volume is generated by a small number of long-lived flows requiring high throughput. 
+Additionally, the emergence of reconfigurable datacenter networks (RDCNs) introduces rapid fluctuations in available bandwidth as optical circuits are re-established. 
+Given these evolving circumstances, the authors conclude that a hybrid congestion control approach—integrating both "voltage" and "current" signals—is necessary to maintain stability while achieving near-instantaneous reaction times.
 
-PowerTCP addresses the limitations of existing datacenter congestion control by introducing the notion of network "power"—the product of absolute state (voltage) and its rate of change (current)\cite{PowerTCP}. 
+PowerTCP addresses the limitations of existing datacenter congestion control by introducing the notion of network "power"—the product of absolute state (voltage) and its rate of change (current). 
 The authors implement this via a window update law:
 \begin{equation} \label{eq:PowerEquation1}
     w_i(t) \leftarrow \gamma \cdot (w_i(t - \theta(t)) \cdot \frac{e}{f(t)} + \beta) + (1 - \gamma) \cdot w_i(t)
 \end{equation}
 
-In this equation, $w_i(t - \theta(t))$ represents the window size at the time of packet transmission, providing a historical reference for the update\cite{PowerTCP}. 
-The term $e/f(t)$ acts as a power-based multiplicative factor, enabling rapid rate adjustments\cite{PowerTCP}. 
-Stability and equilibrium are maintained through the additive increase parameter $\beta$ and the exponential weighted moving average smoothing factor $\gamma$, which balances the system's responsiveness against network noise\cite{PowerTCP}.
+In this equation, $w_i(t - \theta(t))$ represents the window size at the time of packet transmission, providing a historical reference for the update. 
+The term $e/f(t)$ acts as a power-based multiplicative factor, enabling rapid rate adjustments. 
+Stability and equilibrium are maintained through the additive increase parameter $\beta$ and the exponential weighted moving average smoothing factor $\gamma$, which balances the system's responsiveness against network noise.
 
 To gather the necessary network metadata, PowerTCP leverages In-band Network Telemetry (INT)\cite{PowerTCP}. 
-Modern switches continuously monitor their internal state\cite{PowerTCP}.
-INT enables them to embed this real-time telemetry—such as queue lengths and timestamps—directly into the headers of passing TCP packets\cite{PowerTCP}. 
+Modern switches continuously monitor their internal state.
+INT enables them to embed this real-time telemetry—such as queue lengths and timestamps—directly into the headers of passing TCP packets. 
 Upon arrival, the receiver extracts this telemetry and reflects it back to the sender within an ACK packet. 
-This allows the sender to adjust its transmission rate based on the precise, current state of the network fabric\cite{PowerTCP}.
+This allows the sender to adjust its transmission rate based on the precise, current state of the network fabric.
 
 \subsection{Christian's Congestion Control Code - C4}
 
 The developers of C4 outlined three primary objectives for their algorithm\cite{C4BlogPost}. 
-First, the design prioritizes high performance in real-time applications, specifically video streaming\cite{C4BlogPost}. 
-Second, the algorithm is tailored for challenging access networks\cite{C4BlogPost}.
-The developers specifically cite reports of degraded video quality in high-density Wi-Fi environments, such as buildings with many concurrent users\cite{C4BlogPost}. 
-This focus on unstable connectivity significantly influenced key design decisions\cite{C4BlogPost}. 
-Finally, the developers emphasized architectural simplicity and intended for the algorithm to be deployed primarily in conjunction with the QUIC protocol\cite{C4BlogPost}.
+First, the design prioritizes high performance in real-time applications, specifically video streaming. 
+Second, the algorithm is tailored for challenging access networks.
+The developers specifically cite reports of degraded video quality in high-density Wi-Fi environments, such as buildings with many concurrent users. 
+This focus on unstable connectivity significantly influenced key design decisions. 
+Finally, the developers emphasized architectural simplicity and intended for the algorithm to be deployed primarily in conjunction with the QUIC protocol.
 
 To understand how C4 operates, it is best to view it as a state-based controller that shifts through four distinct phases based on network feedback\cite{C4}. 
-The algorithm begins in the Initial state, which functions similarly to a traditional "slow start" by rapidly increasing the data rate to identify the network's capacity\cite{C4}. 
-Once the capacity is found, it transitions into the Cruising state. In this steady phase, the algorithm maintains a calculated Nominal Data Rate, which serves as its baseline for stable transmission\cite{C4}. 
-To ensure that it is not leaving any available bandwidth unused, C4 will occasionally enter the Pushing state, where it carefully probes for higher capacity\cite{C4}. 
-If the network becomes overloaded, triggered by packet loss or high delay, the algorithm moves into the Recovery state to stabilize the flow and redefine its baseline variables\cite{C4}.
+The algorithm begins in the Initial state, which functions similarly to a traditional "slow start" by rapidly increasing the data rate to identify the network's capacity. 
+Once the capacity is found, it transitions into the Cruising state. In this steady phase, the algorithm maintains a calculated Nominal Data Rate, which serves as its baseline for stable transmission. 
+To ensure that it is not leaving any available bandwidth unused, C4 will occasionally enter the Pushing state, where it carefully probes for higher capacity. 
+If the network becomes overloaded, triggered by packet loss or high delay, the algorithm moves into the Recovery state to stabilize the flow and redefine its baseline variables.
 
 Central to C4’s logic is the maintenance of "nominal" variables, specifically the Nominal Data Rate and the Nominal Max RTT\cite{C4}. 
-By tracking these long-term metrics, the algorithm develops a memory of what the network looks like when it is healthy\cite{C4}. 
-This is particularly important for its Jitter Tolerance mechanism\cite{C4}. 
-In crowded Wi-Fi environments, temporary interference can cause spikes in delay that look like congestion but are actually just transient wireless noise\cite{C4}.
-C4 uses its nominal variables to set a minimum congestion window, allowing it to "ride through" these brief spikes without unnecessarily slashing its speed, which prevents video streams from stuttering\cite{C4}.
+By tracking these long-term metrics, the algorithm develops a memory of what the network looks like when it is healthy. 
+This is particularly important for its Jitter Tolerance mechanism. 
+In crowded Wi-Fi environments, temporary interference can cause spikes in delay that look like congestion but are actually just transient wireless noise.
+C4 uses its nominal variables to set a minimum congestion window, allowing it to "ride through" these brief spikes without unnecessarily slashing its speed, which prevents video streams from stuttering.
 
 Furthermore, C4 employs a unique Sensitivity Curve to manage fairness across different data flows\cite{C4}. 
-This mechanism ensures that a flow's reaction to congestion is proportional to its size\cite{C4}.
-Essentially, flows that consume a large amount of bandwidth are programmed to be more sensitive to congestion signals than smaller, time-critical streams\cite{C4}. 
-By combining multiple signals—including traditional packet loss, RTT fluctuations, and Explicit Congestion Notification (ECN)—C4 creates a multi-layered defense against network instability\cite{C4}. 
-This comprehensive approach makes it highly effective for Media over QUIC, where the primary goal is to maintain a high-quality, real-time video experience even under challenging network conditions\cite{C4}.
+This mechanism ensures that a flow's reaction to congestion is proportional to its size.
+Essentially, flows that consume a large amount of bandwidth are programmed to be more sensitive to congestion signals than smaller, time-critical streams. 
+By combining multiple signals—including traditional packet loss, RTT fluctuations, and Explicit Congestion Notification (ECN)—C4 creates a multi-layered defense against network instability. 
+This comprehensive approach makes it highly effective for Media over QUIC, where the primary goal is to maintain a high-quality, real-time video experience even under challenging network conditions.
 

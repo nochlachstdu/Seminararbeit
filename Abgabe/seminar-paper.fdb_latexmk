@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex seminar-paper"] 1779869848.14787 "seminar-paper.aux" "seminar-paper.bbl" "seminar-paper" 1779869850.01706 0
+["bibtex seminar-paper"] 1779883929.58381 "seminar-paper.aux" "seminar-paper.bbl" "seminar-paper" 1779883931.68007 0
   "./seminar-paper.bib" 1778325618 12492 6a08f681d3085f59f6147cd80f3e9a26 ""
   "C:/Users/admin/AppData/Local/Programs/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "seminar-paper.aux" 1779869849 9465 13fd46aabdd9b6e53d1580cf959d69ac "pdflatex"
+  "seminar-paper.aux" 1779883930 7981 454bb6f4ca91bc01b8ea4fa4999c4e84 "pdflatex"
   (generated)
   "seminar-paper.bbl"
   "seminar-paper.blg"
   (rewritten before read)
-["pdflatex"] 1779869848.37428 "c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex" "seminar-paper.pdf" "seminar-paper" 1779869850.01755 0
+["pdflatex"] 1779883929.83617 "c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex" "seminar-paper.pdf" "seminar-paper" 1779883931.68199 0
   "Akronyme.tex" 1779806476 163 9504ab7fd79cfc865389255a7b86dad2 ""
   "C:/Users/admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1779806486 82666 6ae954049cbd801ff08c004e318ae5a8 ""
   "C:/Users/admin/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1729018335 11948198 a51c5798f449ecbeaf64a3fe0901ff76 ""
@@ -116,19 +116,19 @@
   "C:/Users/admin/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "IEEEtran.cls" 1774515449 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
   "Sections/Abstract.tex" 1778594968 1502 e6c8e3e256edd074c66be3e874b1fe5e ""
-  "Sections/Approach.tex" 1779869731 20662 9d0358105bb2dec6ec4cd15dd3a89e47 ""
+  "Sections/Approach.tex" 1779883927 19554 63e4a99f5c8e05af7b26871a9b82445e ""
   "Sections/Background.tex" 1779869426 5159 0bd71d6da1e843b65cbe567e420201e0 ""
   "Sections/Evaluation.tex" 1779869845 19026 5b32a3a224ae23f1fc921f23afb5d8f8 ""
   "Sections/Goal.tex" 1779869604 2574 ed2da2d35bd6373b666903f38428cd2f ""
-  "Sections/Intro.tex" 1779869115 2051 086648dc3c464c6512ce60b720e57744 ""
+  "Sections/Intro.tex" 1779869998 2181 f65143ec4f519a56b4fd125f03383c62 ""
   "Sections/Outlook.tex" 1778496213 1152 92b5ed1ceb91fdb10438d67626540517 ""
   "Sections/Summary.tex" 1778495748 1415 ab1f99aeb8637de6fcc557a06fe8a012 ""
-  "c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex" 1779806532 1508 6f7adc15e3949f037a59151da93e282d ""
+  "c:/Users/admin/Documents/Uni/Seminar/Seminararbeit/Abgabe/seminar-paper.tex" 1779872617 1462 502c62a78b4b4cc3800a1aff7753974f ""
   "figures/ProblemForCCAs.pdf" 1777794528 184440 27b14faf1df98237c13c1f8902442db0 ""
-  "seminar-paper.aux" 1779869849 9465 13fd46aabdd9b6e53d1580cf959d69ac "pdflatex"
-  "seminar-paper.bbl" 1779869848 5886 4962662c035cf93bec67e23a50a64ef0 "bibtex seminar-paper"
-  "seminar-paper.out" 1779869849 4364 c10d189e86d6e2f7538a139fb8068ef2 "pdflatex"
-  "seminar-paper.tex" 1779806532 1508 6f7adc15e3949f037a59151da93e282d ""
+  "seminar-paper.aux" 1779883930 7981 454bb6f4ca91bc01b8ea4fa4999c4e84 "pdflatex"
+  "seminar-paper.bbl" 1779883929 5886 4962662c035cf93bec67e23a50a64ef0 "bibtex seminar-paper"
+  "seminar-paper.out" 1779883930 4364 c10d189e86d6e2f7538a139fb8068ef2 "pdflatex"
+  "seminar-paper.tex" 1779872617 1462 502c62a78b4b4cc3800a1aff7753974f ""
   (generated)
   "seminar-paper.aux"
   "seminar-paper.log"
