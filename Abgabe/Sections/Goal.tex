@@ -10,13 +10,13 @@ Now that we have the background and looked at some \ac{CCA}s, we wanna know, wha
 
 The fundamental goal of a \acs{CCA} is to maximize throughput while maintaining a low delay. 
 To determine the ideal performance of such an algorithm, it is necessary to identify the optimal operating point by observing how network dynamics shift as a sender increases its transmission rate. 
-As illustrated in \ref{ProblemForCCAS}, the relationship between the sending rate, the delivery rate, and the RTT can be visualized through two primary diagrams. 
-The top diagram tracks the RTT, while the bottom diagram displays the delivery rate, highlighting two critical thresholds labeled Point A and Point B.  
+As illustrated in \ref{ProblemForCCAS}, the relationship between the sending rate, the delivery rate, and the \ac{RTT} can be visualized through two primary diagrams. 
+The top diagram tracks the \ac{RTT}, while the bottom diagram displays the delivery rate, highlighting two critical thresholds labeled Point A and Point B.  
 
-Point A represents the moment the delivery rate equals the BDP, indicating that the bottleneck link is fully utilized.
+Point A represents the moment the delivery rate equals the \ac{BDP}, indicating that the bottleneck link is fully utilized.
 Beyond this point, the delivery rate plateaus because the bottleneck has reached its maximum physical capacity. 
 If the sender continues to increase its rate past Point A, the excess packets are forced to accumulate in the bottleneck's buffer, creating a queue. 
-This accumulation causes a linear increase in RTT, as seen in the upper diagram of \ref{ProblemForCCAS}, because packets must wait longer in the queue before being processed.  
+This accumulation causes a linear increase in \ac{RTT}, as seen in the upper diagram of \ref{ProblemForCCAS}, because packets must wait longer in the queue before being processed.  
 Eventually, if the rate increases further, the system reaches Point B, which signifies the buffer limit. 
 At this stage, the bottleneck can no longer accept new packets, leading to packet drops and severe congestion. 
 

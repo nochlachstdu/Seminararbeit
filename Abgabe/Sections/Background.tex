@@ -7,12 +7,13 @@ With these we show how the first approaches look like and what differences and t
 \subsection{Congestion Control Fundamentals}
 
 Congestion control encompasses the distributed algorithms designed to manage the transmission rate of senders to prevent network congestion. 
-While there are algorithms for various protocols, the primary focus of Congestion Control development remains on the Transmission Control Protocol (TCP), where the objective is to maximize throughput and minimize latency while maintaining zero packet loss. 
+While there are algorithms for various protocols, the primary focus of Congestion Control development remains on the \ac{TCP}, where the objective is to maximize throughput and minimize latency while maintaining zero packet loss. 
 Foundational work in this field identifies that congestion occurs when the aggregate demand for resources exceeds the available capacity of the network, specifically the bandwidth of links, buffer space in memory, and the processing capacity of intermediate nodes \cite{JainsCongestionControl}. 
 A significant challenge remains that upgrades to hardware are often disproportionate; for example, increasing transmission speed without a corresponding increase in CPU speed or buffer size can lead to new bottlenecks. 
 Consequently, robust congestion control is essential to manage these hardware limitations effectively and ensure fair resource allocation.
+Furthermore, a \ac{CCA} is commonly implemented on the sender and/or receiver, and not on a router in between them.
 
-\subsubsection{Performance and Fairness Metrics}
+\subsubsection*{Fairness Metrics}
 
 To evaluate the efficancy of a \acs{CCA}, several quantitative indices are employed. 
 A primary metric is Jain's Fairness Index, which assesses how equal different flows share bottleneck resources \cite{JainsIndex}. 
@@ -21,20 +22,21 @@ A value of 1 signifies that 100\% of the users are receiving an identical and fa
 
 \subsection{TCP Cubic}
 
-As the Internet transitioned toward high-speed, long-distance network paths, the performance of traditional TCP variants was challenged by large bandwidth-delay products (BDP). 
-Standard TCP implementations, such as Reno, utilize a linear window growth function that increases by only one packet per round-trip time (RTT), a process that is far too slow to fully utilize modern high-capacity links \cite{TCPCUBIC}. 
-To address this scalability issue, TCP Cubic introduces a cubic window growth function that is independent of RTT \cite{TCPCUBIC}. 
+As the Internet transitioned toward high-speed, long-distance network paths, the performance of traditional \ac{TCP} variants was challenged by large \ac{BDP}. 
+Standard TCP implementations, such as Reno, utilize a linear window growth function that increases by only one packet per \ac{RTT}, a process that is far too slow to fully utilize modern high-capacity links \cite{TCPCUBIC}. 
+To address this scalability issue, TCP Cubic introduces a cubic window growth function that is independent of \ac{RTT} \cite{TCPCUBIC}. 
 This algorithm increases the congestion window aggressively when it is far from the saturation point and slows its growth as it approaches the previous limit, thereby maintaining high stability while remaining fair to standard TCP flows. 
 Like its predecessors, Cubic is a loss-based algorithm that identifies the bottleneck capacity by monitoring for packet loss events \cite{TCPCUBIC}.
 
 \subsection{TCP Vegas}
 
 The authors of TCP Vegas proposed an alternative to the reactive nature of TCP Reno, aiming to increase throughput while significantly reducing packet losses \cite{TCPVEGAS}. 
-They recognized that loss-based algorithms are inherently inefficient because they must cause congestion and packet loss to determine available bandwidth. To create a more proactive mechanism, Vegas utilizes three key techniques. 
-First, it employs a new retransmission mechanism based on fine-grained RTT timestamps, allowing it to detect and resend lost packets much faster than the coarse-grained timeouts used in Reno \cite{TCPVEGAS}. 
+They recognized that loss-based algorithms are inherently inefficient because they must cause congestion and packet loss to determine available bandwidth. 
+To create a more proactive mechanism, Vegas utilizes three key techniques. 
+First, it employs a new retransmission mechanism based on fine-grained \ac{RTT} timestamps, allowing it to detect and resend lost packets much faster than the coarse-grained timeouts used in Reno \cite{TCPVEGAS}. 
 Second, it introduces a congestion avoidance scheme that compares the expected throughput to the actual throughput. 
 By monitoring the difference between these rates, Vegas can adjust its window to keep a constant, minimal number of packets in the router queues, effectively avoiding congestion before it occurs \cite{TCPVEGAS}. 
-Finally, it modifies the slow-start phase to grow the window only every other RTT, which allows the algorithm to detect congestion and transition to linear growth before a loss event occurs \cite{TCPVEGAS}.
+Finally, it modifies the slow-start phase to grow the window only every other \ac{RTT}, which allows the algorithm to detect congestion and transition to linear growth before a loss event occurs \cite{TCPVEGAS}.
 
 \subsection{FAST TCP}
 

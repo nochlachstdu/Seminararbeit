@@ -42,8 +42,8 @@ By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR
 \subsubsection{BBR-Extended State (ES)}
 TCP BBR exhibits significant RTT unfairness when flows with heterogeneous RTTs share a bottleneck\cite{BBRES}. 
 In deep-buffer environments, long-RTT flows tend to dominate bandwidth because they maintain larger inflight data volumes—proportional to their RTT—which allows them to occupy the bottleneck queue more aggressively. 
-This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow’s estimated bandwidth and sending rate. 
-While BBR’s ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state. 
+This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow's estimated bandwidth and sending rate. 
+While \ac{BBR} ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state. 
 Consequently, prior imbalances are immediately reintroduced and amplified, a phenomenon the authors describe as the "inaction" of BBR.
 
 To resolve these issues, the authors introduced BBR-ES, which modifies the state machine by inserting a short stabilization phase, BBR-NEW-STATE, between ProbeRTT and ProbeBW. 
