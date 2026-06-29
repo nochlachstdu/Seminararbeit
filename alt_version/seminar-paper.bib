@@ -1,0 +1,246 @@
+@ARTICLE{FASTTCP,
+  author={Wei, David X. and Jin, Cheng and Low, Steven H. and Hegde, Sanjay},
+  journal={IEEE/ACM Transactions on Networking}, 
+  title={FAST TCP: Motivation, Architecture, Algorithms, Performance}, 
+  year={2006},
+  volume={14},
+  number={6},
+  pages={1246-1259},
+  keywords={Internet;Delay estimation;Loss measurement;Protocols;Noise measurement;Algorithm design and analysis;Prototypes;Throughput;Stability analysis;Distributed control;FAST TCP;implementation;Internet congestion control;protocol design;stability analysis},
+  doi={10.1109/TNET.2006.886335},
+}
+
+@misc{COPA,
+  author = {Arun, Venkat and Balakrishnan, Hari},
+  howpublished = {Paper in 15th USENIX Symposium on Networked Systems Design and Implementation},
+  title = {Copa: Practical Delay-Based Congestion Control for the Internet},
+  year = {2018},
+  month = {April},
+}
+
+@misc{PowerTCP,
+  author = {Addanki, Vamsi and Michel, Oliver and Schmid, Stefan},
+  howpublished = {Paper in 19th USENIX Symposium on Networked Systems Design and Implementation},
+  title = {PowerTCP: Pushing the Performance Limits of Datacenter Networks},
+  year = {2022},
+  month = {April},
+}
+
+@misc{PCC,
+  author = {Dong, Mo and Li, Qingxi and Zarchy, Doron and Godfrey, P. Brighten and Schapira, Michael},
+  howpublished = {Paper in 12th USENIX Symposium on Networked Systems Design and Implementation},
+  title = {PCC: Re-architecting Congestion Control for Consistent High Performance},
+  year = {2015},
+  month = {May},
+}
+
+@techreport{PCCEVALUATION,
+  author = {Schapira, Michael},
+  type =      {Internet-Draft},
+  institution =   {Internet Engineering Task Force},
+  publisher = {Internet Engineering Task Force},
+  title = {PCC: Performance-oriented Congestion Control},
+  url = {https://www.ietf.org/proceedings/101/slides/slides-101-iccrg-pcc-performance-oriented-congestion-control-00.pdf},
+  urldate = {2026-05-05}
+}
+
+@INPROCEEDINGS{BBREVALUATION,
+  author={Hock, Mario and Bless, Roland and Zitterbart, Martina},
+  booktitle={2017 IEEE 25th International Conference on Network Protocols (ICNP)}, 
+  title={Experimental evaluation of BBR congestion control}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={1-10},
+  keywords={Delays;Bandwidth;Packet loss;Linux;Throughput;Internet},
+  doi={10.1109/ICNP.2017.8117540},
+}
+
+@article{BBRORIGINAL,
+  author = {Cardwell, Neal and Cheng, Yuchung and Gunn, C. Stephen and Yeganeh, Soheil Hassas and Jacobsen, Van},
+  journal = {ACM Queue: Measuring bottleneck bandwidth and round-trip propagation time.},
+  number = {2},
+  title = {BBR: Congestion-Based Congestion Control},
+  volume = {60},
+  year = {2017},
+  month = {February},
+}
+
+@misc{TCPCUBIC,
+  author = {Ha, Sangtae and Rhee, Injong and Xu, Lisong},
+  howpublished = {Princton Education},
+  title = {CUBIC: A NewTCP-Friendly High-Speed TCP Variant},
+  
+}
+
+@ARTICLE{TCPVEGAS,
+  author={Brakmo, Lawrence S. and Peterson, Larry L.},
+  journal={IEEE SELECTED AREAS IN COMMUNICATIONS}, 
+  title={TCP Vegas: End to End Congestion Avoidance on a Global Internet}, 
+  year={1995},
+  month = {October},
+  volume={13},
+  number={8},
+}
+
+@ARTICLE{JainsCongestionControl,
+  author={Jain, R.},
+  journal={IEEE Network}, 
+  title={Congestion control in computer networks: issues and trends}, 
+  year={1990},
+  volume={4},
+  number={3},
+  pages={24-30},
+  keywords={Intelligent networks;Computer networks;Switches;Packet switching;Resource management;Protocols;Automatic control;Bandwidth;Throughput;Proposals},
+  doi={10.1109/65.56532}}
+
+@article{JainsIndex,
+  author = {Jain, Rajendra K. and Chiu, Da-Ming W. and Hawe, William R.},
+  journal = {ACM Transactions on Computer Systems},
+  title = {A Quantitative Measure of Fairness and Discrimination for Resource Allocation in Shared Computer System},
+  year = {1984},
+  month = {September},
+  pubstate = {Unlimited Distribution},
+}
+
+@inproceedings{WHENTOUSEBBR,
+author = {Cao, Yi and Jain, Arpit and Sharma, Kriti and Balasubramanian, Aruna and Gandhi, Anshul},
+title = {When to use and when not to use BBR: An empirical analysis and evaluation study},
+year = {2019},
+isbn = {9781450369480},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3355369.3355579},
+doi = {10.1145/3355369.3355579},
+abstract = {This short paper presents a detailed empirical study of BBR's performance under different real-world and emulated testbeds across a range of network operating conditions. Our empirical results help to identify network conditions under which BBR outperforms, in terms of goodput, contemporary TCP congestion control algorithms. We find that BBR is well suited for networks with shallow buffers, despite its high retransmissions, whereas existing loss-based algorithms are better suited for deep buffers.To identify the root causes of BBR's limitations, we carefully analyze our empirical results. Our analysis reveals that, contrary to BBR's design goal, BBR often exhibits large queue sizes. Further, the regimes where BBR performs well are often the same regimes where BBR is unfair to competing flows. Finally, we demonstrate the existence of a loss rate "cliff point" beyond which BBR's goodput drops abruptly. Our empirical investigation identifies the likely culprits in each of these cases as specific design options in BBR's source code.},
+booktitle = {Proceedings of the Internet Measurement Conference},
+pages = {130–136},
+numpages = {7},
+location = {Amsterdam, Netherlands},
+series = {IMC '19}
+}
+
+
+@INPROCEEDINGS{AQDCBBR,
+  author={Li, Ziyi and Zhang, Jiao and Wang, Yuqing and Guo, Peisheng and Jiang, Jiafeng},
+  booktitle={2025 Thirteenth International Conference on Advanced Cloud and Big Data (CBD)}, 
+  title={AQDC-BBR: An Active Queue Debt Compensation Mechanism Over BBR for Reducing Tail Latency in Video Streaming}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={56-61},
+  keywords={Protocols;Bandwidth;Telecommunication traffic;Throughput;Data models;Low latency communication;Transient analysis;Probes;Communication switching;Videos;Congestion Control;BBR;Video Streaming;Low Latency;Active Queue Debt Compensation},
+  doi={10.1109/CBD69312.2025.00020}}
+
+@article{BBRES,
+author = {Han, Zewei and Hasegawa, Go},
+year = {2026},
+month = {01},
+pages = {1-1},
+title = {BBR-ES: An Extended-State Optimization for BBR Congestion Control},
+volume = {PP},
+journal = {IEEE Transactions on Network and Service Management},
+doi = {10.1109/TNSM.2026.3668966}
+}
+
+@inproceedings{COPADYNAMIC,
+  title = {Copa-D: Delay Consistent Copa for Dynamic Cellular Networks},
+  author = {Haile, Habtegebreil and Grinnemo, Karl-Johan and Ferlin, Simone and Hurtig, Per and Brunström, Anna},
+  year = {2023},
+  doi = {10.1109/EuCNC/6GSummit58263.2023.10188233},
+  url = {https://doi.org/10.1109/EuCNC/6GSummit58263.2023.10188233},
+  researchr = {https://researchr.org/publication/HaileGFHB23},
+  cites = {0},
+  citedby = {0},
+  pages = {508-513},
+  booktitle = {2023 Joint European Conference on Networks and Communications and 6G Summit, EuCNC/6G Summit 2023, Gothenburg, Sweden, June 6-9, 2023},
+  publisher = {IEEE},
+  isbn = {979-8-3503-1102-0},
+}
+
+@INPROCEEDINGS{COPAPLUS,
+  author={Jiang, Wanchun and Li, Haoyang and Liu, Zheyuan and Wu, Jia and Huang, Jiawei and Shan, Danfeng and Wang, Jianxin},
+  booktitle={IEEE INFOCOM 2022 - IEEE Conference on Computer Communications}, 
+  title={Copa+: Analysis and Improvement of the Delay-based Congestion Control Algorithm Copa}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={920-929},
+  keywords={Adaptation models;Cloud computing;Codes;Social networking (online);Conferences;Computational modeling;Estimation;Delay-based Congestion Control;Copa;Cubic},
+  doi={10.1109/INFOCOM48880.2022.9796913}}
+
+@inproceedings{TCPSTHIRDEYE,
+author = {Hinz, J\"{o}rn-Thorben and Addanki, Vamsi and Gy\"{o}rgyi, Csaba and Jepsen, Theo and Schmid, Stefan},
+title = {TCP's Third Eye: Leveraging eBPF for Telemetry-Powered Congestion Control},
+year = {2023},
+isbn = {9798400702938},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3609021.3609295},
+doi = {10.1145/3609021.3609295},
+abstract = {For years, congestion control algorithms have been navigating in the dark, blind to the actual state of the network. They were limited to the course-grained signals that are visible from the OS kernel, which are measured locally (e.g., RTT) or hints of imminent congestion (e.g., packet loss and ECN). As applications and OSs are becoming ever more distributed, it is only natural that the kernel have visibility beyond the host, into the network fabric. Network switches already collect telemetry, but it has been impractical to export it for the end-host to react.Although some telemetry-based solutions have been proposed, they require changes to the end-host, like custom hardware or new protocols and network stacks. We address the challenges of efficiency and protocol compatibility, showing that it is possible and practical to run telemetry-based congestion control algorithms in the kernel. We designed a framework that uses eBPF to run CCAs that can execute different control laws by selecting different types of telemetry. It can be deployed in brownfield environments, without requiring all switches be telemetry-enabled, or kernel recompilation at the end-hosts. When our eBPF program is deployed on hosts without hardware or OS changes, TCP incast workloads experience less queuing (thus lower latency), faster convergence and better fairness.},
+booktitle = {Proceedings of the 1st Workshop on EBPF and Kernel Extensions},
+pages = {1–7},
+numpages = {7},
+keywords = {linux kernel, congestion control, INT, TCP, datacenter, eBPF},
+location = {New York, NY, USA},
+series = {eBPF '23}
+}
+
+@ARTICLE{SURVEYONCCA,
+  author={Vielhaus, Christian L. and Lengerke, Caspar von and Latzko, Vincent and Rischke, Justus and Reisslein, Martin and Fitzek, Frank H. P.},
+  journal={IEEE Communications Surveys and Tutorials}, 
+  title={Evaluating Transport Layer Congestion Control Algorithms: A Comprehensive Survey}, 
+  year={2026},
+  volume={28},
+  number={},
+  pages={278-340},
+  keywords={Surveys;Measurement;Internet;Tutorials;Protocols;Wireless networks;Taxonomy;Steady-state;Network topology;Emulation;Bufferbloat;congestion;evaluation;fairness;Internet;operating point;throughput;traffic flows;wireless networks},
+  doi={10.1109/COMST.2025.3533303}
+  }
+
+@techreport{C4,
+    number =    {draft-huitema-ccwg-c4-design-03},
+    type =      {Internet-Draft},
+    institution =   {Internet Engineering Task Force},
+    publisher = {Internet Engineering Task Force},
+    note =      {Work in Progress},
+    url =       {https://datatracker.ietf.org/doc/draft-huitema-ccwg-c4-design/03/},
+    author =    {Christian Huitema and Suhas Nandakumar and Cullen Fluffy Jennings},
+    title =     {{Design of Christian's Congestion Control Code (C4)}},
+    pagetotal = 30,
+    year =      2026,
+    month =     feb,
+    day =       26,
+    abstract =  {Christian's Congestion Control Code is a new congestion control algorithm designed to support Real-Time applications such as Media over QUIC. It is designed to drive towards low delays, with good support for the "application limited" behavior frequently found when using variable rate encoding, and with fast reaction to congestion to avoid the "priority inversion" happening when congestion control overestimates the available capacity. It pays special attention to the high jitter conditions encountered in Wi-Fi networks. The design emphasizes simplicity and avoids making too many assumption about the "model" of the network. The main control variables are the estimate of the data rate and of the maximum path delay in the absence of queues.},
+}
+
+@online{C4BlogPost,
+  author = {Huitema, Christian},
+  title = {Introducing C4, Christian's Congestion COntrol Code},
+  year = {2025},
+  month = {November},
+  url = {https://www.privateoctopus.com/2025/11/05/c4-introduction.html},
+  note = {blog post},
+  urldate = {2026-05-03}
+}
+
+@misc{C4GithubRepo,
+  author = {Christian Huitema and Suhas Nandakumar},
+  title = {Private Octopus},
+  howpublished = {\url{https://github.com/private-octopus/c4/tree/main}},
+  year = {2025},
+  note = {[Online; accessed 09-May-2026]}
+}
+
+@Misc{b4,
+	Title = {Title of paper if known},
+	Author = {Should B. Known},
+	HowPublished = {unpublished},
+}
+
+@Misc{b5,
+	Title = {{Another Paper}},
+	Author = {A. Author},
+	HowPublished = {in press},
+}

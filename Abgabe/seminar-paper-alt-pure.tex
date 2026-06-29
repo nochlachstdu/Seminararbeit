@@ -1,0 +1,70 @@
+﻿% COMSYS Seminar/Preseminar Paper Template
+% ----------------------------------------
+% Based on the original IEEE template package, includes annotations by COMSYS
+
+\documentclass[conference]{IEEEtran}
+
+%\IEEEoverridecommandlockouts
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+\usepackage[sort]{cite}
+\usepackage[inline]{enumitem}
+\usepackage{balance}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+
+
+% Prevent subcaption package from overwriting the IEEE template defaults
+\makeatletter
+\let\SafeCaption\@makecaption
+\makeatother
+\usepackage{subcaption}
+\makeatletter
+\let\@makecaption\SafeCaption
+\makeatother
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Modern Congestion Control Algorithms}
+
+\author{\IEEEauthorblockN{Yannik Schreiter}
+\IEEEauthorblockA{\textit{COMSYS} \\
+\textit{RWTH}\\
+Aachen, Deutschland \\
+Yannik.Schreiter@rwth-aachen.de}
+}
+
+\maketitle
+
+\begin{abstract}
+\input{Sections/Abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+congestion control
+\end{IEEEkeywords}
+
+\input{Sections/Intro.tex}
+
+\input{Sections/Background.tex}
+
+\input{Sections/Related_Work.tex}
+
+\input{Sections/Evaluation.tex}
+
+\input{Sections/Summary.tex}
+
+\input{Sections/Outlook.tex}
+
+\section*{References}
+
+\bibliographystyle{IEEEtran}
+\bibliography{seminar-paper}
+
+\end{document}
