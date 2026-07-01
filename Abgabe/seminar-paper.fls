@@ -250,6 +250,13 @@ INPUT C:\Users\admin\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT .\Sections\Evaluation.tex
 INPUT .\Sections\Evaluation.tex
 INPUT Sections\Evaluation.tex
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
+INPUT .\figures\CopaAnalysis.png
 INPUT .\Sections\Summary.tex
 INPUT .\Sections\Summary.tex
 INPUT Sections\Summary.tex

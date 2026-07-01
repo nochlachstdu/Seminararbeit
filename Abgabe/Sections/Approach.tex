@@ -13,13 +13,13 @@ Conversely, in long-distance networks, packet loss may occur due to link errors 
 However, loss-based algorithms misinterpret these signals, causing them to reduce throughput unnecessarily \cite{BBRORIGINAL}.
 
 BBR operates through a state machine consisting of a Startup phase and two repeating steady-state phases known as ProbeBW and ProbeRTT\cite{BBREVALUATION}. 
-The authors define the optimal operating point as having a delivery rate equal to the bottleneck bandwidth ($BtlBw$) and a total amount of inflight data equal to the pipe's Bandwidth-Delay Product (BDP) \cite{BBRORIGINAL}. 
+The authors define the optimal operating point as having a delivery rate equal to the bottleneck bandwidth ($BtlBw$) and a total amount of inflight data equal to the pipe's \ac{BDP} \cite{BBRORIGINAL}. 
 During the Startup phase, BBR rapidly discovers the bottleneck's limits by increasing its sending rate by a pacing gain of $2/\ln 2 \approx 2.885$ every round trip until the delivery rate plateaus.
 While this ensures the bottleneck is discovered in $\log_2 BDP$ rounds, it may temporarily fill the queue with up to $2BDP$ of excess data before transitioning into a Drain phase to empty the buffer \cite{BBRORIGINAL, BBREVALUATION}.
 
 In steady-state operation, the algorithm primarily cycles through the ProbeBW phase to measure and adapt to changes in available bandwidth. 
-This phase uses an eight-step cycle where the algorithm typically increases its sending rate by a pacing gain of 1.25 for one RTT to probe for additional capacity, then immediately reduces it to a gain of 0.75 for one RTT to drain the queue created during the probe \cite{BBREVALUATION}. 
-Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower RTT has not been observed for 10 seconds. 
+This phase uses an eight-step cycle where the algorithm typically increases its sending rate by a pacing gain of 1.25 for one \ac{RTT} to probe for additional capacity, then immediately reduces it to a gain of 0.75 for one \ac{RTT} to drain the queue created during the probe \cite{BBREVALUATION}. 
+Finally, to refresh the minimum round-trip time estimate, BBR enters the ProbeRTT phase if a lower \ac{RTT} has not been observed for 10 seconds. 
 During this phase, the algorithm abruptly limits inflight data to a minimal amount—typically 4 packets—for at least 200 ms to fully drain the bottleneck buffer and measure the true propagation delay of the path \cite{BBRORIGINAL, BBREVALUATION}.
 
 \subsubsection{Active Queue Debt Compensation (AQDC) BBR}
@@ -27,7 +27,7 @@ During this phase, the algorithm abruptly limits inflight data to a minimal amou
 BBR utilizes the ProbeBW phase to estimate available bandwidth by periodically increasing its pacing rate. 
 However, this process often injects bursts of traffic that exceed the path's instantaneous capacity, creating temporary queues. 
 The authors of \cite{AQDCBBR} identify a critical limitation: these transient queues may not be completely drained during the subsequent ProbeDown phase, leading to a residual queue buildup that accumulates over successive cycles. 
-Over time, this results in an upward drift of RTT measurements and increased tail latency, which is particularly detrimental to delay-sensitive applications like video streaming.
+Over time, this results in an upward drift of \ac{RTT} measurements and increased tail latency, which is particularly detrimental to delay-sensitive applications like video streaming.
 
 Furthermore, the authors contend that BBR's ProbeRTT mechanism is rigid and ``blind'' to queue history, as it resets at fixed intervals regardless of the actual backlog. 
 To reconcile the conflict between fairness and low latency, AQDC-BBR explicitly models the ``queue debt'' ($B_{total}$) incurred during bandwidth probing. 
@@ -39,8 +39,8 @@ This debt is then compensated for by adjusting the target inflight data:
 
 By proportionally reducing the inflight data based on the tracked debt, AQDC-BBR drains accumulated queues and restores accurate minRTT tracking without the need for aggressive or heuristic rate cuts.
 
-\subsubsection{BBR-Extended State (ES)}
-TCP BBR exhibits significant RTT unfairness when flows with heterogeneous RTTs share a bottleneck\cite{BBRES}. 
+\subsubsection{BBR-Extended State (BBR-ES)}
+BBR exhibits significant \ac{RTT} unfairness when flows with heterogeneous \acs{RTT} share a bottleneck\cite{BBRES}. 
 In deep-buffer environments, long-RTT flows tend to dominate bandwidth because they maintain larger inflight data volumes—proportional to their RTT—which allows them to occupy the bottleneck queue more aggressively. 
 This leads to a positive feedback loop: higher queue occupancy results in higher delivery rate reports, which further inflates a flow's estimated bandwidth and sending rate. 
 While \ac{BBR} ProbeRTT phase is intended to synchronize flows and provide a "fair starting point" by draining the queue, the authors found that it often fails because the algorithm lacks an explicit mechanism to correct accumulated queue imbalances upon exiting this state. 
@@ -53,7 +53,7 @@ This targeted approach prevents the "one-size-fits-all" penalty found in other B
 
 \subsection{Performance-oriented Congestion Control (PCC)}
 
-Performance-oriented Congestion Control (PCC) was developed to resolve a fundamental architectural flaw in the TCP family known as "hardwired mapping," where specific packet-level events are pre-programmed to trigger fixed control responses\cite{PCC}. 
+PCC was developed to resolve a fundamental architectural flaw in the TCP family known as "hardwired mapping," where specific packet-level events are pre-programmed to trigger fixed control responses\cite{PCC}. 
 This rigid structure forces TCP to rely on unreliable assumptions about the network, such as the belief that all packet loss indicates congestion, which leads to severe performance degradation on modern links where loss may be random or caused by shallow buffers.
 Because traditional protocols carry out these harmful actions without observing their actual impact on performance, they often fail to achieve optimal throughput in diverse and complex real-world environments.
 
@@ -107,7 +107,7 @@ While acknowledging the approach taken by Copa+ (which introduces an additional 
 Rather than altering the underlying control structure, they focus on the core sensitivity parameter, $\delta$.
 In the original Copa implementation, $\delta$ is typically treated as a static constant, which the authors argue is the primary cause of its inability to adapt to cellular fluctuations. 
 Copa-D introduces a mechanism to make $\delta$ dynamic, automatically tuning it based on the observed bandwidth and a specific delay target. 
-This ensures that the queue is actively drained, effectively enforcing Copa’s original design goal of near-zero queuing delay even within the unpredictable conditions of a mobile network.
+This ensures that the queue is actively drained, effectively enforcing Copa's original design goal of near-zero queuing delay even within the unpredictable conditions of a mobile network.
 
 \subsection{PowerTCP}
 
@@ -124,14 +124,15 @@ Additionally, the emergence of reconfigurable datacenter networks (RDCNs) introd
 Given these evolving circumstances, the authors conclude that a hybrid congestion control approach—integrating both "voltage" and "current" signals—is necessary to maintain stability while achieving near-instantaneous reaction times.
 
 PowerTCP addresses the limitations of existing datacenter congestion control by introducing the notion of network "power"—the product of absolute state (voltage) and its rate of change (current). 
-The authors implement this via a window update law:
-\begin{equation} \label{eq:PowerEquation1}
-    w_i(t) \leftarrow \gamma \cdot (w_i(t - \theta(t)) \cdot \frac{e}{f(t)} + \beta) + (1 - \gamma) \cdot w_i(t)
-\end{equation}
-
-In this equation, $w_i(t - \theta(t))$ represents the window size at the time of packet transmission, providing a historical reference for the update. 
-The term $e/f(t)$ acts as a power-based multiplicative factor, enabling rapid rate adjustments. 
-Stability and equilibrium are maintained through the additive increase parameter $\beta$ and the exponential weighted moving average smoothing factor $\gamma$, which balances the system's responsiveness against network noise.
+The authors implement this via a window update law.
+Their equation contains different subterms:
+The first one is the historical reference.
+PowerTCP updates its window based on the last value of the equation.
+The next subterm in there equation is a power-based multiplicative factor.
+this enables a rapid rate adjustment if needed.
+Then there is an additive increase parameter which ensures stability and equilibrium.
+As a last subterm the equation has an exponential weighted moving average smoothing factor.
+this balances the system's responsiveness against network noise. 
 
 To gather the necessary network metadata, PowerTCP leverages In-band Network Telemetry (INT)\cite{PowerTCP}. 
 Modern switches continuously monitor their internal state.
@@ -154,7 +155,7 @@ Once the capacity is found, it transitions into the Cruising state. In this stea
 To ensure that it is not leaving any available bandwidth unused, C4 will occasionally enter the Pushing state, where it carefully probes for higher capacity. 
 If the network becomes overloaded, triggered by packet loss or high delay, the algorithm moves into the Recovery state to stabilize the flow and redefine its baseline variables.
 
-Central to C4’s logic is the maintenance of "nominal" variables, specifically the Nominal Data Rate and the Nominal Max RTT\cite{C4}. 
+Central to C4's logic is the maintenance of "nominal" variables, specifically the Nominal Data Rate and the Nominal Max RTT\cite{C4}. 
 By tracking these long-term metrics, the algorithm develops a memory of what the network looks like when it is healthy. 
 This is particularly important for its Jitter Tolerance mechanism. 
 In crowded Wi-Fi environments, temporary interference can cause spikes in delay that look like congestion but are actually just transient wireless noise.

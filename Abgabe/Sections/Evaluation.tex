@@ -65,13 +65,25 @@ We have determined that, in contrast to algorithms like PCC—which utilizes com
 While PCC's decision-making involves aggregating multiple packet-level events into a performance utility function, Copa's logic is driven by a straightforward relationship between sending rate and queuing delay. 
 Therefore, we conclude that the authors successfully reached their goal of creating a high-performing \acs{CCA} that remains simple for humans to reason about.
 
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{figures/CopaAnalysis.png}}
+\caption{Copa's performance compared to other \ac{CCA} and to its default mode from \cite{COPA}}
+\label{fig:CopaAnalysis}
+\end{figure}
+
 We will now examine the performance of Copa. 
 The authors evaluated the algorithm through various experiments, comparing it directly with other prominent congestion control schemes, including PCC, BBR, and TCP Cubic. 
-A central component of this evaluation is Copa's core mechanism: the target rate equation, $\lambda = 1/(\delta d_q)$.  
-In one specific set of results, the authors presented Copa's performance with the competitive mode disabled. 
-These findings demonstrate that in its default mode, Copa is exceptionally effective, achieving near-ideal values for both throughput and RTT estimation. 
-Specifically, when operating in this mode, Copa stabilizes at a point that optimizes the trade-off between throughput and delay, effectively reaching the optimal "Point A" described in \ref{ProblemForCCAS}. 
-However, the authors noted that while enabling the competitive mode allows Copa to coexist with buffer-filling flows, this transition results in significantly higher queuing delays and a deviation from these ideal performance metrics.
+But first we will show another important thing about Copa.
+In \ref{fig:CopaAnalysis} is a diagram from \cite{COPA} which shows how different \ac{CCA} behave.
+There are 2 Copa's: Copa-D which is the default mode of Copa and basically Copa that has the competitive mode deactivated and Copa which is the complete Copa algorithm with competitive mode activated.
+Furthermore, there are Cubic, Vegas and Cubic/CoDel as different \acs{CCA} which will be unimportant for our analysis.
+\ref{fig:CopaAnalysis} shows that Copa default is the whole time on the perfect ideal line and therefore the most efficient.
+This demonstrates that the authors found the "perfect" \ac{CCA}.
+
+Althought we could now end our search for the "perfect" \ac{CCA}, there is one important fact about the real internet: there is more than one flow.
+To compete with these other flows Copa needs to have the competitive mode activated.
+However, as it is shown in \ref{fig:CopaAnalysis} the competitive mode pushes Copa away from the ideal line.
+The competitive mode makes Copa less good, but it is still more effective than Cubic and Vegas as shown in \ref{fig:CopaAnalysis}
 
 Furthermore, the authors conducted experiments to evaluate how their algorithm manages a varying number of flows by adding and terminating flows within an emulated network. 
 They did the same for BBR, PCC and TCP Cubic.
@@ -88,22 +100,22 @@ To address this, extensions such as Copa+ and Copa-D introduce refined mechanism
 Specifically, Copa+ incorporates an additional control parameter, while Copa-D utilizes a redefined expression for $\delta$.
 
 Copa+ utilizes this supplemental parameter to prevent erroneous transitions into competitive mode, a claim supported by the authors' experimental results. 
-The algorithm consistently maintains RTT values that align with the ideal targets, effectively mirroring the performance of standard Copa when its competitive mode is disabled. 
+The algorithm consistently maintains \ac{RTT} values that align with the ideal targets, effectively mirroring the performance of standard Copa when its competitive mode is disabled. 
 Therefore, Copa+ successfully addresses the primary flaw of unnecessary mode switching. 
 However, as the authors do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached.
 
 The authors of Copa-D evaluated their algorithm through several experiments, including scenarios where the available bandwidth was varied at fixed intervals. 
-By comparing Copa with their proposed upgrade, Copa-D, they demonstrated how bandwidth fluctuations influence RTT. 
-While standard Copa exhibited a highly volatile RTT, Copa-D remained relatively stable. 
-This stability is expected since the experiment does not introduced delay, which therefore should ideally not trigger an RTT increase.
-However, standard Copa's RTT rose with some bandwidth changes, probably due to unnecessary mode switching while Copa-D maintained a lower average RTT than the original algorithm.
+By comparing Copa with their proposed upgrade, Copa-D, they demonstrated how bandwidth fluctuations influence \ac{RTT}. 
+While standard Copa exhibited a highly volatile \ac{RTT}, Copa-D remained relatively stable. 
+This stability is expected since the experiment does not introduced delay, which therefore should ideally not trigger an \ac{RTT} increase.
+However, standard Copa's \ac{RTT} rose with some bandwidth changes, probably due to unnecessary mode switching while Copa-D maintained a lower average \ac{RTT} than the original algorithm.
 
-It is noteworthy, however, that the experimental results indicate that Copa-D's RTT oscillates around a target value. 
+It is noteworthy, however, that the experimental results indicate that Copa-D's \ac{RTT} oscillates around a target value. 
 Interestingly, when standard Copa stabilizes at that same point, its oscillations appear smaller than those of Copa-D. 
-The authors attribute this behavior of Copa-D to the dynamic adjustment of $\delta$, which, while stabilizing the average RTT, introduces more frequent minor fluctuations.
+The authors attribute this behavior of Copa-D to the dynamic adjustment of $\delta$, which, while stabilizing the average \ac{RTT}, introduces more frequent minor fluctuations.
 
 Furthermore, the authors tested Copa-D in 4G and 5G network environments. 
-Their findings reveal that while standard Copa achieves a slightly higher throughput, its RTT is significantly higher than that of Copa-D. 
+Their findings reveal that while standard Copa achieves a slightly higher throughput, its \ac{RTT} is significantly higher than that of Copa-D. 
 This indicates that Copa-D successfully prioritizes lower delay, providing a more stable performance profile in mobile network scenarios.
 
 In summary, Copa represents a compelling \acs{CCA} due to its inherent simplicity and robust performance. 
@@ -117,11 +129,11 @@ Consequently, further research is required to determine if these refinements mai
 
 \subsection{PowerTCP}
 
-The authors of PowerTCP designed their \acs{CCA} specifically for data center networks rather than the public internet. 
+The authors of PowerTCP designed their \acs{CCA} specifically for datacenter networks rather than the public internet. 
 This targeted approach is significant because it allows the algorithm to leverage the unique characteristics of controlled environments. 
-Unlike the broader internet, a data center is typically managed by a single entity that can mandate the use of specific protocols across the entire infrastructure. 
-Consequently, the authors' use of a fat-tree topology for their test environment closely reflects real-world data center network conditions. 
-Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated \acs{CCA}s, which are rarely a factor in modern data center deployments.
+Unlike the broader internet, a datacenter is typically managed by a single entity that can mandate the use of specific protocols across the entire infrastructure. 
+Consequently, the authors' use of a fat-tree topology for their test environment closely reflects real-world datacenter network conditions. 
+Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated \acs{CCA}s, which are rarely a factor in modern datacenter deployments.
 
 The experimental results demonstrate that PowerTCP reacts rapidly and accurately to congestion while maintaining high throughput. 
 A key performance indicator is the algorithm's ability to maintain a near-empty queue at the bottleneck, suggesting that PowerTCP operates close to the ideal operating point A described in \ref{ProblemForCCAS}. 
@@ -139,7 +151,7 @@ In summary, PowerTCP is highly effective within its specialized niche.
 It successfully achieves high throughput with minimal delay by preventing queue buildup. 
 However, its heavy reliance on INT represents a significant limitation.
 It is highly improbable that routers or switches in the wide-area internet would provide the necessary telemetry data that the algorithm requires. 
-Therefore, while PowerTCP is an optimal choice for congestion control within a data center, it lacks a viable use case in general networking environments where telemetry requirements cannot be met.
+Therefore, while PowerTCP is an optimal choice for congestion control within a datacenter, it lacks a viable use case in general networking environments where telemetry requirements cannot be met.
 
 \subsection{C4}
 
