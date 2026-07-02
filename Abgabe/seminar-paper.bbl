@@ -21,6 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{BBRORIGINAL}
+N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
+  Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
+  bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
+
+\bibitem{BBREVALUATION}
+M.~Hock, R.~Bless, and M.~Zitterbart, ``Experimental evaluation of bbr
+  congestion control,'' in \emph{2017 IEEE 25th International Conference on
+  Network Protocols (ICNP)}, 2017, pp. 1--10.
+
 \bibitem{JainsCongestionControl}
 R.~Jain, ``Congestion control in computer networks: issues and trends,''
   \emph{IEEE Network}, vol.~4, no.~3, pp. 24--30, 1990.
@@ -43,16 +53,6 @@ L.~S. Brakmo and L.~L. Peterson, ``Tcp vegas: End to end congestion avoidance
 D.~X. Wei, C.~Jin, S.~H. Low, and S.~Hegde, ``Fast tcp: Motivation,
   architecture, algorithms, performance,'' \emph{IEEE/ACM Transactions on
   Networking}, vol.~14, no.~6, pp. 1246--1259, 2006.
-
-\bibitem{BBRORIGINAL}
-N.~Cardwell, Y.~Cheng, C.~S. Gunn, S.~H. Yeganeh, and V.~Jacobsen, ``Bbr:
-  Congestion-based congestion control,'' \emph{ACM Queue: Measuring bottleneck
-  bandwidth and round-trip propagation time.}, vol.~60, no.~2, February 2017.
-
-\bibitem{BBREVALUATION}
-M.~Hock, R.~Bless, and M.~Zitterbart, ``Experimental evaluation of bbr
-  congestion control,'' in \emph{2017 IEEE 25th International Conference on
-  Network Protocols (ICNP)}, 2017, pp. 1--10.
 
 \bibitem{AQDCBBR}
 Z.~Li, J.~Zhang, Y.~Wang, P.~Guo, and J.~Jiang, ``Aqdc-bbr: An active queue
