@@ -2,7 +2,7 @@
 
 \subsection{BBR}
 
-The authors of \cite{BBREVALUATION} conducted an extensive study on the performance and quality of BBR, initially testing it with multiple self-competing flows and subsequently against TCP Cubic flows. 
+Hock et al. \cite{BBREVALUATION} conducted an extensive study on the performance and quality of BBR, initially testing it with multiple self-competing flows and subsequently against TCP Cubic flows. 
 Their results indicate that multiple concurrent BBR flows tend to overestimate available bandwidth, which leads to persistent queue accumulation at the bottleneck. 
 In scenarios involving two BBR flows, for instance, the total BDP can reach twice the actual BDP of the link.  
 If the bottleneck possesses a large buffer, it may successfully handle these flows, placing the operating point somewhere between the ideal Point A and the buffer limit at Point B from \ref{ProblemForCCAS}. 
@@ -16,11 +16,11 @@ Conversely, in small buffers, BBR suppresses TCP Cubic flows because Cubic inter
 Given the high volume of legacy systems still utilizing TCP Cubic, BBR exhibits "unfair" behavior in real-world Internet scenarios
 
 The extensions AQDC BBR and BBR-ES focus on resolving the issue of accumulated packets in the bottleneck queue while offering intrinsic improvements to the core BBR algorithm.
-The authors of AQDC BBR demonstrated that their improvements successfully decreased the RTT compared to standard BBR and achieved an 11\% improvement in Jain's Fairness Index. 
+Li et al. demonstrated that their improvements with AQDC BBR successfully decreased the RTT compared to standard BBR and achieved an 11\% improvement in Jain's Fairness Index with. 
 This improvement is largely attributed to the algorithm's ability to reduce tail latency by more than 25\% compared to standard BBR, which it achieves by explicitly modeling and compensating for "queue debt" incurred during probing phases. 
 By quantifying the excess packets injected during the ProbeBW phase, AQDC BBR prevents the persistent buffer occupancy that typically compromises fairness.
 
-Similar results were produced by the authors of BBR-ES, whose experiments showed that the algorithm maintained lower RTTs than BBR while preserving high link utilization. 
+Similar results were produced by Han et al. with BBR-ES, whose experiments showed that the algorithm maintained lower RTTs than BBR while preserving high link utilization. 
 Unlike earlier delay-based variants, BBR-ES utilizes a trend-based transition mechanism and an "Extended State" stabilization phase to manage per-flow bandwidth and RTT evolution. 
 These findings were validated in real-world scenarios by sending data to various Amazon EC2 instances in cities such as Tokyo, Singapore, and Virginia across varying throughput levels. 
 Their research confirmed that BBR-ES achieves a consistently higher Jain's Fairness Index—often above 0.9—compared to both standard BBR and TCP Cubic. 
@@ -29,9 +29,9 @@ By monitoring short-term indicators, BBR-ES effectively distinguishes between fl
 
 \subsection{PCC}
 
-To demonstrate that PCC is a stable and effective \acs{CCA}, the authors conducted several comprehensive studies across diverse network environments. 
+To demonstrate that PCC is a stable and effective \acs{CCA}, Dong et al. \cite{PCC} conducted several comprehensive studies across diverse network environments. 
 Their results consistently showed that PCC maintains high throughput and is significantly more resilient to random packet loss than traditional TCP variants. 
-For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate\cite{PCC}, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions.\cite{PCCEVALUATION} 
+For instance, on unreliable lossy links, PCC can maintain over 95\% capacity even at a 1\% loss rate\cite{PCC}, whereas TCP CUBIC's performance collapses by more than ten times under the same conditions\cite{PCCEVALUATION}. 
 This resilience stems from PCC's ability to distinguish between congestive loss and random link errors through its utility-maximizing framework.  
 
 Beyond raw throughput, the studies highlighted PCC's superior reactivity to rapid network changes. 
@@ -48,7 +48,7 @@ Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy
 
 \subsubsection{Basic Copa}
 
-The primary objective of the Copa authors was to develop a \acs{CCA} that is both high-performing and simple to understand. 
+The primary objective of Arun et al. \cite{COPA} was to develop a \acs{CCA} that is both high-performing and simple to understand. 
 While evaluating an algorithm's "simplicity" is inherently subjective and less straightforward than quantitative metrics, several comparisons highlight Copa's relatively low complexity.  
 
 For instance, PCC is built upon a framework that uses online learning and utility maximization, which can be complex to reason about due to its continuous "micro-experiments" of different sending rates. 
@@ -63,7 +63,7 @@ While BBR also relies on limited parameters — specifically its estimates of Bo
 Overall, Copa is not the most difficult algorithm to understand, particularly when compared to other modern schemes. 
 We have determined that, in contrast to algorithms like PCC—which utilizes complex online optimization and randomized controlled trials—Copa relies on a more transparent, delay-based target rate formula. 
 While PCC's decision-making involves aggregating multiple packet-level events into a performance utility function, Copa's logic is driven by a straightforward relationship between sending rate and queuing delay. 
-Therefore, we conclude that the authors successfully reached their goal of creating a high-performing \acs{CCA} that remains simple for humans to reason about.
+Therefore, we conclude that Arun et al. successfully reached their goal of creating a high-performing \acs{CCA} that remains simple for humans to reason about.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{figures/CopaAnalysis.png}}
@@ -72,20 +72,20 @@ Therefore, we conclude that the authors successfully reached their goal of creat
 \end{figure}
 
 We will now examine the performance of Copa. 
-The authors evaluated the algorithm through various experiments, comparing it directly with other prominent congestion control schemes, including PCC, BBR, and TCP Cubic. 
+Arun et al. \cite{COPA} evaluated the algorithm through various experiments, comparing it directly with other prominent congestion control schemes, including PCC, BBR, and TCP Cubic. 
 But first we will show another important thing about Copa.
 In \ref{fig:CopaAnalysis} is a diagram from \cite{COPA} which shows how different \ac{CCA} behave.
 There are 2 Copa's: Copa-D which is the default mode of Copa and basically Copa that has the competitive mode deactivated and Copa which is the complete Copa algorithm with competitive mode activated.
 Furthermore, there are Cubic, Vegas and Cubic/CoDel as different \acs{CCA} which will be unimportant for our analysis.
 \ref{fig:CopaAnalysis} shows that Copa default is the whole time on the perfect ideal line and therefore the most efficient.
-This demonstrates that the authors found the "perfect" \ac{CCA}.
+This demonstrates that Arun et al. found the "perfect" \ac{CCA}.
 
 Althought we could now end our search for the "perfect" \ac{CCA}, there is one important fact about the real internet: there is more than one flow.
 To compete with these other flows Copa needs to have the competitive mode activated.
 However, as it is shown in \ref{fig:CopaAnalysis} the competitive mode pushes Copa away from the ideal line.
 The competitive mode makes Copa less good, but it is still more effective than Cubic and Vegas as shown in \ref{fig:CopaAnalysis}
 
-Furthermore, the authors conducted experiments to evaluate how their algorithm manages a varying number of flows by adding and terminating flows within an emulated network. 
+Furthermore, Arun et al. conducted experiments to evaluate how their algorithm manages a varying number of flows by adding and terminating flows within an emulated network. 
 They did the same for BBR, PCC and TCP Cubic.
 The results indicate that Copa and TCP Cubic are most effective at maintaining ideal throughput and achieving a high Jain's fairness index, with Copa reaching a median index of 0.86 compared to TCP Cubic's 0.81. 
 In contrast, BBR and PCC showed lower median fairness indices of 0.61 and 0.35, respectively. 
@@ -99,12 +99,12 @@ Consequently, while Copa achieves near-optimal performance in isolation, the act
 To address this, extensions such as Copa+ and Copa-D introduce refined mechanisms for mode-switching logic. 
 Specifically, Copa+ incorporates an additional control parameter, while Copa-D utilizes a redefined expression for $\delta$.
 
-Copa+ utilizes this supplemental parameter to prevent erroneous transitions into competitive mode, a claim supported by the authors' experimental results. 
+Copa+ utilizes this supplemental parameter to prevent erroneous transitions into competitive mode, a claim supported by Jiang et al. experimental results. 
 The algorithm consistently maintains \ac{RTT} values that align with the ideal targets, effectively mirroring the performance of standard Copa when its competitive mode is disabled. 
 Therefore, Copa+ successfully addresses the primary flaw of unnecessary mode switching. 
-However, as the authors do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached.
+However, as Jiang et al. do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached.
 
-The authors of Copa-D evaluated their algorithm through several experiments, including scenarios where the available bandwidth was varied at fixed intervals. 
+Haile et al. \cite{COPADYNAMIC} evaluated their algorithm through several experiments, including scenarios where the available bandwidth was varied at fixed intervals. 
 By comparing Copa with their proposed upgrade, Copa-D, they demonstrated how bandwidth fluctuations influence \ac{RTT}. 
 While standard Copa exhibited a highly volatile \ac{RTT}, Copa-D remained relatively stable. 
 This stability is expected since the experiment does not introduced delay, which therefore should ideally not trigger an \ac{RTT} increase.
@@ -112,9 +112,9 @@ However, standard Copa's \ac{RTT} rose with some bandwidth changes, probably due
 
 It is noteworthy, however, that the experimental results indicate that Copa-D's \ac{RTT} oscillates around a target value. 
 Interestingly, when standard Copa stabilizes at that same point, its oscillations appear smaller than those of Copa-D. 
-The authors attribute this behavior of Copa-D to the dynamic adjustment of $\delta$, which, while stabilizing the average \ac{RTT}, introduces more frequent minor fluctuations.
+Haile et al. attribute this behavior of Copa-D to the dynamic adjustment of $\delta$, which, while stabilizing the average \ac{RTT}, introduces more frequent minor fluctuations.
 
-Furthermore, the authors tested Copa-D in 4G and 5G network environments. 
+Furthermore, Haile et al. tested Copa-D in 4G and 5G network environments. 
 Their findings reveal that while standard Copa achieves a slightly higher throughput, its \ac{RTT} is significantly higher than that of Copa-D. 
 This indicates that Copa-D successfully prioritizes lower delay, providing a more stable performance profile in mobile network scenarios.
 
@@ -129,20 +129,20 @@ Consequently, further research is required to determine if these refinements mai
 
 \subsection{PowerTCP}
 
-The authors of PowerTCP designed their \acs{CCA} specifically for datacenter networks rather than the public internet. 
+Addanki et al. \cite{PowerTCP} designed PowerTCP specifically for datacenter networks rather than the public internet. 
 This targeted approach is significant because it allows the algorithm to leverage the unique characteristics of controlled environments. 
 Unlike the broader internet, a datacenter is typically managed by a single entity that can mandate the use of specific protocols across the entire infrastructure. 
-Consequently, the authors' use of a fat-tree topology for their test environment closely reflects real-world datacenter network conditions. 
+Consequently, Addanki et al. use of a fat-tree topology for their test environment closely reflects real-world datacenter network conditions. 
 Furthermore, this controlled setting eliminates the need to accommodate legacy systems or outdated \acs{CCA}s, which are rarely a factor in modern datacenter deployments.
 
 The experimental results demonstrate that PowerTCP reacts rapidly and accurately to congestion while maintaining high throughput. 
 A key performance indicator is the algorithm's ability to maintain a near-empty queue at the bottleneck, suggesting that PowerTCP operates close to the ideal operating point A described in \ref{ProblemForCCAS}. 
 When additional flows are introduced, the algorithm ensures a fair distribution of bandwidth. 
-Although the authors do not utilize standard fairness measures like Jain's Fairness Index for direct comparison, independent research \cite{TCPSTHIRDEYE} has successfully reproduced these findings. 
+Although Addanki et al. do not utilize standard fairness measures like Jain's Fairness Index for direct comparison, independent research \cite{TCPSTHIRDEYE} has successfully reproduced these findings. 
 These independent studies confirm that while TCP Cubic consistently fills buffers—resulting in increased queuing delay—PowerTCP maintains minimal occupancy. 
 Additionally, PowerTCP flows remain stable and equitable when sharing a bottleneck, whereas TCP Cubic flows often exhibit instability or unfair dominance.
 
-A critical aspect of the authors' evaluation was the impact of PowerTCP on different flow durations, categorized as short, medium, and long flows. 
+A critical aspect of Addanki et al. evaluation was the impact of PowerTCP on different flow durations, categorized as short, medium, and long flows. 
 Their data proves that short flows receive the most significant performance benefits, while medium flows show moderate improvements. 
 Long flows also perform effectively, showing no degradation in performance when compared to traditional algorithms. 
 This overall efficiency is primarily driven by INT, which provides PowerTCP with a comprehensive real-time view of the network status.
@@ -155,8 +155,8 @@ Therefore, while PowerTCP is an optimal choice for congestion control within a d
 
 \subsection{C4}
 
-The authors of the C4 algorithm primarily focused on optimizing network flows for real-time media, such as video and audio streams, which are highly sensitive to latency and queuing delays. 
-In their findings published in the C4 repository, the algorithm was rigorously compared against BBR and TCP Cubic within various simulated WiFi network environments. 
+Huitema et al. \ac{CCA} primarily focused on optimizing network flows for real-time media, such as video and audio streams, which are highly sensitive to latency and queuing delays. 
+In their findings published in the C4 repository\cite{C4GithubRepo}, the algorithm was rigorously compared against BBR and TCP Cubic within various simulated WiFi network environments. 
 These evaluations encompassed scenarios such as WiFi suspension, fading, and extreme jitter to determine C4's robustness relative to its peers. 
 In high-bandwidth basic tests, C4 and Cubic performed identically with minimal delay, whereas BBR's pacing logic resulted in a maximum audio queuing delay of significant higher than the delay observed for C4. 
 Under low-bandwidth conditions (10 Mbps), C4 demonstrated a superior ability to manage high-definition video, maintaining a maximum delay than that from BBR. 

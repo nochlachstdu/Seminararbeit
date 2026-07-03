@@ -130,4 +130,9 @@ J.-T. Hinz, V.~Addanki, C.~Gy\"{o}rgyi, T.~Jepsen, and S.~Schmid, ``Tcp's third
   \url{https://doi.org/10.1145/3609021.3609295}
 \BIBentrySTDinterwordspacing
 
+\bibitem{C4GithubRepo}
+C.~Huitema and S.~Nandakumar, ``Private octopus,''
+  \url{https://github.com/private-octopus/c4/tree/main}, 2025, [Online;
+  accessed 09-May-2026].
+
 \end{thebibliography}
