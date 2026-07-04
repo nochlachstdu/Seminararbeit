@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  3 JUL 2026 22:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.15)  4 JUL 2026 13:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -483,7 +483,7 @@ Package caption Info: End \AtBeginDocument code.
 (Sections/Goal.tex
 
 pdfTeX warning: pdflatex (file ./figures/ProblemForCCAs.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures/ProblemForCCAs.pdf, id=121, 845.07724pt x 597.55246pt>
+<figures/ProblemForCCAs.pdf, id=125, 845.07724pt x 597.55246pt>
 File: figures/ProblemForCCAs.pdf Graphic file (type pdf)
 <use figures/ProblemForCCAs.pdf>
 Package pdftex.def Info: figures/ProblemForCCAs.pdf  used on input line 6.
@@ -527,10 +527,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 [6]
-<figures/CopaAnalysis.png, id=242, 797.98125pt x 630.55576pt>
+<figures/CopaAnalysis.png, id=246, 797.98125pt x 630.55576pt>
 File: figures/CopaAnalysis.png Graphic file (type png)
 <use figures/CopaAnalysis.png>
-Package pdftex.def Info: figures/CopaAnalysis.png  used on input line 69.
+Package pdftex.def Info: figures/CopaAnalysis.png  used on input line 68.
 (pdftex.def)             Requested size: 252.0pt x 199.12643pt.
 
 
@@ -538,9 +538,9 @@ Package pdftex.def Info: figures/CopaAnalysis.png  used on input line 69.
 
 [7 <./figures/CopaAnalysis.png>]
 
-)
 
-[8] (Sections/Summary.tex)
+
+[8]) (Sections/Summary.tex)
 
 (Sections/Outlook.tex) (seminar-paper.bbl
 
@@ -578,20 +578,20 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `seminar-paper.out' has not changed.
-(rerunfilecheck)             Checksum: 2A9490A4072B0D3CC0AFA90243CDAE09;4147.
+(rerunfilecheck)             Checksum: 0E70D4E1A66E69EB4B385CB3FA5ABAE8;4354.
  ) 
 Here is how much of TeX's memory you used:
- 18395 strings out of 473899
- 365021 string characters out of 5726499
- 747531 words of memory out of 5000000
- 41007 multiletter control sequences out of 15000+600000
+ 18397 strings out of 473899
+ 365045 string characters out of 5726499
+ 747563 words of memory out of 5000000
+ 41008 multiletter control sequences out of 15000+600000
  595179 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,8n,93p,482b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,8n,93p,482b,653s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on seminar-paper.pdf (10 pages, 482363 bytes).
+Output written on seminar-paper.pdf (10 pages, 482579 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 353 PDF objects out of 1000 (max. 8388607)
+ 63 named destinations out of 1000 (max. 500000)
+ 243 words of extra memory for PDF output out of 10000 (max. 10000000)
 

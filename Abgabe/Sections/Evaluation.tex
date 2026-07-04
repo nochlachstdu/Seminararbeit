@@ -50,15 +50,14 @@ Regarding TCP friendliness, while "classic" PCC is designed to outperform legacy
 
 The primary objective of Arun et al. \cite{COPA} was to develop a \acs{CCA} that is both high-performing and simple to understand. 
 While evaluating an algorithm's "simplicity" is inherently subjective and less straightforward than quantitative metrics, several comparisons highlight Copa's relatively low complexity.  
-
 For instance, PCC is built upon a framework that uses online learning and utility maximization, which can be complex to reason about due to its continuous "micro-experiments" of different sending rates. 
-In contrast, Copa's core design centers on a single target rate equation: $\lambda = 1/(\delta d_q)$, where $d_q$ represents the measured queuing delay. 
+In contrast, Copa's core design centers on a single target rate equation.%: $\lambda = 1/(\delta d_q)$, where $d_q$ represents the measured queuing delay. 
 While the derivation of this formula involves advanced modeling, the resulting algorithm remains highly comprehensible.  
+Furthermore, Copa operates in two distinct modes to ensure versatility: a default mode and a competitive mode. 
 
-Furthermore, Copa operates in two distinct modes to ensure versatility: a default mode for low-latency performance and a competitive mode designed to match the aggressiveness of buffer-filling schemes like TCP Cubic. 
-The transition between these modes is determined by straightforward measurements.
-The sender switches to competitive mode if it fails to detect a "nearly empty" queue within a 5-RTT window. 
-While BBR also relies on limited parameters — specifically its estimates of Bottleneck's Bandwidth and RTT — PCC adopts a more data-intensive approach, continuously aggregating various packet-level events (such as loss, throughput, and latency) into a utility function to determine its sending rate.
+%The transition between these modes is determined by straightforward measurements.
+%The sender switches to competitive mode if it fails to detect a "nearly empty" queue within a 5-RTT window. 
+%While BBR also relies on limited parameters — specifically its estimates of Bottleneck's Bandwidth and RTT — PCC adopts a more data-intensive approach, continuously aggregating various packet-level events (such as loss, throughput, and latency) into a utility function to determine its sending rate.
 
 Overall, Copa is not the most difficult algorithm to understand, particularly when compared to other modern schemes. 
 We have determined that, in contrast to algorithms like PCC—which utilizes complex online optimization and randomized controlled trials—Copa relies on a more transparent, delay-based target rate formula. 
@@ -93,16 +92,11 @@ Moreover, the study demonstrates that Copa significantly outperforms PCC and BBR
 
 \subsubsection{Upgrades of Copa (Copa+ and Copa-D)}
 
-Although Copa demonstrates strong performance, the authors of Copa+ and Copa-D identified a significant limitation: the algorithm frequently triggers its competitive mode unnecessarily. 
-This premature switching leads to unintended queue accumulation at the bottleneck, compromising the low-latency benefits of its default state. 
-Consequently, while Copa achieves near-optimal performance in isolation, the activation of its competitive mode often degrades its overall efficiency, even in isolation. 
+Although Copa demonstrates strong performance, the authors of Copa+ and Copa-D identified a significant limitation: the algorithm frequently triggers its competitive mode unnecessarily.  
 To address this, extensions such as Copa+ and Copa-D introduce refined mechanisms for mode-switching logic. 
-Specifically, Copa+ incorporates an additional control parameter, while Copa-D utilizes a redefined expression for $\delta$.
-
-Copa+ utilizes this supplemental parameter to prevent erroneous transitions into competitive mode, a claim supported by Jiang et al. experimental results. 
-The algorithm consistently maintains \ac{RTT} values that align with the ideal targets, effectively mirroring the performance of standard Copa when its competitive mode is disabled. 
+Copa+ consistently maintains \ac{RTT} values that align with the ideal targets, effectively mirroring the performance of default Copa when its competitive mode is disabled. 
 Therefore, Copa+ successfully addresses the primary flaw of unnecessary mode switching. 
-However, as Jiang et al. do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached.
+However, as Jiang et al. do not provide specific throughput statistics, a definitive conclusion regarding its impact on link utilization cannot be reached, but its likely, that Jiang et al. reproduced values like \cref{fig:CopaAnalysis}.
 
 Haile et al. \cite{COPADYNAMIC} evaluated their algorithm through several experiments, including scenarios where the available bandwidth was varied at fixed intervals. 
 By comparing Copa with their proposed upgrade, Copa-D, they demonstrated how bandwidth fluctuations influence \ac{RTT}. 
@@ -168,3 +162,17 @@ Furthermore, there is an absence of empirical evidence concerning its fairness w
 Given its demonstrated advantages over TCP Cubic and BBR in wireless scenarios—particularly in reducing queuing delay for real-time media—C4 warrants further testing in varied network architectures to determine if its effectiveness persists across different environments. 
 Additionally, a significant research gap exists because there is no direct comparison between C4 and the Copa algorithm or its extensions. 
 While existing data suggests that Copa might offer competitive performance, a definitive conclusion cannot be reached because the respective tests were conducted in disparate network conditions, making a direct side-by-side evaluation impossible at this time.
+
+\subsection{Discussion of the evaluation}
+
+Now after the evaluation of the \ac{CCA}s themself we want to give a short discussion about the whole topic.
+There is no such thing as a perfect \ac{CCA} that fulfills all requirements that are necessary to be called a perfect \ac{CCA}.
+On one hand, there are BBR and Copa which both can have nearly perfect metrics and are easy to understand, but in combination with other flows they become unfair or lose their good behavior.
+While their extensions and upgrades are improving their core idea, they are not yet perfect.
+On the other hand PowerTCP or PCC have overall good metrics, but are complex or need a lot of input to function.
+
+However a complete comparison which says which \ac{CCA} is the best is not possible.
+Most \ac{CCA}s are only developed for certain networks like PowerTCP which can not operate in the usual internet, because it recieves little to no information about the network.
+Moreover, there is not a direct comparison of different \ac{CCA}s with each other except for those that the authors of the papers publish.
+Although some show direct comparisons, it is unknown if these hold in general or are only specific for these certain experiments.
+All in all a concrete statement and ranking of \ac{CCA}s is not possible.
